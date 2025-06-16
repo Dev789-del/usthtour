@@ -34,11 +34,12 @@ const directionalLight = new THREE.DirectionalLight(0xffffff, 0.6);
 directionalLight.position.set(5, 10, 7.5);
 scene.add(directionalLight);
 
-// Load USTH.obj
-const objLoader = new OBJLoader();
-objLoader.load(
-    './model/building/USTH.ply', // Path to the PLY file
-    (object) => {
+// Load USTH.glb
+const gltfLoader = new GLTFLoader();
+gltfLoader.load(
+    './model/building/USTH.glb', // Path to the GLB file
+    (gltf) => {
+        const object = gltf.scene;
         object.position.set(0, 0, 0);
         object.scale.set(0.03, 0.03, 0.03); // Zoom out the mesh by scaling it down
         scene.add(object);
