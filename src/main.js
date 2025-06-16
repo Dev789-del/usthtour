@@ -35,19 +35,16 @@ const directionalLight = new THREE.DirectionalLight(0xffffff, 0.6);
 directionalLight.position.set(5, 10, 7.5);
 scene.add(directionalLight);
 
-// Load USTH.obj
+// Load USTH3D.obj
 const objLoader = new OBJLoader();
 const plyLoader = new PLYLoader();
-plyLoader.load(
-    './model/building/USTH.ply',
-    (geometry) => {
-        geometry.computeVertexNormals();
-        const material = new THREE.MeshStandardMaterial({ color: 0xcccccc });
-        const mesh = new THREE.Mesh(geometry, material);
-        mesh.position.set(0, 0, 0);
-        mesh.scale.set(0.03, 0.03, 0.03); // Zoom out the mesh by scaling it down
-        scene.add(mesh);
-        const box = new THREE.Box3().setFromObject(mesh);
+objLoader.load(
+    './model/building/USTH3D.obj',
+    (object) => {
+        object.position.set(0, 0, 0);
+        object.scale.set(0.03, 0.03, 0.03); // Scale down the model
+        scene.add(object);
+        const box = new THREE.Box3().setFromObject(object);
         const center = box.getCenter(new THREE.Vector3());
         // Place camera in front of the building, looking at its center, with a slight elevation
         camera.position.set(center.x, center.y - 3, box.max.z);
@@ -56,7 +53,7 @@ plyLoader.load(
     },
     undefined,
     (error) => {
-        console.error('An error happened while loading the PLY:', error);
+        console.error('An error happened while loading the OBJ:', error);
     }
 );
 // Handle window resize
