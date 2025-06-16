@@ -6,8 +6,12 @@ export default defineConfig({
     publicDir: '../static/', // Path from "root" to static assets (files that are served as they are)
     server:
     {
-        host: 'usthtour3D.com', // Host to use and set server custom domain
-        open: !('SANDBOX_URL' in process.env || 'CODESANDBOX_HOST' in process.env) // Open if it's not a CodeSandbox
+        allowedHosts: [ 'usthtour3D.com', 'localhost'], // Allowed hosts
+        host: 'localhost', // Host to use and set server custom domain
+        open: !('SANDBOX_URL' in process.env || 'CODESANDBOX_HOST' in process.env), // Open if it's not a CodeSandbox
+        host: 'usthtour3D.com', // Custom domain for local development
+        port: 3000, // Port to use
+        
     },
     build:
     {
