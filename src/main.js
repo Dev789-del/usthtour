@@ -1,7 +1,6 @@
 import * as THREE from 'three';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
 import { OBJLoader } from 'three/examples/jsm/loaders/OBJLoader.js';
-import { PLYLoader } from 'three/examples/jsm/loaders/PLYLoader.js';
 
 // Scene setup and background color
 const scene = new THREE.Scene();
@@ -35,14 +34,13 @@ const directionalLight = new THREE.DirectionalLight(0xffffff, 0.6);
 directionalLight.position.set(5, 10, 7.5);
 scene.add(directionalLight);
 
-// Load USTH3D.obj
-const objLoader = new OBJLoader();
-const plyLoader = new PLYLoader();
-objLoader.load(
+// Load USTH3D.ply model
+
+OBJLoader.load(
     './model/building/USTH3D.obj',
     (object) => {
         object.position.set(0, 0, 0);
-        object.scale.set(0.03, 0.03, 0.03); // Scale down the model
+        object.scale.set(0.03, 0.03, 0.03); // Scale down the mesh
         scene.add(object);
         const box = new THREE.Box3().setFromObject(object);
         const center = box.getCenter(new THREE.Vector3());
