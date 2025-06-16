@@ -37,7 +37,7 @@ scene.add(directionalLight);
 // Load USTH.obj
 const objLoader = new OBJLoader();
 objLoader.load(
-    './model/building/USTH.obj',
+    './model/building/USTH.ply', // Path to the PLY file
     (object) => {
         object.position.set(0, 0, 0);
         object.scale.set(0.03, 0.03, 0.03); // Zoom out the mesh by scaling it down
