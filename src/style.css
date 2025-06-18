@@ -11,7 +11,12 @@ div {
     align-items: center;
     justify-self: center;
 }
-html,
+html
+{
+    overflow: hidden;
+    background-color: #87CEEB; /* Sky blue background */
+}
+
 body
 {
     align-items: self-start;
@@ -40,13 +45,6 @@ body
     }
 }
 
-.webgl
-{
-    position: fixed;
-    top: 0;
-    left: 0;
-    outline: none;
-}
 
 
 

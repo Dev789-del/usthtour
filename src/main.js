@@ -5,7 +5,7 @@ import { PLYLoader } from 'three/examples/jsm/loaders/PLYLoader.js';
 
 // Scene setup and background color
 const scene = new THREE.Scene();
-scene.background = new THREE.Color(0x87CEEB); // Sky blue background
+scene.background = new THREE.Color(0xA4670A);
 
 // Camera setup
 const camera = new THREE.PerspectiveCamera(
@@ -37,7 +37,7 @@ scene.add(directionalLight);
 
 // Load USTH.obj as a mesh
 const objLoader = new OBJLoader();
-objLoader.load('./model/building/USTH.obj', (object) => {
+objLoader.load('USTH3D.obj', (object) => {
     object.traverse((child) => {
         if (child.isMesh) {
             child.material = new THREE.MeshStandardMaterial({ color: 0xffffff, flatShading: true });// white color for the mesh
@@ -49,7 +49,7 @@ objLoader.load('./model/building/USTH.obj', (object) => {
     const box = new THREE.Box3().setFromObject(object);
     const center = box.getCenter(new THREE.Vector3());
     // Place camera in front of the building, aligned with the mesh center's y-coordinate
-    camera.position.set(center.x + 5, center.y, center.z);
+    camera.position.set(center.x, box.max.y + 2, center.z+2);
     camera.lookAt(center);
     controls.target.copy(center);
 },
