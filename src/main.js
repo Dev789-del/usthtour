@@ -37,7 +37,7 @@ scene.add(directionalLight);
 
 // Load USTH.obj as a mesh
 const objLoader = new OBJLoader();
-objLoader.load('USTH3D.obj', (object) => {
+objLoader.load('./model/building/USTH3D.obj', (object) => {
     object.traverse((child) => {
         if (child.isMesh) {
             child.material = new THREE.MeshStandardMaterial({ color: 0xffffff, flatShading: true });// white color for the mesh
