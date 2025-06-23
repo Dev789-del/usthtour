@@ -1,7 +1,6 @@
 import * as THREE from 'three';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
 import { OBJLoader } from 'three/examples/jsm/loaders/OBJLoader.js';
-import { PLYLoader } from 'three/examples/jsm/loaders/PLYLoader.js';
 
 // Scene setup and background color
 const scene = new THREE.Scene();
@@ -59,7 +58,7 @@ undefined,
 }
 );
 
-// Handle window resize
+// Handle window resize with mouse wheel zoom
 window.addEventListener('resize', () => {
     camera.aspect = window.innerWidth / window.innerHeight;
     camera.updateProjectionMatrix();
