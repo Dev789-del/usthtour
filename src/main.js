@@ -38,12 +38,20 @@ scene.add(directionalLight);
 
 const objLoader = new OBJLoader();
 objLoader.load('./model/building/USTH3D.obj', (object) => {
+    // Set the color for the building mesh having 'Text.037' and 'Text.026' in its name
+    // This is specifically for the medic symbol text
+    object.traverse((child) => {
+        if (child.isMesh && child.name && child.name.includes('Text.037') && child.name.includes('Text.026')) {
+            child.material = new THREE.MeshStandardMaterial({ color: 0xE4080A, flatShading: true }); // red color for medic symbol text
+        }
+    });
     // Set the color for the building mesh having 'Text' in its name
     object.traverse((child) => {
         if (child.isMesh && child.name && child.name.includes('Text')) {
-            child.material = new THREE.MeshStandardMaterial({ color: 0x001f4d, flatShading: true }); // dark blue color for text
+            child.material = new THREE.MeshStandardMaterial({ color: 0x0DAEB5, flatShading: true }); // cyan color for text
         }
     });
+    
     // Set the color for the building mesh having 'Plane' in its name
     object.traverse((child) => {
         if (child.isMesh && child.name && child.name.includes('Plane')) {
