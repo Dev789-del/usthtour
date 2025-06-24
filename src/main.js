@@ -34,12 +34,20 @@ const directionalLight = new THREE.DirectionalLight(0xffffff, 0.6);
 directionalLight.position.set(5, 10, 7.5);
 scene.add(directionalLight);
 
-// Load USTH.obj as a mesh
+// Load USTH3D.obj as a mesh
+
 const objLoader = new OBJLoader();
 objLoader.load('./model/building/USTH3D.obj', (object) => {
+    // Set the color for the building mesh having 'Text' in its name
     object.traverse((child) => {
-        if (child.isMesh) {
-            child.material = new THREE.MeshStandardMaterial({ color: 0xffffff, flatShading: true });// white color for the mesh
+        if (child.isMesh && child.name && child.name.includes('Text')) {
+            child.material = new THREE.MeshStandardMaterial({ color: 0x001f4d, flatShading: true }); // dark blue color for text
+        }
+    });
+    // Set the color for the building mesh having 'Plane' in its name
+    object.traverse((child) => {
+        if (child.isMesh && child.name && child.name.includes('Plane')) {
+            child.material = new THREE.MeshStandardMaterial({ color: 0xffffff, flatShading: true }); // white color for plane
         }
     });
     object.position.set(0, 0, 0);
