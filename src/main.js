@@ -43,7 +43,7 @@ objLoader.load('./model/building/USTH3D.obj', (object) => {
         }
     });
     object.position.set(0, 0, 0);
-    object.scale.set(0.03, 0.03, 0.03); // Scale down the mesh
+    object.scale.set(0.026, 0.026, 0.026); // Scale down the mesh
     scene.add(object);
     const box = new THREE.Box3().setFromObject(object);
     const center = box.getCenter(new THREE.Vector3());
