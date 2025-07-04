@@ -73,7 +73,7 @@ window.addEventListener('resize', () => {
     camera.updateProjectionMatrix();
     renderer.setSize(window.innerWidth, window.innerHeight);
 });
-// Camera movement controls
+
 // Add keyboard controls for camera movement
 const moveSpeed = 0.1;
 const keys = { w: false, a: false, s: false, d: false };
@@ -102,6 +102,7 @@ animate = function() {
     controls.update();
     renderer.render(scene, camera);
 };
+
 // Animation loop
 function animate() {
     requestAnimationFrame(animate);
