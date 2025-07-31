@@ -89,6 +89,29 @@ function moveCamera() {
     if (keys.s) camera.position.z += moveSpeed;    // Move down (increase z)
 }
 
+// When we click on a random position, move the camera to that position from above
+window.addEventListener('click', (event) => {
+    // Convert click position to normalized device coordinates
+    const mouse = new THREE.Vector2(
+        (event.clientX / window.innerWidth) * 2 - 1,
+        -(event.clientY / window.innerHeight) * 2 + 1
+    );
+
+    // Create a raycaster from the camera through the mouse position
+    const raycaster = new THREE.Raycaster();
+    raycaster.setFromCamera(mouse, camera);
+
+    // Calculate the intersection with the ground plane
+    const plane = new THREE.Plane(new THREE.Vector3(0, 5, 0), 0); // Horizontal plane
+    const intersection = new THREE.Vector3();
+    if (raycaster.ray.intersectPlane(plane, intersection)) {
+        // Move camera to the clicked position from above
+        camera.position.set(intersection.x, 4, intersection.z); // Set height to 4 units above the ground
+        camera.lookAt(intersection);
+        controls.target.copy(intersection);
+    }
+});
+
 // Update animation loop to include movement
 const originalAnimate = animate;
 animate = function() {
@@ -97,6 +120,7 @@ animate = function() {
     controls.update();
     renderer.render(scene, camera);
 };
+
 
 // Animation loop
 function animate() {
