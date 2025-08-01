@@ -18,7 +18,7 @@ document.body.appendChild(renderer.domElement);
 // Controls setup
 const controls = new OrbitControls(camera, renderer.domElement);
 controls.enableDamping = true;
-controls.dampingFactor = 0.05;
+controls.dampingFactor = 0.1;
 controls.enableZoom = true;
 
 // Lighting
@@ -106,7 +106,7 @@ window.addEventListener('click', (event) => {
     const intersection = new THREE.Vector3();
     if (raycaster.ray.intersectPlane(plane, intersection)) {
         // Move camera to the clicked position from above
-        camera.position.set(intersection.x, 4, intersection.z); // Set height to 4 units above the ground
+        camera.position.set(intersection.x, 3, intersection.z); // Set height to 3 units above the ground
         camera.lookAt(intersection);
         controls.target.copy(intersection);
     }

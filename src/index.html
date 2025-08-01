@@ -12,5 +12,30 @@
         <a href = "#" class = "button" onclick = "window.open('https://usth.edu.vn/', '_blank')">More About USTH</a>
     </center>
     <script type = "module" src = "./main.js"></script>
+    <script>
+        document.addEventListener('click', function(event) {
+            // Get the click coordinates most accurately
+            var x = event.clientX;
+            var y = event.clientY;
+
+            // Create the image element
+            var img = document.createElement('img');
+            img.src = './model/logo/position1.png'; // Path to your image
+            img.style.position = 'absolute'; // Position it absolutely
+            img.style.left = (x - 10) + 'px'; // Center the image on the click
+            img.style.top = (y - 10) + 'px'; // Center the image on the click
+            img.style.width = '40px'; 
+            img.style.height = '40px'; 
+            img.style.zIndex = '1000'; // Ensure it's on top
+
+            // Append the image to the body
+            document.body.appendChild(img);
+
+            // Remove the image after a new click like google map feature
+            setTimeout(function() {
+                img.remove();
+            }, 1000); // Adjust the timeout as needed
+        });
+    </script>
 </body>
 </html>
