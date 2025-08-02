@@ -90,42 +90,141 @@ function moveCamera() {
 }
 
 // When we click on a random position, move the camera to that position from above
+// window.addEventListener('click', (event) => {
+//     // Convert click position to normalized device coordinates
+//     const mouse = new THREE.Vector2(
+//         (event.clientX / window.innerWidth) * 2 - 1,
+//         -(event.clientY / window.innerHeight) * 2 + 1
+//     );
+
+//     // Create a raycaster from the camera through the mouse position
+//     const raycaster = new THREE.Raycaster();
+//     raycaster.setFromCamera(mouse, camera);
+
+//     // Calculate the intersection with the ground plane
+//     const plane = new THREE.Plane(new THREE.Vector3(0, 5, 0), 0); // Horizontal plane
+//     const intersection = new THREE.Vector3();
+//     if (raycaster.ray.intersectPlane(plane, intersection)) {
+//         // Move camera to the clicked position from above
+//         camera.position.set(intersection.x, 3, intersection.z); // Set height to 3 units above the ground
+//         camera.lookAt(intersection);
+//         controls.target.copy(intersection);
+//     }
+// });
+
+// Add these variables at the top
+// Add these variables at the top with your other variables
+// Add these variables at the top with your other variables
+let isAnimating = false;
+let animationStartTime = 0;
+const animationDuration = 1000; // 1 second transition
+let startCameraPosition = new THREE.Vector3();
+let targetCameraPosition = new THREE.Vector3();
+let startControlsTarget = new THREE.Vector3();
+let targetControlsTarget = new THREE.Vector3();
+
+// Replace your existing click event listener with this one
 window.addEventListener('click', (event) => {
-    // Convert click position to normalized device coordinates
+    if (isAnimating) return; // Don't start new animation if one is in progress
+    
     const mouse = new THREE.Vector2(
         (event.clientX / window.innerWidth) * 2 - 1,
         -(event.clientY / window.innerHeight) * 2 + 1
     );
 
-    // Create a raycaster from the camera through the mouse position
     const raycaster = new THREE.Raycaster();
     raycaster.setFromCamera(mouse, camera);
 
-    // Calculate the intersection with the ground plane
-    const plane = new THREE.Plane(new THREE.Vector3(0, 5, 0), 0); // Horizontal plane
-    const intersection = new THREE.Vector3();
-    if (raycaster.ray.intersectPlane(plane, intersection)) {
-        // Move camera to the clicked position from above
-        camera.position.set(intersection.x, 3, intersection.z); // Set height to 3 units above the ground
-        camera.lookAt(intersection);
-        controls.target.copy(intersection);
+    // Check for intersection with the building mesh
+    const intersects = raycaster.intersectObjects(scene.children, true);
+    
+    if (intersects.length > 0) {
+        const intersection = intersects[0];
+        const clickedPoint = intersection.point;
+        
+        // Calculate position directly above the clicked point
+        const heightAboveBuilding = 5; // Adjust this value as needed
+        targetCameraPosition.set(
+            clickedPoint.x, 
+            clickedPoint.y + heightAboveBuilding, 
+            clickedPoint.z
+        );
+        
+        // Target for camera to look at (the exact clicked point)
+        targetControlsTarget.copy(clickedPoint);
+        
+        // Store start positions
+        startCameraPosition.copy(camera.position);
+        startControlsTarget.copy(controls.target);
+        
+        // Start animation
+        isAnimating = true;
+        animationStartTime = Date.now();
     }
 });
 
-// Update animation loop to include movement
-const originalAnimate = animate;
-animate = function() {
-    moveCamera();
-    requestAnimationFrame(animate);
-    controls.update();
-    renderer.render(scene, camera);
-};
+// Add click event listener to place an image at the clicked position
+window.addEventListener('click', function(event) {
+            // Get the click coordinates most accurately
+            var x = event.clientX;
+            var y = event.clientY;
 
+            // Create the image element
+            var img = document.createElement('img');
+            img.src = './model/logo/position1.png'; // Path to your image
+            img.style.position = 'absolute'; // Position it absolutely
+            img.style.left = (x - 10) + 'px'; // Center the image on the click
+            img.style.top = (y - 10) + 'px'; // Center the image on the click
+            img.style.width = '40px'; 
+            img.style.height = '40px'; 
+            img.style.zIndex = '1000'; // Ensure it's on top
 
-// Animation loop
+            // Append the image to the body
+            document.body.appendChild(img);
+
+            // Remove the image after a new click like google map feature
+            setTimeout(function() {
+                img.remove();
+            }, 1000); // Adjust the timeout as needed
+        });
+
+// Animation loop with smooth transition
 function animate() {
     requestAnimationFrame(animate);
+    
+    if (isAnimating) {
+        const now = Date.now();
+        const elapsed = now - animationStartTime;
+        const progress = Math.min(elapsed / animationDuration, 1);
+        
+        // Cubic easing for smooth start/end
+        const easedProgress = progress < 0.5 
+            ? 4 * progress * progress * progress 
+            : 1 - Math.pow(-2 * progress + 2, 3) / 2;
+        
+        // Interpolate camera position
+        camera.position.lerpVectors(
+            startCameraPosition,
+            targetCameraPosition,
+            easedProgress
+        );
+        
+        // Interpolate controls target
+        controls.target.lerpVectors(
+            startControlsTarget,
+            targetControlsTarget,
+            easedProgress
+        );
+        
+        if (progress === 1) {
+            isAnimating = false;
+        }
+    }
+    
     controls.update();
     renderer.render(scene, camera);
 }
-animate();
+
+// Add camera movement by mouse and keyboard to the animate loop
+moveCamera();
+renderer.setAnimationLoop(animate);

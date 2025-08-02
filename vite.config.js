@@ -10,6 +10,7 @@ export default defineConfig({
         host: 'localhost', // Host to use and set server custom domain
         open: !('SANDBOX_URL' in process.env || 'CODESANDBOX_HOST' in process.env), // Open if it's not a CodeSandbox
         host: 'usthtour3D.com', // Custom domain to use
+        port: 80 // To hide the port in the URL
     },
     build:
     {
