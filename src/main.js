@@ -225,6 +225,8 @@ function animate() {
     renderer.render(scene, camera);
 }
 
-// Add camera movement by mouse and keyboard to the animate loop
-moveCamera();
-renderer.setAnimationLoop(animate);
+// Reduce the jet lag effect by setting the animation loop
+renderer.setAnimationLoop(() => {
+    moveCamera(); // Call the camera movement function
+    animate(); // Call the animate function
+});
