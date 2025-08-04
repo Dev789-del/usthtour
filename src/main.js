@@ -43,7 +43,8 @@ objLoader.load('./model/building/USTH3D.obj', (object) => {
     // Set the color for the building mesh having 'Plane' in its name
     object.traverse((child) => {
         if (child.isMesh && child.name && child.name.includes('Plane')) {
-            child.material = new THREE.MeshStandardMaterial({ color: 0xffffff, flatShading: true }); // white color for plane mesh
+            // white color for plane mesh
+            child.material = new THREE.MeshStandardMaterial({ color: 0xFFFFFF, flatShading: true });
         }
     });
     object.position.set(0, 0, 0);
@@ -90,143 +91,114 @@ function moveCamera() {
 }
 
 // When we click on a random position, move the camera to that position from above
-// window.addEventListener('click', (event) => {
-//     // Convert click position to normalized device coordinates
-//     const mouse = new THREE.Vector2(
-//         (event.clientX / window.innerWidth) * 2 - 1,
-//         -(event.clientY / window.innerHeight) * 2 + 1
-//     );
-
-//     // Create a raycaster from the camera through the mouse position
-//     const raycaster = new THREE.Raycaster();
-//     raycaster.setFromCamera(mouse, camera);
-
-//     // Calculate the intersection with the ground plane
-//     const plane = new THREE.Plane(new THREE.Vector3(0, 5, 0), 0); // Horizontal plane
-//     const intersection = new THREE.Vector3();
-//     if (raycaster.ray.intersectPlane(plane, intersection)) {
-//         // Move camera to the clicked position from above
-//         camera.position.set(intersection.x, 3, intersection.z); // Set height to 3 units above the ground
-//         camera.lookAt(intersection);
-//         controls.target.copy(intersection);
-//     }
-// });
-
-// Add these variables at the top
-// Add these variables at the top with your other variables
-// Add these variables at the top with your other variables
-let isAnimating = false;
-let animationStartTime = 0;
-const animationDuration = 1000; // 1 second transition
-let startCameraPosition = new THREE.Vector3();
-let targetCameraPosition = new THREE.Vector3();
-let startControlsTarget = new THREE.Vector3();
-let targetControlsTarget = new THREE.Vector3();
-
-// Replace your existing click event listener with this one
 window.addEventListener('click', (event) => {
-    if (isAnimating) return; // Don't start new animation if one is in progress
-    
+    // Convert click position to normalized device coordinates
     const mouse = new THREE.Vector2(
         (event.clientX / window.innerWidth) * 2 - 1,
         -(event.clientY / window.innerHeight) * 2 + 1
     );
 
+    // Create a raycaster from the camera through the mouse position
     const raycaster = new THREE.Raycaster();
     raycaster.setFromCamera(mouse, camera);
 
-    // Check for intersection with the building mesh
-    const intersects = raycaster.intersectObjects(scene.children, true);
-    
-    if (intersects.length > 0) {
-        const intersection = intersects[0];
-        const clickedPoint = intersection.point;
-        
-        // Calculate position directly above the clicked point
-        const heightAboveBuilding = 5; // Adjust this value as needed
-        targetCameraPosition.set(
-            clickedPoint.x, 
-            clickedPoint.y + heightAboveBuilding, 
-            clickedPoint.z
-        );
-        
-        // Target for camera to look at (the exact clicked point)
-        targetControlsTarget.copy(clickedPoint);
-        
-        // Store start positions
-        startCameraPosition.copy(camera.position);
-        startControlsTarget.copy(controls.target);
-        
-        // Start animation
-        isAnimating = true;
-        animationStartTime = Date.now();
+    // Calculate the intersection with the ground plane
+    const plane = new THREE.Plane(new THREE.Vector3(0, 5, 0), 0); // Horizontal plane
+    const intersection = new THREE.Vector3();
+    if (raycaster.ray.intersectPlane(plane, intersection)) {
+        // Move camera to the clicked position from above
+        camera.position.set(intersection.x, 3, intersection.z); // Set height to 3 units above the ground
+        camera.lookAt(intersection);
+        controls.target.copy(intersection);
     }
 });
 
 // Add click event listener to place an image at the clicked position
 window.addEventListener('click', function(event) {
-            // Get the click coordinates most accurately
-            var x = event.clientX;
-            var y = event.clientY;
+           // Get the click position in normalized device coordinates based on the previous raycaster
+            const mouse = new THREE.Vector2(
+                (event.clientX / window.innerWidth) * 2 - 1,
+                -(event.clientY / window.innerHeight) * 2 + 1
+            );
 
-            // Create the image element
-            var img = document.createElement('img');
-            img.src = './model/logo/position1.png'; // Path to your image
-            img.style.position = 'absolute'; // Position it absolutely
-            img.style.left = (x - 10) + 'px'; // Center the image on the click
-            img.style.top = (y - 10) + 'px'; // Center the image on the click
-            img.style.width = '40px'; 
-            img.style.height = '40px'; 
-            img.style.zIndex = '1000'; // Ensure it's on top
-
-            // Append the image to the body
-            document.body.appendChild(img);
-
-            // Remove the image after a new click like google map feature
-            setTimeout(function() {
-                img.remove();
-            }, 1000); // Adjust the timeout as needed
+            // Create a raycaster from the camera through the mouse position
+            const raycaster = new THREE.Raycaster();
+            raycaster.setFromCamera(mouse, camera);
+            // Calculate the intersection with the ground plane
+            const plane = new THREE.Plane(new THREE.Vector3(0, 1, 0), 0); // Horizontal plane
+            const intersection = new THREE.Vector3();
+            if (raycaster.ray.intersectPlane(plane, intersection)) {
+                // Get the x and y coordinates of the intersection point
+                const x = intersection.x;
+                const y = intersection.y;
+            }
+            
+            // Create a texture loader to load the image
+            const textureLoader = new THREE.TextureLoader();
+            textureLoader.load('./model/image/position1.png', function(texture) {
+                // Create a plane geometry for the image
+                const geometry = new THREE.PlaneGeometry(1, 1); // 1x1 unit plane
+                const material = new THREE.MeshBasicMaterial({ map: texture, side: THREE.DoubleSide });
+                const imageMesh = new THREE.Mesh(geometry, material);
+                
+                // Set the position of the image mesh to the intersection point
+                imageMesh.position.set(intersection.x, intersection.y + 0.5, intersection.z); // Slightly above the ground
+                imageMesh.rotation.x = -Math.PI / 2; // Rotate to face upwards
+                
+                // Add the image mesh to the scene
+                scene.add(imageMesh);
+            });
         });
 
-// Animation loop with smooth transition
-function animate() {
-    requestAnimationFrame(animate);
-    
-    if (isAnimating) {
-        const now = Date.now();
-        const elapsed = now - animationStartTime;
-        const progress = Math.min(elapsed / animationDuration, 1);
-        
-        // Cubic easing for smooth start/end
-        const easedProgress = progress < 0.5 
-            ? 4 * progress * progress * progress 
-            : 1 - Math.pow(-2 * progress + 2, 3) / 2;
-        
-        // Interpolate camera position
-        camera.position.lerpVectors(
-            startCameraPosition,
-            targetCameraPosition,
-            easedProgress
-        );
-        
-        // Interpolate controls target
-        controls.target.lerpVectors(
-            startControlsTarget,
-            targetControlsTarget,
-            easedProgress
-        );
-        
-        if (progress === 1) {
-            isAnimating = false;
+let routePoints = [];
+let routeLine = null;
+
+// Helper to remove previous route line
+function removeRouteLine() {
+    if (routeLine) {
+        scene.remove(routeLine);
+        routeLine.geometry.dispose();
+        routeLine.material.dispose();
+        routeLine = null;
+    }
+}
+
+// Listen for clicks to select route points
+window.addEventListener('click', function(event) {
+    // Convert click position to normalized device coordinates
+    const mouse = new THREE.Vector2(
+        (event.clientX / window.innerWidth) * 2 - 1,
+        -(event.clientY / window.innerHeight) * 2 + 1
+    );
+    const raycaster = new THREE.Raycaster();
+    raycaster.setFromCamera(mouse, camera);
+
+    // Intersect with ground plane at y=0
+    const plane = new THREE.Plane(new THREE.Vector3(0, 1, 0), 0);
+    const intersection = new THREE.Vector3();
+    if (raycaster.ray.intersectPlane(plane, intersection)) {
+        routePoints.push(intersection.clone());
+        if (routePoints.length > 2) {
+            routePoints = [intersection.clone()];
+            removeRouteLine();
+        }
+        // Draw route if two points are selected
+        if (routePoints.length === 2) {
+            removeRouteLine();
+            // Draw a straight line between the two points (shortest route)
+            const geometry = new THREE.BufferGeometry().setFromPoints(routePoints);
+            const material = new THREE.LineBasicMaterial({ color: 0xff0000, linewidth: 5 });
+            routeLine = new THREE.Line(geometry, material);
+            scene.add(routeLine);
         }
     }
-    
+});
+// Animation loop
+function animate() {
+    requestAnimationFrame(animate);
     controls.update();
+    moveCamera(); // Update camera position based on keyboard input
     renderer.render(scene, camera);
 }
 
-// Reduce the jet lag effect by setting the animation loop
-renderer.setAnimationLoop(() => {
-    moveCamera(); // Call the camera movement function
-    animate(); // Call the animate function
-});
+animate();
