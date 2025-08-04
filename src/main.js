@@ -1,6 +1,7 @@
 import * as THREE from 'three';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
 import { OBJLoader } from 'three/examples/jsm/loaders/OBJLoader.js';
+import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
 
 // Scene setup and background color
 const scene = new THREE.Scene();
@@ -28,6 +29,40 @@ scene.add(ambientLight);
 const directionalLight = new THREE.DirectionalLight(0xffffff, 0.6);
 directionalLight.position.set(5, 10, 7.5);
 scene.add(directionalLight);
+
+// Load GLTF model 
+const gltfLoader = new GLTFLoader();
+gltfLoader.load('./model/car.gltf', (gltf) => {
+    gltf.scene.scale.set(0.005, 0.005, 0.005); // Scale down the model
+    gltf.scene.position.set(0, 0, 5);
+    gltf.scene.name = 'Car'; // Assign a name to the car model
+    scene.add(gltf.scene);
+}, undefined, (error) => {
+    console.error('An error happened while loading the GLTF model:', error);
+});
+
+// Set the car movement speed and keyboard controls AWSD
+const carSpeed = 0.01;
+const carKeys = { w: false, a: false, s: false, d: false };
+window.addEventListener('keydown', (e) => {
+    if (e.key in carKeys) carKeys[e.key] = true;
+});
+window.addEventListener('keyup', (e) => {
+    if (e.key in carKeys) carKeys[e.key] = false;
+}
+);
+function moveCamera() {
+    const car = scene.getObjectByName('Car'); // Assuming the car model is named
+    if (!car) return;
+    // Move the car forward/backward along its local z-axis
+    if (carKeys.w) car.position.z -= carSpeed; // Move forward
+    if (carKeys.s) car.position.z += carSpeed; // Move backward
+    // Rotate the car left/right around its local y-axis
+    if (carKeys.a) car.rotation.y += 0.05; // Rotate left
+
+    if (carKeys.d) car.rotation.y -= 0.05; // Rotate right
+}
+
 
 // Load USTH3D.obj as a mesh
 
@@ -68,26 +103,6 @@ window.addEventListener('resize', () => {
     camera.updateProjectionMatrix();
     renderer.setSize(window.innerWidth, window.innerHeight);
 });
-
-// Add keyboard controls for camera movement
-const moveSpeed = 0.1;
-const keys = { w: false, a: false, s: false, d: false };
-
-window.addEventListener('keydown', (e) => {
-    if (e.key in keys) keys[e.key] = true;
-});
-
-window.addEventListener('keyup', (e) => {
-    if (e.key in keys) keys[e.key] = false;
-});
-
-function moveCamera() {
-    // Move left/right along y-axis, up/down along z-axis
-    if (keys.a) camera.position.y += moveSpeed;    // Move left (increase y)
-    if (keys.d) camera.position.y -= moveSpeed;    // Move right (decrease y)
-    if (keys.w) camera.position.z -= moveSpeed;    // Move up (decrease z)
-    if (keys.s) camera.position.z += moveSpeed;    // Move down (increase z)
-}
 
 // When we click on a random position, move the camera to that position from above
 // window.addEventListener('click', (event) => {
