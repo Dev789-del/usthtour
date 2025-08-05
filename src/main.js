@@ -1,6 +1,8 @@
 import * as THREE from 'three';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
 import { OBJLoader } from 'three/examples/jsm/loaders/OBJLoader.js';
+import { createCar } from './model/building/Car.js';
+
 
 // Scene setup and background color
 const scene = new THREE.Scene();
@@ -56,6 +58,50 @@ objLoader.load('./model/building/USTH3D.obj', (object) => {
     camera.position.set(center.x, box.max.y + 2, center.z+2);
     camera.lookAt(center);
     controls.target.copy(center);
+    // Create and add a car to the scene
+    const car = createCar();
+    car.position.set(0, 0, 4);
+    // Scale the car down to fit the scene
+    car.scale.set(0.005, 0.005, 0.005);
+    // Set car movement speed and keyboard controls left right up down arrow keys
+    car.userData = { speed: 0.1 }; // Add speed property to car for movement
+    car.userData.direction = new THREE.Vector3(0, 0, -1); // Initial direction facing towards the building
+    car.userData.move = function() {
+        this.position.addScaledVector(this.userData.direction, this.userData.speed);
+    };
+    car.userData.moveForward = function() {
+        this.userData.move();
+    };
+    car.userData.moveBackward = function() {
+        this.userData.move();
+        this.userData.direction.negate(); // Reverse direction for backward movement
+    };
+    car.userData.turnLeft = function() {
+        this.userData.rotate(Math.PI / 18); // Rotate left by 10 degrees
+    };
+    car.userData.turnRight = function() {
+        this.userData.rotate(-Math.PI / 18); // Rotate right by 10 degrees
+    };
+    // Add event listeners for car movement controls
+    window.addEventListener('keydown', (event) => {
+        switch(event.key) {
+            case 'ArrowUp':
+                car.userData.moveForward();
+                break;
+            case 'ArrowDown':
+                car.userData.moveBackward();
+                break;
+            case 'ArrowLeft':
+                car.userData.turnLeft();
+                break;
+            case 'ArrowRight':
+                car.userData.turnRight();
+                break;
+        }
+    });
+    // Add the car to the scene 
+    scene.add(car);
+
 },
 undefined,
 (error) => {
@@ -201,8 +247,6 @@ chatBot.innerHTML = `
     <p>Click on two points to draw a route between them.</p>
 `;
 document.body.appendChild(chatBot);
-
-
 
 // Animation loop
 function animate() {
