@@ -115,40 +115,28 @@ window.addEventListener('click', (event) => {
 
 // Add click event listener to place an image at the clicked position
 window.addEventListener('click', function(event) {
-           // Get the click position in normalized device coordinates based on the previous raycaster
-            const mouse = new THREE.Vector2(
-                (event.clientX / window.innerWidth) * 2 - 1,
-                -(event.clientY / window.innerHeight) * 2 + 1
-            );
+        // Get the click position and resize the image
+        var x = event.clientX;
+        var y = event.clientY;
+        
+        // Create the image element
+        var img = document.createElement('img');
+        img.src = './model/logo/location.png'; // Path to your image
+        img.style.position = 'absolute'; // Position it absolutely
+        img.style.left = (x - 10) + 'px'; // Center the image on the click
+        img.style.top = (y - 10) + 'px'; // Center the image on the click
+        img.style.width = '20px'; 
+        img.style.height = '20px'; 
+        img.style.zIndex = '1000'; // Ensure it's on top
 
-            // Create a raycaster from the camera through the mouse position
-            const raycaster = new THREE.Raycaster();
-            raycaster.setFromCamera(mouse, camera);
-            // Calculate the intersection with the ground plane
-            const plane = new THREE.Plane(new THREE.Vector3(0, 1, 0), 0); // Horizontal plane
-            const intersection = new THREE.Vector3();
-            if (raycaster.ray.intersectPlane(plane, intersection)) {
-                // Get the x and y coordinates of the intersection point
-                const x = intersection.x;
-                const y = intersection.y;
-            }
-            
-            // Create a texture loader to load the image
-            const textureLoader = new THREE.TextureLoader();
-            textureLoader.load('./model/image/position1.png', function(texture) {
-                // Create a plane geometry for the image
-                const geometry = new THREE.PlaneGeometry(1, 1); // 1x1 unit plane
-                const material = new THREE.MeshBasicMaterial({ map: texture, side: THREE.DoubleSide });
-                const imageMesh = new THREE.Mesh(geometry, material);
-                
-                // Set the position of the image mesh to the intersection point
-                imageMesh.position.set(intersection.x, intersection.y + 0.5, intersection.z); // Slightly above the ground
-                imageMesh.rotation.x = -Math.PI / 2; // Rotate to face upwards
-                
-                // Add the image mesh to the scene
-                scene.add(imageMesh);
-            });
-        });
+        // Append the image to the body
+        document.body.appendChild(img);
+
+        // Remove the image after a new click like google map feature
+        setTimeout(function() {
+            img.remove();
+        }, 1000); // Adjust the timeout as needed
+    });
 
 let routePoints = [];
 let routeLine = null;
@@ -193,6 +181,29 @@ window.addEventListener('click', function(event) {
         }
     }
 });
+
+//Make a chatbot that guides the user through the scene
+const chatBot = document.createElement('div');
+chatBot.style.position = 'fixed';
+chatBot.style.bottom = '20px';
+chatBot.style.right = '20px';
+chatBot.style.width = '300px';
+chatBot.style.height = '200px';
+chatBot.style.backgroundColor = 'rgba(255, 255, 255, 0.8)';
+chatBot.style.border = '1px solid #ccc';
+chatBot.style.padding = '10px';
+chatBot.style.borderRadius = '10px';
+chatBot.style.boxShadow = '0 0 10px rgba(0, 0, 0, 0.1)';
+chatBot.innerHTML = `
+    <h3>Chatbot</h3>
+    <p>Welcome to the USTH 3D scene! Use WASD keys to move around.</p>
+    <p>Click on the ground to place an image or select route points.</p>
+    <p>Click on two points to draw a route between them.</p>
+`;
+document.body.appendChild(chatBot);
+
+
+
 // Animation loop
 function animate() {
     requestAnimationFrame(animate);
