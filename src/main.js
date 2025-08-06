@@ -60,46 +60,40 @@ objLoader.load('./model/building/USTH3D.obj', (object) => {
     controls.target.copy(center);
     // Create and add a car to the scene
     const car = createCar();
-    car.position.set(0, 0, 4);
+    car.position.set(0.1, 0, 2);
     // Scale the car down to fit the scene
-    car.scale.set(0.005, 0.005, 0.005);
+    car.scale.set(0.001, 0.001, 0.001);
     // Set car movement speed and keyboard controls left right up down arrow keys
     car.userData = { speed: 0.1 }; // Add speed property to car for movement
     car.userData.direction = new THREE.Vector3(0, 0, -1); // Initial direction facing towards the building
-    car.userData.move = function() {
-        this.position.addScaledVector(this.userData.direction, this.userData.speed);
-    };
-    car.userData.moveForward = function() {
-        this.userData.move();
-    };
-    car.userData.moveBackward = function() {
-        this.userData.move();
-        this.userData.direction.negate(); // Reverse direction for backward movement
-    };
-    car.userData.turnLeft = function() {
-        this.userData.rotate(Math.PI / 18); // Rotate left by 10 degrees
-    };
-    car.userData.turnRight = function() {
-        this.userData.rotate(-Math.PI / 18); // Rotate right by 10 degrees
-    };
-    // Add event listeners for car movement controls
+    
+    // Add keyboard controls for car movement A, D, W, S keys
     window.addEventListener('keydown', (event) => {
-        switch(event.key) {
-            case 'ArrowUp':
-                car.userData.moveForward();
+        switch (event.key) {
+            case 'w': // Move forward
+                car.userData.direction.set(0, 0, -1);
+                car.position.addScaledVector(car.userData.direction, car.userData.speed);
                 break;
-            case 'ArrowDown':
-                car.userData.moveBackward();
+            case 's': // Move backward
+                car.userData.direction.set(0, 0, 1);
+                car.position.addScaledVector(car.userData.direction, car.userData.speed);
                 break;
-            case 'ArrowLeft':
-                car.userData.turnLeft();
+            case 'a': // Move to West direction
+                car.userData.direction.set(-1, 0, 0);
+                car.position.addScaledVector(car.userData.direction, car.userData.speed);
                 break;
-            case 'ArrowRight':
-                car.userData.turnRight();
+            case 'd': // Move to East direction
+                car.userData.direction.set(1, 0, 0);
+                car.position.addScaledVector(car.userData.direction, car.userData.speed);
                 break;
         }
     });
-    // Add the car to the scene 
+    //Make sure the camera follows the car even when it moves
+    camera.position.set(car.position.x, car.position.y + 4, car.position.z ); // Set camera position behind the car
+    camera.lookAt(car.position); // Make the camera look at the car
+    controls.target.copy(car.position); // Update controls target to follow the car
+
+    // Add the car to the scene
     scene.add(car);
 
 },
@@ -114,27 +108,7 @@ window.addEventListener('resize', () => {
     camera.aspect = window.innerWidth / window.innerHeight;
     camera.updateProjectionMatrix();
     renderer.setSize(window.innerWidth, window.innerHeight);
-});
-
-// Add keyboard controls for camera movement
-const moveSpeed = 0.1;
-const keys = { w: false, a: false, s: false, d: false };
-
-window.addEventListener('keydown', (e) => {
-    if (e.key in keys) keys[e.key] = true;
-});
-
-window.addEventListener('keyup', (e) => {
-    if (e.key in keys) keys[e.key] = false;
-});
-
-function moveCamera() {
-    // Move left/right along x-axis, up/down along z-axis
-    if (keys.a) camera.position.x -= moveSpeed;    // Move left (decrease x)
-    if (keys.d) camera.position.x += moveSpeed;    // Move right (increase x)
-    if (keys.w) camera.position.z -= moveSpeed;    // Move up (decrease z)
-    if (keys.s) camera.position.z += moveSpeed;    // Move down (increase z)
-}
+}); 
 
 // When we click on a random position, move the camera to that position from above
 window.addEventListener('click', (event) => {
@@ -251,8 +225,7 @@ document.body.appendChild(chatBot);
 // Animation loop
 function animate() {
     requestAnimationFrame(animate);
-    controls.update();
-    moveCamera(); // Update camera position based on keyboard input
+    controls.update(); 
     renderer.render(scene, camera);
 }
 
