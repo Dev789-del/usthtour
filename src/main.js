@@ -89,7 +89,7 @@ objLoader.load('./model/building/USTH3D.obj', (object) => {
         }
     });
     //Make sure the camera follows the car even when it moves
-    camera.position.set(car.position.x, car.position.y + 4, car.position.z ); // Set camera position behind the car
+    camera.position.set(car.position.x, car.position.y + 3, car.position.z ); // Set camera position behind the car
     camera.lookAt(car.position); // Make the camera look at the car
     controls.target.copy(car.position); // Update controls target to follow the car
 
