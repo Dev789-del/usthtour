@@ -141,7 +141,7 @@ window.addEventListener('click', function(event) {
         
         // Create the image element
         var img = document.createElement('img');
-        img.src = './model/logo/location.png'; // Path to your image
+        img.src = './model/image/location.png'; // Path to your image
         img.style.position = 'absolute'; // Position it absolutely
         img.style.left = (x - 10) + 'px'; // Center the image on the click
         img.style.top = (y - 10) + 'px'; // Center the image on the click
