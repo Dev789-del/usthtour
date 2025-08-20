@@ -13,8 +13,7 @@ div {
 }
 html
 {
-    overflow: hidden;
-    background-color: #87CEEB; /* Sky blue background */
+    overflow: hidden; 
 }
 
 body

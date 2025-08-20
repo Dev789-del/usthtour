@@ -58,43 +58,7 @@ objLoader.load('./model/building/USTH3D.obj', (object) => {
     camera.position.set(center.x, box.max.y + 2, center.z+2);
     camera.lookAt(center);
     controls.target.copy(center);
-    // Create and add a car to the scene
-    const car = createCar();
-    car.position.set(0.1, 0, 2);
-    // Scale the car down to fit the scene
-    car.scale.set(0.001, 0.001, 0.001);
-    // Set car movement speed and keyboard controls left right up down arrow keys
-    car.userData = { speed: 0.1 }; // Add speed property to car for movement
-    car.userData.direction = new THREE.Vector3(0, 0, -1); // Initial direction facing towards the building
     
-    // Add keyboard controls for car movement A, D, W, S keys
-    window.addEventListener('keydown', (event) => {
-        switch (event.key) {
-            case 'w': // Move forward
-                car.userData.direction.set(0, 0, -1);
-                car.position.addScaledVector(car.userData.direction, car.userData.speed);
-                break;
-            case 's': // Move backward
-                car.userData.direction.set(0, 0, 1);
-                car.position.addScaledVector(car.userData.direction, car.userData.speed);
-                break;
-            case 'a': // Move to West direction
-                car.userData.direction.set(-1, 0, 0);
-                car.position.addScaledVector(car.userData.direction, car.userData.speed);
-                break;
-            case 'd': // Move to East direction
-                car.userData.direction.set(1, 0, 0);
-                car.position.addScaledVector(car.userData.direction, car.userData.speed);
-                break;
-        }
-    });
-    //Make sure the camera follows the car even when it moves
-    camera.position.set(car.position.x, car.position.y + 3, car.position.z ); // Set camera position behind the car
-    camera.lookAt(car.position); // Make the camera look at the car
-    controls.target.copy(car.position); // Update controls target to follow the car
-
-    // Add the car to the scene
-    scene.add(car);
 
 },
 undefined,
@@ -102,6 +66,44 @@ undefined,
     console.error('An error happened while loading the OBJ:', error);
 }
 );
+
+// Create and add a car to the scene
+const car = createCar();
+car.position.set(0.1, 0, 2);
+// Scale the car down to fit the scene
+car.scale.set(0.001, 0.001, 0.001);
+// Set car movement speed and keyboard controls left right up down arrow keys
+car.userData = { speed: 0.1 }; // Add speed property to car for movement
+car.userData.direction = new THREE.Vector3(0, 0, -1); // Initial direction facing towards the building
+
+// Add keyboard controls for car movement A, D, W, S keys
+window.addEventListener('keydown', (event) => {
+    switch (event.key) {
+        case 'w': // Move forward
+            car.userData.direction.set(0, 0, -1);
+            car.position.addScaledVector(car.userData.direction, car.userData.speed);
+            break;
+        case 's': // Move backward
+            car.userData.direction.set(0, 0, 1);
+            car.position.addScaledVector(car.userData.direction, car.userData.speed);
+            break;
+        case 'a': // Move to West direction
+            car.userData.direction.set(-1, 0, 0);
+            car.position.addScaledVector(car.userData.direction, car.userData.speed);
+            break;
+        case 'd': // Move to East direction
+            car.userData.direction.set(1, 0, 0);
+            car.position.addScaledVector(car.userData.direction, car.userData.speed);
+            break;
+    }
+});
+//Make sure the camera follows the car even when it moves
+camera.position.set(car.position.x, car.position.y + 3, car.position.z ); // Set camera position behind the car
+camera.lookAt(car.position); // Make the camera look at the car
+controls.target.copy(car.position); // Update controls target to follow the car
+
+// Add the car to the scene
+scene.add(car);
 
 // Handle window resize with mouse wheel zoom
 window.addEventListener('resize', () => {
