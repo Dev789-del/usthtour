@@ -6,7 +6,7 @@ import { createCar } from './model/building/Car.js';
 
 // Scene setup and background color
 const scene = new THREE.Scene();
-scene.background = new THREE.Color(0xA4670A);
+scene.background = new THREE.Color(0x77F9FE);
 
 // Camera setup
 const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
@@ -62,6 +62,7 @@ undefined,
 }
 );
 
+// Load street components
 objLoader.load('./model/image/StreetComponents.obj', (object) => {
     // Make text mesh with texture
     object.traverse((child) => {
@@ -98,6 +99,127 @@ undefined,
     console.error('An error happened while loading the OBJ:', error);
 }
 );
+
+// Load gate obj
+objLoader.load('./model/image/Gate.obj', (object) => {
+    
+    // Set texture for text mesh
+    object.traverse((child) => {
+        if (child.isMesh && child.name && child.name.includes('Text')) {
+            child.material = new THREE.MeshStandardMaterial({
+                map: new THREE.TextureLoader().load('./model/image/dark_blue_texture.png'),
+                side: THREE.DoubleSide
+            });
+        }
+    });
+
+    // Set texture for Plane.118
+    object.traverse((child) => {
+        if (child.isMesh && child.name && child.name.includes('Plane.118')) {
+            child.material = new THREE.MeshStandardMaterial({
+                map: new THREE.TextureLoader().load('./model/image/building_default_color.png'),
+                side: THREE.DoubleSide
+            });
+        }
+    });
+
+    // Set texture for Plane.176
+    object.traverse((child) => {
+        if (child.isMesh && child.name && child.name.includes('Plane.176')) {
+            child.material = new THREE.MeshStandardMaterial({
+                map: new THREE.TextureLoader().load('./model/image/school_wall_texture.jpg'),
+                side: THREE.DoubleSide
+            });
+        }
+    });
+
+    // Set texture for Plane.207
+    object.traverse((child) => {
+        if (child.isMesh && child.name && child.name.includes('Plane.207')) {
+            child.material = new THREE.MeshStandardMaterial({
+                map: new THREE.TextureLoader().load('./model/image/school_wall_texture.jpg'),
+                side: THREE.DoubleSide
+            });
+        }
+    });
+
+    // Set texture for Plane.209
+    object.traverse((child) => {
+        if (child.isMesh && child.name && child.name.includes('Plane.209')) {
+            child.material = new THREE.MeshStandardMaterial({
+                map: new THREE.TextureLoader().load('./model/image/building_default_color.png'),
+                side: THREE.DoubleSide
+            });
+        }
+    });
+
+    // Set texture for Plane.210
+    object.traverse((child) => {
+        if (child.isMesh && child.name && child.name.includes('Plane.210')) {
+            child.material = new THREE.MeshStandardMaterial({
+                map: new THREE.TextureLoader().load('./model/image/building_default_color.png'),
+                side: THREE.DoubleSide
+            });
+        }
+    });
+
+    // Set texture for Plane.211
+    object.traverse((child) => {
+        if (child.isMesh && child.name && child.name.includes('Plane.211')) {
+            child.material = new THREE.MeshStandardMaterial({
+                map: new THREE.TextureLoader().load('./model/image/building_default_color.png'),
+                side: THREE.DoubleSide
+            });
+        }
+    });
+
+    // Set texture for Plane.039 for Gate 18
+    object.traverse((child) => {
+        if (child.isMesh && child.name && child.name.includes('Plane.039')) {
+            child.material = new THREE.MeshStandardMaterial({
+                map: new THREE.TextureLoader().load('./model/image/gate_station_color.jpeg'),
+                side: THREE.DoubleSide
+            });
+        }
+    });
+
+    // Set texture for Plane.116 for Gate 18B 
+    object.traverse((child) => {
+        if (child.isMesh && child.name && child.name.includes('Plane.116')) {
+            child.material = new THREE.MeshStandardMaterial({
+                map: new THREE.TextureLoader().load('./model/image/gate_station_color.jpeg'),
+                side: THREE.DoubleSide
+            });
+        }
+    });
+
+    // Set texture for Plane.117 for Gate 18C 
+    object.traverse((child) => {
+        if (child.isMesh && child.name && child.name.includes('Plane.117')) {
+            child.material = new THREE.MeshStandardMaterial({
+                map: new THREE.TextureLoader().load('./model/image/gate_station_color.jpeg'),
+                side: THREE.DoubleSide
+            });
+        }
+    });
+    object.position.set(0, 0, 0);
+    object.scale.set(0.026, 0.026, 0.026); // Scale down the mesh
+    scene.add(object);
+    const box = new THREE.Box3().setFromObject(object);
+    const center = box.getCenter(new THREE.Vector3());
+    // Place camera in front of the building, aligned with the mesh center's y-coordinate
+    camera.position.set(center.x, box.max.y + 2, center.z+2);
+    camera.lookAt(center);
+    controls.target.copy(center);
+
+},
+undefined,
+(error) => {
+    console.error('An error happened while loading the OBJ:', error);
+}
+);
+
+
 
 // Create and add a car to the scene
 const car = createCar();
@@ -145,27 +267,27 @@ window.addEventListener('resize', () => {
 }); 
 
 // When we click on a random position, move the camera to that position from above
-window.addEventListener('click', (event) => {
-    // Convert click position to normalized device coordinates
-    const mouse = new THREE.Vector2(
-        (event.clientX / window.innerWidth) * 2 - 1,
-        -(event.clientY / window.innerHeight) * 2 + 1
-    );
+// window.addEventListener('click', (event) => {
+//     // Convert click position to normalized device coordinates
+//     const mouse = new THREE.Vector2(
+//         (event.clientX / window.innerWidth) * 2 - 1,
+//         -(event.clientY / window.innerHeight) * 2 + 1
+//     );
 
-    // Create a raycaster from the camera through the mouse position
-    const raycaster = new THREE.Raycaster();
-    raycaster.setFromCamera(mouse, camera);
+//     // Create a raycaster from the camera through the mouse position
+//     const raycaster = new THREE.Raycaster();
+//     raycaster.setFromCamera(mouse, camera);
 
-    // Calculate the intersection with the ground plane
-    const plane = new THREE.Plane(new THREE.Vector3(0, 5, 0), 0); // Horizontal plane
-    const intersection = new THREE.Vector3();
-    if (raycaster.ray.intersectPlane(plane, intersection)) {
-        // Move camera to the clicked position from above
-        camera.position.set(intersection.x, 3, intersection.z); // Set height to 3 units above the ground
-        camera.lookAt(intersection);
-        controls.target.copy(intersection);
-    }
-});
+//     // Calculate the intersection with the ground plane
+//     const plane = new THREE.Plane(new THREE.Vector3(0, 5, 0), 0); // Horizontal plane
+//     const intersection = new THREE.Vector3();
+//     if (raycaster.ray.intersectPlane(plane, intersection)) {
+//         // Move camera to the clicked position from above
+//         camera.position.set(intersection.x, 3, intersection.z); // Set height to 3 units above the ground
+//         camera.lookAt(intersection);
+//         controls.target.copy(intersection);
+//     }
+// });
 
 // Add click event listener to place an image at the clicked position
 window.addEventListener('click', function(event) {
@@ -255,6 +377,26 @@ chatBot.innerHTML = `
     <p>Click on two points to draw a route between them.</p>
 `;
 document.body.appendChild(chatBot);
+
+// Add a function to move camera pov with keys with west, north, east, south direction
+function moveCamera(event) {
+    switch (event.key) {
+        case 'w':
+            camera.position.z -= 0.1;
+            break;
+        case 's':
+            camera.position.z += 0.1;
+            break;
+        case 'a':
+            camera.position.x -= 0.1;
+            break;
+        case 'd':
+            camera.position.x += 0.1;
+            break;
+    }
+}
+
+window.addEventListener('keydown', moveCamera);
 
 // Animation loop
 function animate() {
