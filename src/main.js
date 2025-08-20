@@ -31,22 +31,54 @@ const directionalLight = new THREE.DirectionalLight(0xffffff, 0.6);
 directionalLight.position.set(5, 10, 7.5);
 scene.add(directionalLight);
 
-// Load USTH3D.obj as a mesh
+// Load sidewalk as a mesh
 
 const objLoader = new OBJLoader();
-objLoader.load('./model/building/USTH3D.obj', (object) => {
-    // Set the color for the building mesh having 'Text' in its name
+objLoader.load('./model/image/Sidewalk.obj', (object) => {
+    // Enable its texture from obj file
     object.traverse((child) => {
-        if (child.isMesh && child.name && child.name.includes('Text')) {
-            child.material = new THREE.MeshStandardMaterial({ color: 0x0DAEB5, flatShading: true }); // cyan color for text mesh
+        if (child.isMesh) {
+            child.material = new THREE.MeshStandardMaterial({
+                map: new THREE.TextureLoader().load('./model/image/street_sidewalk_texture.jpg'),
+                side: THREE.DoubleSide
+            });
         }
     });
+    object.position.set(0, 0, 0);
+    object.scale.set(0.026, 0.026, 0.026); // Scale down the mesh
+    scene.add(object);
+    const box = new THREE.Box3().setFromObject(object);
+    const center = box.getCenter(new THREE.Vector3());
+    // Place camera in front of the building, aligned with the mesh center's y-coordinate
+    camera.position.set(center.x, box.max.y + 2, center.z+2);
+    camera.lookAt(center);
+    controls.target.copy(center);
     
-    // Set the color for the building mesh having 'Plane' in its name
+
+},
+undefined,
+(error) => {
+    console.error('An error happened while loading the OBJ:', error);
+}
+);
+
+objLoader.load('./model/image/StreetComponents.obj', (object) => {
+    // Make text mesh with texture
+    object.traverse((child) => {
+        if (child.isMesh && child.name && child.name.includes('Text')) {
+            child.material = new THREE.MeshStandardMaterial({
+                map: new THREE.TextureLoader().load('./model/image/dark_blue_texture.png'),
+                side: THREE.DoubleSide
+            });
+        }
+    });
+    // Enable its texture from obj file with plane mesh only
     object.traverse((child) => {
         if (child.isMesh && child.name && child.name.includes('Plane')) {
-            // white color for plane mesh
-            child.material = new THREE.MeshStandardMaterial({ color: 0xFFFFFF, flatShading: true });
+            child.material = new THREE.MeshStandardMaterial({
+                map: new THREE.TextureLoader().load('./model/image/gray_texture.png'),
+                side: THREE.DoubleSide
+            });
         }
     });
     object.position.set(0, 0, 0);
