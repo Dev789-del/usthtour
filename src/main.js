@@ -350,7 +350,7 @@ objLoader.load('./model/image/Pond.obj', (object) => {
     object.traverse((child) => {
         if (child.isMesh && child.name && child.name.includes('Cylinder')) {
             child.material = new THREE.MeshStandardMaterial({
-                map: new THREE.TextureLoader().load('./model/image/pond_texture.jpg'),
+                map: new THREE.TextureLoader().load('./model/image/lake_texture.png'),
                 side: THREE.DoubleSide
             });
         }
@@ -872,6 +872,750 @@ objLoader.load('./model/image/Medic2.obj', (object) => {
     console.error('An error happened while loading the OBJ:', error);
 });
 
+// Load A18-1.obj
+objLoader.load('./model/image/A18-1.obj', (object) => {
+    // Make texture adjustments for A18-1
+    object.traverse((child) => {
+        if (child.isMesh && child.name && child.name.includes('Plane')) {
+            child.material = new THREE.MeshStandardMaterial({
+                map: new THREE.TextureLoader().load('./model/image/gate_station_color.jpeg'),
+                side: THREE.DoubleSide
+            });
+        }
+    });
+
+    // Make text mesh with texture
+    object.traverse((child) => {
+        if (child.isMesh && child.name && child.name.includes('Text')) {
+            child.material = new THREE.MeshStandardMaterial({
+                map: new THREE.TextureLoader().load('./model/image/dark_blue_texture.png'),
+                side: THREE.DoubleSide
+            });
+        }
+    });
+
+    object.position.set(0, 0, 0);
+    object.scale.set(0.026, 0.026, 0.026); // Scale down the mesh
+    scene.add(object);
+    const box = new THREE.Box3().setFromObject(object);
+    const center = box.getCenter(new THREE.Vector3());
+    // Place camera in front of the building, aligned with the mesh center's y-coordinate
+    camera.position.set(center.x, box.max.y + 2, center.z+2);
+    camera.lookAt(center);
+    controls.target.copy(center);
+}, undefined, (error) => {
+    console.error('An error happened while loading the OBJ:', error);
+});
+
+// Load A18-2.obj
+objLoader.load('./model/image/A18-2.obj', (object) => {
+    // Make texture adjustments for A18-2's faces not rooftop
+    object.traverse((child) => {
+        if (child.isMesh && child.name && child.name.includes('Plane.067')) {
+            child.material = new THREE.MeshStandardMaterial({
+                map: new THREE.TextureLoader().load('./model/image/BuildingA18-2_texture.png'),
+                side: THREE.FrontSide
+            });
+        }
+    });
+    // Make text mesh with texture
+    object.traverse((child) => {
+        if (child.isMesh && child.name && child.name.includes('Text')) {
+            child.material = new THREE.MeshStandardMaterial({
+                map: new THREE.TextureLoader().load('./model/image/dark_blue_texture.png'),
+                side: THREE.DoubleSide
+            });
+        }
+    });
+
+    object.position.set(0, 0, 0);
+    object.scale.set(0.026, 0.026, 0.026); // Scale down the mesh
+    scene.add(object);
+    const box = new THREE.Box3().setFromObject(object);
+    const center = box.getCenter(new THREE.Vector3());
+    // Place camera in front of the building, aligned with the mesh center's y-coordinate
+    camera.position.set(center.x, box.max.y + 2, center.z+2);
+    camera.lookAt(center);
+    controls.target.copy(center);
+}, undefined, (error) => {
+    console.error('An error happened while loading the OBJ:', error);
+});
+
+// Load A20.obj
+objLoader.load('./model/image/A20.obj', (object) => {
+    // Make texture adjustments for A20
+    object.traverse((child) => {
+        if (child.isMesh && child.name && child.name.includes('Plane')) {
+            child.material = new THREE.MeshStandardMaterial({
+                map: new THREE.TextureLoader().load('./model/image/gate_station_color.jpeg'),
+                side: THREE.DoubleSide
+            });
+        }
+    });
+
+    // Make text mesh with texture
+    object.traverse((child) => {
+        if (child.isMesh && child.name && child.name.includes('Text')) {
+            child.material = new THREE.MeshStandardMaterial({
+                map: new THREE.TextureLoader().load('./model/image/dark_blue_texture.png'),
+                side: THREE.DoubleSide
+            });
+        }
+    });
+
+    object.position.set(0, 0, 0);
+    object.scale.set(0.026, 0.026, 0.026); // Scale down the mesh
+    scene.add(object);
+    const box = new THREE.Box3().setFromObject(object);
+    const center = box.getCenter(new THREE.Vector3());
+    // Place camera in front of the building, aligned with the mesh center's y-coordinate
+    camera.position.set(center.x, box.max.y + 2, center.z+2);
+    camera.lookAt(center);
+    controls.target.copy(center);
+}, undefined, (error) => {
+    console.error('An error happened while loading the OBJ:', error);
+});
+
+// Load A21.obj
+objLoader.load('./model/image/A21.obj', (object) => {
+    // Make texture adjustments for A21
+    object.traverse((child) => {
+        if (child.isMesh && child.name && child.name.includes('Plane')) {
+            child.material = new THREE.MeshStandardMaterial({
+                map: new THREE.TextureLoader().load('./model/image/glass_building_texture.jpg'),
+                side: THREE.DoubleSide
+            });
+        }
+    });
+
+    // Make text mesh with texture
+    object.traverse((child) => {
+        if (child.isMesh && child.name && child.name.includes('Text')) {
+            child.material = new THREE.MeshStandardMaterial({
+                map: new THREE.TextureLoader().load('./model/image/dark_blue_texture.png'),
+                side: THREE.DoubleSide
+            });
+        }
+    });
+
+    object.position.set(0, 0, 0);
+    object.scale.set(0.026, 0.026, 0.026); // Scale down the mesh
+    scene.add(object);
+    const box = new THREE.Box3().setFromObject(object);
+    const center = box.getCenter(new THREE.Vector3());
+    // Place camera in front of the building, aligned with the mesh center's y-coordinate
+    camera.position.set(center.x, box.max.y + 2, center.z+2);
+    camera.lookAt(center);
+    controls.target.copy(center);
+}, undefined, (error) => {
+    console.error('An error happened while loading the OBJ:', error);
+});
+
+// Load A22.obj
+objLoader.load('./model/image/A22.obj', (object) => {
+    // Make texture adjustments for A22
+    object.traverse((child) => {
+        if (child.isMesh && child.name && child.name.includes('Plane')) {
+            child.material = new THREE.MeshStandardMaterial({
+                map: new THREE.TextureLoader().load('./model/image/cyan_texture.png'),
+                side: THREE.DoubleSide
+            });
+        }
+    });
+
+    // Make text mesh with texture
+    object.traverse((child) => {
+        if (child.isMesh && child.name && child.name.includes('Text')) {
+            child.material = new THREE.MeshStandardMaterial({
+                map: new THREE.TextureLoader().load('./model/image/dark_blue_texture.png'),
+                side: THREE.DoubleSide
+            });
+        }
+    });
+
+    object.position.set(0, 0, 0);
+    object.scale.set(0.026, 0.026, 0.026); // Scale down the mesh
+    scene.add(object);
+    const box = new THREE.Box3().setFromObject(object);
+    const center = box.getCenter(new THREE.Vector3());
+    // Place camera in front of the building, aligned with the mesh center's y-coordinate
+    camera.position.set(center.x, box.max.y + 2, center.z+2);
+    camera.lookAt(center);
+    controls.target.copy(center);
+}, undefined, (error) => {
+    console.error('An error happened while loading the OBJ:', error);
+});
+
+// Load A23.obj
+objLoader.load('./model/image/A23.obj', (object) => {
+    // Make texture adjustments for A23
+    object.traverse((child) => {
+        if (child.isMesh && child.name && child.name.includes('Plane')) {
+            child.material = new THREE.MeshStandardMaterial({
+                map: new THREE.TextureLoader().load('./model/image/cyan_texture.png'),
+                side: THREE.DoubleSide
+            });
+        }
+    });
+
+    // Make text mesh with texture
+    object.traverse((child) => {
+        if (child.isMesh && child.name && child.name.includes('Text')) {
+            child.material = new THREE.MeshStandardMaterial({
+                map: new THREE.TextureLoader().load('./model/image/dark_blue_texture.png'),
+                side: THREE.DoubleSide
+            });
+        }
+    });
+
+    object.position.set(0, 0, 0);
+    object.scale.set(0.026, 0.026, 0.026); // Scale down the mesh
+    scene.add(object);
+    const box = new THREE.Box3().setFromObject(object);
+    const center = box.getCenter(new THREE.Vector3());
+    // Place camera in front of the building, aligned with the mesh center's y-coordinate
+    camera.position.set(center.x, box.max.y + 2, center.z+2);
+    camera.lookAt(center);
+    controls.target.copy(center);
+}, undefined, (error) => {
+    console.error('An error happened while loading the OBJ:', error);
+});
+
+// Load A30.obj
+objLoader.load('./model/image/A30.obj', (object) => {
+    // Make texture adjustments for A30
+    object.traverse((child) => {
+        if (child.isMesh && child.name && child.name.includes('Plane.069')) {
+            child.material = new THREE.MeshStandardMaterial({
+                map: new THREE.TextureLoader().load('./model/image/BuildingA30_texture.png'),
+                side: THREE.DoubleSide
+            });
+        }
+    });
+
+    // Make texture adjustments for A30's small building
+    object.traverse((child) => {
+        if (child.isMesh && child.name && child.name.includes('Plane.063')) {
+            child.material = new THREE.MeshStandardMaterial({
+                map: new THREE.TextureLoader().load('./model/image/SmallA30_texture.png'),
+                side: THREE.DoubleSide
+            });
+        }
+    });
+    // Make text mesh with texture
+    object.traverse((child) => {
+        if (child.isMesh && child.name && child.name.includes('Text')) {
+            child.material = new THREE.MeshStandardMaterial({
+                map: new THREE.TextureLoader().load('./model/image/dark_blue_texture.png'),
+                side: THREE.DoubleSide
+            });
+        }
+    });
+
+    object.position.set(0, 0, 0);
+    object.scale.set(0.026, 0.026, 0.026); // Scale down the mesh
+    scene.add(object);
+    const box = new THREE.Box3().setFromObject(object);
+    const center = box.getCenter(new THREE.Vector3());
+    // Place camera in front of the building, aligned with the mesh center's y-coordinate
+    camera.position.set(center.x, box.max.y + 2, center.z+2);
+    camera.lookAt(center);
+    controls.target.copy(center);
+}, undefined, (error) => {
+    console.error('An error happened while loading the OBJ:', error);
+});
+
+// Load A25.obj
+objLoader.load('./model/image/A25.obj', (object) => {
+    // Make texture adjustments for A25
+    object.traverse((child) => {
+        if (child.isMesh && child.name && child.name.includes('Plane')) {
+            child.material = new THREE.MeshStandardMaterial({
+                map: new THREE.TextureLoader().load('./model/image/cyan_texture.png'),
+                side: THREE.DoubleSide
+            });
+        }
+    });
+
+    // Make text mesh with texture
+    object.traverse((child) => {
+        if (child.isMesh && child.name && child.name.includes('Text')) {
+            child.material = new THREE.MeshStandardMaterial({
+                map: new THREE.TextureLoader().load('./model/image/dark_blue_texture.png'),
+                side: THREE.DoubleSide
+            });
+        }
+    });
+
+    object.position.set(0, 0, 0);
+    object.scale.set(0.026, 0.026, 0.026); // Scale down the mesh
+    scene.add(object);
+    const box = new THREE.Box3().setFromObject(object);
+    const center = box.getCenter(new THREE.Vector3());
+    // Place camera in front of the building, aligned with the mesh center's y-coordinate
+    camera.position.set(center.x, box.max.y + 2, center.z+2);
+    camera.lookAt(center);
+    controls.target.copy(center);
+}, undefined, (error) => {
+    console.error('An error happened while loading the OBJ:', error);
+});
+
+// Load A26.obj
+objLoader.load('./model/image/A26.obj', (object) => {
+    // Make texture adjustments for A26
+    object.traverse((child) => {
+        if (child.isMesh && child.name && child.name.includes('Plane')) {
+            child.material = new THREE.MeshStandardMaterial({
+                map: new THREE.TextureLoader().load('./model/image/gate_station_color.jpeg'),
+                side: THREE.DoubleSide
+            });
+        }
+    });
+
+    // Make text mesh with texture
+    object.traverse((child) => {
+        if (child.isMesh && child.name && child.name.includes('Text')) {
+            child.material = new THREE.MeshStandardMaterial({
+                map: new THREE.TextureLoader().load('./model/image/dark_blue_texture.png'),
+                side: THREE.DoubleSide
+            });
+        }
+    });
+
+    object.position.set(0, 0, 0);
+    object.scale.set(0.026, 0.026, 0.026); // Scale down the mesh
+    scene.add(object);
+    const box = new THREE.Box3().setFromObject(object);
+    const center = box.getCenter(new THREE.Vector3());
+    // Place camera in front of the building, aligned with the mesh center's y-coordinate
+    camera.position.set(center.x, box.max.y + 2, center.z+2);
+    camera.lookAt(center);
+    controls.target.copy(center);
+}, undefined, (error) => {
+    console.error('An error happened while loading the OBJ:', error);
+});
+
+// Load B2.obj
+objLoader.load('./model/image/B2.obj', (object) => {
+    // Make texture adjustments for B2
+    object.traverse((child) => {
+        if (child.isMesh && child.name && child.name.includes('Plane')) {
+            child.material = new THREE.MeshStandardMaterial({
+                map: new THREE.TextureLoader().load('./model/image/building_default_color.png'),
+                side: THREE.DoubleSide
+            });
+        }
+    });
+
+    // Make text mesh with texture
+    object.traverse((child) => {
+        if (child.isMesh && child.name && child.name.includes('Text')) {
+            child.material = new THREE.MeshStandardMaterial({
+                map: new THREE.TextureLoader().load('./model/image/dark_blue_texture.png'),
+                side: THREE.DoubleSide
+            });
+        }
+    });
+
+    object.position.set(0, 0, 0);
+    object.scale.set(0.026, 0.026, 0.026); // Scale down the mesh
+    scene.add(object);
+    const box = new THREE.Box3().setFromObject(object);
+    const center = box.getCenter(new THREE.Vector3());
+    // Place camera in front of the building, aligned with the mesh center's y-coordinate
+    camera.position.set(center.x, box.max.y + 2, center.z+2);
+    camera.lookAt(center);
+    controls.target.copy(center);
+}, undefined, (error) => {
+    console.error('An error happened while loading the OBJ:', error);
+});
+
+// Load A27.obj
+objLoader.load('./model/image/A27.obj', (object) => {
+    // Make texture adjustments for A27 left and right parts
+    object.traverse((child) => {
+        if (child.isMesh && child.name && (child.name.includes('Plane.006') || child.name.includes('Plane.065'))) {
+            child.material = new THREE.MeshStandardMaterial({
+                map: new THREE.TextureLoader().load('./model/image/gate_station_color.jpeg'),
+                side: THREE.DoubleSide
+            });
+        }
+    });
+
+    // Make texture adjustments for A27 middle parts
+    object.traverse((child) => {
+        if (child.isMesh && child.name && (child.name.includes('Plane.022') || child.name.includes('Plane.064'))) {
+            child.material = new THREE.MeshStandardMaterial({
+                map: new THREE.TextureLoader().load('./model/image/cyan_texture.png'),
+                side: THREE.DoubleSide
+            });
+        }
+    });
+
+    // Make text mesh with texture
+    object.traverse((child) => {
+        if (child.isMesh && child.name && child.name.includes('Text')) {
+            child.material = new THREE.MeshStandardMaterial({
+                map: new THREE.TextureLoader().load('./model/image/dark_blue_texture.png'),
+                side: THREE.DoubleSide
+            });
+        }
+    });
+
+    object.position.set(0, 0, 0);
+    object.scale.set(0.026, 0.026, 0.026); // Scale down the mesh
+    scene.add(object);
+    const box = new THREE.Box3().setFromObject(object);
+    const center = box.getCenter(new THREE.Vector3());
+    // Place camera in front of the building, aligned with the mesh center's y-coordinate
+    camera.position.set(center.x, box.max.y + 2, center.z+2);
+    camera.lookAt(center);
+    controls.target.copy(center);
+}, undefined, (error) => {
+    console.error('An error happened while loading the OBJ:', error);
+});
+
+// Load A28.obj
+objLoader.load('./model/image/A28.obj', (object) => {
+    // Make texture adjustments for A28
+    object.traverse((child) => {
+        if (child.isMesh && child.name && child.name.includes('Plane')) {
+            child.material = new THREE.MeshStandardMaterial({
+                map: new THREE.TextureLoader().load('./model/image/glass_building_texture.jpg'),   
+                side: THREE.DoubleSide
+            });
+        }
+    });
+    // Make text mesh with texture
+    object.traverse((child) => {
+        if (child.isMesh && child.name && child.name.includes('Text')) {
+            child.material = new THREE.MeshStandardMaterial({
+                map: new THREE.TextureLoader().load('./model/image/dark_blue_texture.png'),
+                side: THREE.DoubleSide
+                });
+        }
+    });
+
+    object.position.set(0, 0, 0);
+    object.scale.set(0.026, 0.026, 0.026); // Scale down the mesh
+    scene.add(object);
+    const box = new THREE.Box3().setFromObject(object);
+    const center = box.getCenter(new THREE.Vector3());
+    // Place camera in front of the building, aligned with the mesh center's y-coordinate
+    camera.position.set(center.x, box.max.y + 2, center.z+2);
+    camera.lookAt(center);
+    controls.target.copy(center);
+}, undefined, (error) => {
+    console.error('An error happened while loading the OBJ:', error);
+});
+
+// Load 2H.obj
+objLoader.load('./model/image/2H.obj', (object) => {
+    // Make texture adjustments for 2H
+    object.traverse((child) => {
+        if (child.isMesh && child.name && child.name.includes('Plane')) {
+            child.material = new THREE.MeshStandardMaterial({
+                map: new THREE.TextureLoader().load('./model/image/glass_building_texture.jpg'),
+                side: THREE.DoubleSide
+            });
+        }
+    });
+    // Make text mesh with texture
+    object.traverse((child) => {
+        if (child.isMesh && child.name && child.name.includes('Text')) {
+            child.material = new THREE.MeshStandardMaterial({
+                map: new THREE.TextureLoader().load('./model/image/dark_blue_texture.png'),
+                side: THREE.DoubleSide
+            });
+        }
+    });
+
+    object.position.set(0, 0, 0);
+    object.scale.set(0.026, 0.026, 0.026); // Scale down the mesh
+    scene.add(object);
+    const box = new THREE.Box3().setFromObject(object);
+    const center = box.getCenter(new THREE.Vector3());
+    // Place camera in front of the building, aligned with the mesh center's y-coordinate
+    camera.position.set(center.x, box.max.y + 2, center.z+2);
+    camera.lookAt(center);
+    controls.target.copy(center);
+}, undefined, (error) => {
+    console.error('An error happened while loading the OBJ:', error);
+});
+
+// Load 1H.obj
+objLoader.load('./model/image/1H.obj', (object) => {
+    // Make texture adjustments for 1H
+    object.traverse((child) => {
+        if (child.isMesh && child.name && child.name.includes('Plane')) {
+            child.material = new THREE.MeshStandardMaterial({
+                map: new THREE.TextureLoader().load('./model/image/green_color_texture.png'),
+                side: THREE.DoubleSide
+            });
+        }
+    });
+    // Make text mesh with texture
+    object.traverse((child) => {
+        if (child.isMesh && child.name && child.name.includes('Text')) {
+            child.material = new THREE.MeshStandardMaterial({
+                map: new THREE.TextureLoader().load('./model/image/dark_blue_texture.png'),
+                side: THREE.DoubleSide
+            });
+        }
+    });
+
+    object.position.set(0, 0, 0);
+    object.scale.set(0.026, 0.026, 0.026); // Scale down the mesh
+    scene.add(object);
+    const box = new THREE.Box3().setFromObject(object);
+    const center = box.getCenter(new THREE.Vector3());
+    // Place camera in front of the building, aligned with the mesh center's y-coordinate
+    camera.position.set(center.x, box.max.y + 2, center.z+2);
+    camera.lookAt(center);
+    controls.target.copy(center);
+}, undefined, (error) => {
+    console.error('An error happened while loading the OBJ:', error);
+});
+
+// Load 2A.obj
+objLoader.load('./model/image/2A.obj', (object) => {
+    // Make texture adjustments for 2A
+    object.traverse((child) => {
+        if (child.isMesh && child.name && child.name.includes('Plane')) {
+            child.material = new THREE.MeshStandardMaterial({
+                map: new THREE.TextureLoader().load('./model/image/green_color_texture.png'),
+                side: THREE.DoubleSide
+            });
+        }
+    });
+    // Make text mesh with texture
+    object.traverse((child) => {
+        if (child.isMesh && child.name && child.name.includes('Text')) {
+            child.material = new THREE.MeshStandardMaterial({
+                map: new THREE.TextureLoader().load('./model/image/dark_blue_texture.png'),
+                side: THREE.DoubleSide
+            });
+        }
+    });
+
+    object.position.set(0, 0, 0);
+    object.scale.set(0.026, 0.026, 0.026); // Scale down the mesh
+    scene.add(object);
+    const box = new THREE.Box3().setFromObject(object);
+    const center = box.getCenter(new THREE.Vector3());
+    // Place camera in front of the building, aligned with the mesh center's y-coordinate
+    camera.position.set(center.x, box.max.y + 2, center.z+2);
+    camera.lookAt(center);
+    controls.target.copy(center);
+}, undefined, (error) => {
+    console.error('An error happened while loading the OBJ:', error);
+});
+
+// Load 2B.obj
+objLoader.load('./model/image/2B.obj', (object) => {
+    // Make texture adjustments for 2A
+    object.traverse((child) => {
+        if (child.isMesh && child.name && child.name.includes('Plane')) {
+            child.material = new THREE.MeshStandardMaterial({
+                map: new THREE.TextureLoader().load('./model/image/green_color_texture.png'),
+                side: THREE.DoubleSide
+            });
+        }
+    });
+    // Make text mesh with texture
+    object.traverse((child) => {
+        if (child.isMesh && child.name && child.name.includes('Text')) {
+            child.material = new THREE.MeshStandardMaterial({
+                map: new THREE.TextureLoader().load('./model/image/dark_blue_texture.png'),
+                side: THREE.DoubleSide
+            });
+        }
+    });
+
+    object.position.set(0, 0, 0);
+    object.scale.set(0.026, 0.026, 0.026); // Scale down the mesh
+    scene.add(object);
+    const box = new THREE.Box3().setFromObject(object);
+    const center = box.getCenter(new THREE.Vector3());
+    // Place camera in front of the building, aligned with the mesh center's y-coordinate
+    camera.position.set(center.x, box.max.y + 2, center.z+2);
+    camera.lookAt(center);
+    controls.target.copy(center);
+}, undefined, (error) => {
+    console.error('An error happened while loading the OBJ:', error);
+});
+
+// Load 2C.obj
+objLoader.load('./model/image/2C.obj', (object) => {
+    // Make texture adjustments for 2C
+    object.traverse((child) => {
+        if (child.isMesh && child.name && child.name.includes('Plane')) {
+            child.material = new THREE.MeshStandardMaterial({
+                map: new THREE.TextureLoader().load('./model/image/green_color_texture.png'),
+                side: THREE.DoubleSide
+            });
+        }
+    });
+    // Make text mesh with texture
+    object.traverse((child) => {
+        if (child.isMesh && child.name && child.name.includes('Text')) {
+            child.material = new THREE.MeshStandardMaterial({
+                map: new THREE.TextureLoader().load('./model/image/dark_blue_texture.png'),
+                side: THREE.DoubleSide
+            });
+        }
+    });
+
+    object.position.set(0, 0, 0);
+    object.scale.set(0.026, 0.026, 0.026); // Scale down the mesh
+    scene.add(object);
+    const box = new THREE.Box3().setFromObject(object);
+    const center = box.getCenter(new THREE.Vector3());
+    // Place camera in front of the building, aligned with the mesh center's y-coordinate
+    camera.position.set(center.x, box.max.y + 2, center.z+2);
+    camera.lookAt(center);
+    controls.target.copy(center);
+}, undefined, (error) => {
+    console.error('An error happened while loading the OBJ:', error);
+});
+
+// Load B1.obj
+objLoader.load('./model/image/B1.obj', (object) => {
+    // Make texture adjustments for B1
+    object.traverse((child) => {
+        if (child.isMesh && child.name && child.name.includes('Plane')) {
+            child.material = new THREE.MeshStandardMaterial({
+                map: new THREE.TextureLoader().load('./model/image/glass_building_texture.jpg'),
+                side: THREE.DoubleSide
+            });
+        }
+    });
+    // Make text mesh with texture
+    object.traverse((child) => {
+        if (child.isMesh && child.name && child.name.includes('Text')) {
+            child.material = new THREE.MeshStandardMaterial({
+                map: new THREE.TextureLoader().load('./model/image/dark_blue_texture.png'),
+                side: THREE.DoubleSide
+            });
+        }
+    });
+
+    object.position.set(0, 0, 0);
+    object.scale.set(0.026, 0.026, 0.026); // Scale down the mesh
+    scene.add(object);
+    const box = new THREE.Box3().setFromObject(object);
+    const center = box.getCenter(new THREE.Vector3());
+    // Place camera in front of the building, aligned with the mesh center's y-coordinate
+    camera.position.set(center.x, box.max.y + 2, center.z+2);
+    camera.lookAt(center);
+    controls.target.copy(center);
+}, undefined, (error) => {
+    console.error('An error happened while loading the OBJ:', error);
+});
+
+// Load B3.obj
+objLoader.load('./model/image/B3.obj', (object) => {
+    // Make texture adjustments for B3
+    object.traverse((child) => {
+        if (child.isMesh && child.name && child.name.includes('Plane')) {
+            child.material = new THREE.MeshStandardMaterial({
+                map: new THREE.TextureLoader().load('./model/image/gate_station_color.jpeg'),
+                side: THREE.DoubleSide
+            });
+        }
+    });
+    // Make text mesh with texture
+    object.traverse((child) => {
+        if (child.isMesh && child.name && child.name.includes('Text')) {
+            child.material = new THREE.MeshStandardMaterial({
+                map: new THREE.TextureLoader().load('./model/image/dark_blue_texture.png'),
+                side: THREE.DoubleSide
+            });
+        }
+    });
+
+    object.position.set(0, 0, 0);
+    object.scale.set(0.026, 0.026, 0.026); // Scale down the mesh
+    scene.add(object);
+    const box = new THREE.Box3().setFromObject(object);
+    const center = box.getCenter(new THREE.Vector3());
+    // Place camera in front of the building, aligned with the mesh center's y-coordinate
+    camera.position.set(center.x, box.max.y + 2, center.z+2);
+    camera.lookAt(center);
+    controls.target.copy(center);
+}, undefined, (error) => {
+    console.error('An error happened while loading the OBJ:', error);
+});
+
+// Load B4.obj
+objLoader.load('./model/image/B4.obj', (object) => {
+    // Make texture adjustments for B4
+    object.traverse((child) => {
+        if (child.isMesh && child.name && child.name.includes('Plane')) {
+            child.material = new THREE.MeshStandardMaterial({
+                map: new THREE.TextureLoader().load('./model/image/building_default_color.png'),
+                side: THREE.DoubleSide
+            });
+        }
+    });
+    // Make text mesh with texture
+    object.traverse((child) => {
+        if (child.isMesh && child.name && child.name.includes('Text')) {
+            child.material = new THREE.MeshStandardMaterial({
+                map: new THREE.TextureLoader().load('./model/image/dark_blue_texture.png'),
+                side: THREE.DoubleSide
+            });
+        }
+    });
+
+    object.position.set(0, 0, 0);
+    object.scale.set(0.026, 0.026, 0.026); // Scale down the mesh
+    scene.add(object);
+    const box = new THREE.Box3().setFromObject(object);
+    const center = box.getCenter(new THREE.Vector3());
+    // Place camera in front of the building, aligned with the mesh center's y-coordinate
+    camera.position.set(center.x, box.max.y + 2, center.z+2);
+    camera.lookAt(center);
+    controls.target.copy(center);
+}, undefined, (error) => {
+    console.error('An error happened while loading the OBJ:', error);
+});
+
+// Load B5.obj
+objLoader.load('./model/image/B5.obj', (object) => {
+    // Make texture adjustments for B5
+    object.traverse((child) => {
+        if (child.isMesh && child.name && child.name.includes('Plane')) {
+            child.material = new THREE.MeshStandardMaterial({
+                map: new THREE.TextureLoader().load('./model/image/green_color_texture.png'),
+                side: THREE.DoubleSide
+            });
+        }
+    });
+    // Make text mesh with texture
+    object.traverse((child) => {
+        if (child.isMesh && child.name && child.name.includes('Text')) {
+            child.material = new THREE.MeshStandardMaterial({
+                map: new THREE.TextureLoader().load('./model/image/dark_blue_texture.png'),
+                side: THREE.DoubleSide
+            });
+        }
+    });
+
+    object.position.set(0, 0, 0);
+    object.scale.set(0.026, 0.026, 0.026); // Scale down the mesh
+    scene.add(object);
+    const box = new THREE.Box3().setFromObject(object);
+    const center = box.getCenter(new THREE.Vector3());
+    // Place camera in front of the building, aligned with the mesh center's y-coordinate
+    camera.position.set(center.x, box.max.y + 2, center.z+2);
+    camera.lookAt(center);
+    controls.target.copy(center);
+}, undefined, (error) => {
+    console.error('An error happened while loading the OBJ:', error);
+});
+
+
 // Create and add a car to the scene
 const car = createCar();
 car.position.set(0.1, 0, 2);
@@ -959,10 +1703,13 @@ window.addEventListener('click', function(event) {
         // Append the image to the body
         document.body.appendChild(img);
 
-        // Remove the image after a new click like google map feature
-        setTimeout(function() {
-            img.remove();
-        }, 1000); // Adjust the timeout as needed
+        // Remove all images and make a new one after the third click
+        var images = document.querySelectorAll('img');
+        if (images.length >= 3) {
+            images.forEach(function(image) {
+                image.remove();
+            });
+        }
     });
 
 let routePoints = [];
@@ -1005,6 +1752,20 @@ window.addEventListener('click', function(event) {
             const material = new THREE.LineBasicMaterial({ color: 0xff0000, linewidth: 5 });
             routeLine = new THREE.Line(geometry, material);
             scene.add(routeLine);
+            // Draw another blue line along the sidewalk
+            if (sidewalkMesh) {
+                const startPoint = routePoints[0];
+                const endPoint = routePoints[1];
+                const direction = new THREE.Vector3().subVectors(endPoint, startPoint).normalize();
+                const distance = startPoint.distanceTo(endPoint);
+                const step = 0.1; // Adjust the step size as needed
+                for (let i = 0; i < distance; i += step) {
+                    const position = startPoint.clone().add(direction.clone().multiplyScalar(i));
+                    const sidewalkClone = sidewalkMesh.clone();
+                    sidewalkClone.position.copy(position);
+                    scene.add(sidewalkClone);
+                }
+            }
         }
     }
 });
