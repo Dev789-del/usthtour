@@ -31,36 +31,73 @@ const directionalLight = new THREE.DirectionalLight(0xffffff, 0.6);
 directionalLight.position.set(5, 10, 7.5);
 scene.add(directionalLight);
 
-// Load sidewalk as a mesh
+// Create popup element
+const popup = document.createElement('div');
+popup.style.position = 'absolute';
+popup.style.background = '#333';
+popup.style.color = '#fff';
+popup.style.padding = '10px';
+popup.style.borderRadius = '5px';
+popup.style.display = 'none';
+popup.innerText = 'Welcome to the USTH sidewalk! Here you can find various information and resources related to the university.';
+document.body.appendChild(popup);
 
+// Raycaster and mouse vector
+const raycaster = new THREE.Raycaster();
+const mouse = new THREE.Vector2();
+
+let sidewalkMesh = null; // Store reference to mesh
+
+// Load sidewalk only once
 const objLoader = new OBJLoader();
 objLoader.load('./model/image/Sidewalk.obj', (object) => {
-    // Enable its texture from obj file
     object.traverse((child) => {
         if (child.isMesh) {
             child.material = new THREE.MeshStandardMaterial({
                 map: new THREE.TextureLoader().load('./model/image/street_sidewalk_texture.jpg'),
                 side: THREE.DoubleSide
             });
+            sidewalkMesh = child; // Save mesh for click detection
         }
     });
+
     object.position.set(0, 0, 0);
-    object.scale.set(0.026, 0.026, 0.026); // Scale down the mesh
+    object.scale.set(0.026, 0.026, 0.026);
     scene.add(object);
+
     const box = new THREE.Box3().setFromObject(object);
     const center = box.getCenter(new THREE.Vector3());
-    // Place camera in front of the building, aligned with the mesh center's y-coordinate
-    camera.position.set(center.x, box.max.y + 2, center.z+2);
+    camera.position.set(center.x, box.max.y + 2, center.z + 2);
     camera.lookAt(center);
     controls.target.copy(center);
-    
-
 },
 undefined,
 (error) => {
     console.error('An error happened while loading the OBJ:', error);
 }
 );
+
+// Handle mouse click (only triggers popup)
+window.addEventListener('click', (event) => {
+    if (!sidewalkMesh) return; // Prevent action before mesh is loaded
+
+    mouse.x = (event.clientX / window.innerWidth) * 2 - 1;
+    mouse.y = -(event.clientY / window.innerHeight) * 2 + 1;
+
+    raycaster.setFromCamera(mouse, camera);
+    const intersects = raycaster.intersectObject(sidewalkMesh, true);
+
+    if (intersects.length > 0) {
+        popup.style.left = `${event.clientX}px`;
+        popup.style.top = `${event.clientY}px`;
+        popup.style.display = 'block';
+
+        setTimeout(() => {
+            popup.style.display = 'none';
+        }, 2000);
+    }
+});
+
 
 // Load street components
 objLoader.load('./model/image/StreetComponents.obj', (object) => {
@@ -1712,83 +1749,6 @@ window.addEventListener('click', function(event) {
         }
     });
 
-let routePoints = [];
-let routeLine = null;
-
-// Helper to remove previous route line
-function removeRouteLine() {
-    if (routeLine) {
-        scene.remove(routeLine);
-        routeLine.geometry.dispose();
-        routeLine.material.dispose();
-        routeLine = null;
-    }
-}
-
-// Listen for clicks to select route points
-window.addEventListener('click', function(event) {
-    // Convert click position to normalized device coordinates
-    const mouse = new THREE.Vector2(
-        (event.clientX / window.innerWidth) * 2 - 1,
-        -(event.clientY / window.innerHeight) * 2 + 1
-    );
-    const raycaster = new THREE.Raycaster();
-    raycaster.setFromCamera(mouse, camera);
-
-    // Intersect with ground plane at y=0
-    const plane = new THREE.Plane(new THREE.Vector3(0, 1, 0), 0);
-    const intersection = new THREE.Vector3();
-    if (raycaster.ray.intersectPlane(plane, intersection)) {
-        routePoints.push(intersection.clone());
-        if (routePoints.length > 2) {
-            routePoints = [intersection.clone()];
-            removeRouteLine();
-        }
-        // Draw route if two points are selected
-        if (routePoints.length === 2) {
-            removeRouteLine();
-            // Draw a straight line between the two points (shortest route)
-            const geometry = new THREE.BufferGeometry().setFromPoints(routePoints);
-            const material = new THREE.LineBasicMaterial({ color: 0xff0000, linewidth: 5 });
-            routeLine = new THREE.Line(geometry, material);
-            scene.add(routeLine);
-            // Draw another blue line along the sidewalk
-            if (sidewalkMesh) {
-                const startPoint = routePoints[0];
-                const endPoint = routePoints[1];
-                const direction = new THREE.Vector3().subVectors(endPoint, startPoint).normalize();
-                const distance = startPoint.distanceTo(endPoint);
-                const step = 0.1; // Adjust the step size as needed
-                for (let i = 0; i < distance; i += step) {
-                    const position = startPoint.clone().add(direction.clone().multiplyScalar(i));
-                    const sidewalkClone = sidewalkMesh.clone();
-                    sidewalkClone.position.copy(position);
-                    scene.add(sidewalkClone);
-                }
-            }
-        }
-    }
-});
-
-//Make a chatbot that guides the user through the scene
-const chatBot = document.createElement('div');
-chatBot.style.position = 'fixed';
-chatBot.style.bottom = '20px';
-chatBot.style.right = '20px';
-chatBot.style.width = '300px';
-chatBot.style.height = '200px';
-chatBot.style.backgroundColor = 'rgba(255, 255, 255, 0.8)';
-chatBot.style.border = '1px solid #ccc';
-chatBot.style.padding = '10px';
-chatBot.style.borderRadius = '10px';
-chatBot.style.boxShadow = '0 0 10px rgba(0, 0, 0, 0.1)';
-chatBot.innerHTML = `
-    <h3>Chatbot</h3>
-    <p>Welcome to the USTH 3D scene! Use WASD keys to move around.</p>
-    <p>Click on the ground to place an image or select route points.</p>
-    <p>Click on two points to draw a route between them.</p>
-`;
-document.body.appendChild(chatBot);
 
 // Add a function to move camera pov with keys with west, north, east, south direction
 function moveCamera(event) {
