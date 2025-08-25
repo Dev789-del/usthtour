@@ -45,7 +45,6 @@ document.body.appendChild(popup);
 // Raycaster and mouse vector
 const raycaster = new THREE.Raycaster();
 const mouse = new THREE.Vector2();
-
 let sidewalkMesh = null; // Store reference to mesh
 
 // Load sidewalk only once
@@ -256,6 +255,48 @@ undefined,
 }
 );
 
+// Create popup element
+const popup_BuildingA = document.createElement('div');
+popup_BuildingA.style.position = 'absolute';
+popup_BuildingA.style.background = '#333';
+popup_BuildingA.style.color = '#fff';
+popup_BuildingA.style.padding = '10px';
+popup_BuildingA.style.borderRadius = '5px';
+popup_BuildingA.style.display = 'none';
+popup_BuildingA.innerText = 'Welcome to Building A!';
+
+// Add translate switch button
+const translateBtn = document.createElement('button');
+translateBtn.innerText = 'VN';
+translateBtn.style.marginLeft = '10px';
+translateBtn.style.background = '#555';
+translateBtn.style.color = '#fff';
+translateBtn.style.border = 'none';
+translateBtn.style.borderRadius = '3px';
+translateBtn.style.padding = '3px 8px';
+translateBtn.style.cursor = 'pointer';
+
+let isEnglish = true;
+const msgEN = 'Welcome to Building A! This place is the closest to Gate 18C from the north.';
+const msgVN = 'Chào mừng đến với tòa nhà A! Nơi này nằm ở gần với cổng 18C nhất từ hướng bắc đi lên.';
+
+translateBtn.onclick = function() {
+    isEnglish = !isEnglish;
+    popup_BuildingA.innerText = isEnglish ? msgEN : msgVN;
+    translateBtn.innerText = isEnglish ? 'VN' : 'EN';
+    popup_BuildingA.appendChild(translateBtn);
+};
+
+// Append button to popup
+popup_BuildingA.appendChild(translateBtn);
+
+document.body.appendChild(popup_BuildingA);
+
+// Raycaster and mouse vector for Building A
+const raycaster_BuildingA = new THREE.Raycaster();
+const mouse_BuildingA = new THREE.Vector2();
+let BuildingA_mesh = null; // Store reference to mesh
+
 // Load BuildingA.obj
 objLoader.load('./model/image/BuildingA.obj', (object) => {
     // Set texture for Plane.044
@@ -287,7 +328,7 @@ objLoader.load('./model/image/BuildingA.obj', (object) => {
             });
         }
     });
-
+    BuildingA_mesh = object;
     // Set the object's position and scale
     object.position.set(0, 0, 0);
     object.scale.set(0.026, 0.026, 0.026); // Scale down the mesh
@@ -305,6 +346,29 @@ undefined,
     console.error('An error happened while loading the OBJ:', error);
 }
 );
+
+// Handle mouse click (only triggers popup) for Building A
+window.addEventListener('click', (event) => {
+    if (!BuildingA_mesh) return; // Prevent action before mesh is loaded
+
+    mouse_BuildingA.x = (event.clientX / window.innerWidth) * 2 - 1;
+    mouse_BuildingA.y = -(event.clientY / window.innerHeight) * 2 + 1;
+
+    raycaster_BuildingA.setFromCamera(mouse_BuildingA, camera);
+    const intersects = raycaster_BuildingA.intersectObject(BuildingA_mesh, true);
+
+    if (intersects.length > 0) {
+        // Hide all other popups
+        popup.style.display = 'none';
+        popup_BuildingA.style.left = `${event.clientX}px`;
+        popup_BuildingA.style.top = `${event.clientY}px`;
+        popup_BuildingA.style.display = 'block';
+
+        setTimeout(() => {
+            popup_BuildingA.style.display = 'none';
+        }, 2000);
+    }
+});
 
 // Load BuildingA1.obj
 objLoader.load('./model/image/BuildingA1.obj', (object) => {
