@@ -370,6 +370,49 @@ window.addEventListener('click', (event) => {
     }
 });
 
+
+// Create popup element for building A1
+const popup_BuildingA1 = document.createElement('div');
+popup_BuildingA1.style.position = 'absolute';
+popup_BuildingA1.style.background = '#333';
+popup_BuildingA1.style.color = '#fff';
+popup_BuildingA1.style.padding = '10px';
+popup_BuildingA1.style.borderRadius = '5px';
+popup_BuildingA1.style.display = 'none';
+popup_BuildingA1.innerText = 'Welcome to Building A!';
+
+// Add translate switch button for building A1
+const translateBtn = document.createElement('button');
+translateBtn.innerText = 'VN';
+translateBtn.style.marginLeft = '10px';
+translateBtn.style.background = '#555';
+translateBtn.style.color = '#fff';
+translateBtn.style.border = 'none';
+translateBtn.style.borderRadius = '3px';
+translateBtn.style.padding = '3px 8px';
+translateBtn.style.cursor = 'pointer';
+
+let isEnglish_BuildingA1 = true;
+const msgEN_BuildingA1 = 'Here is Building A1! This place is in front of Gate 18 Hoang Quoc Viet Street.';
+const msgVN_BuildingA1 = 'Đây là tòa nhà A1! Nơi này nằm ở trước cổng 18 Hoàng Quốc Việt.';
+
+translateBtn.onclick = function() {
+    isEnglish_BuildingA1 = !isEnglish_BuildingA1;
+    popup_BuildingA1.innerText = isEnglish_BuildingA1 ? msgEN_BuildingA1 : msgVN_BuildingA1;
+    translateBtn.innerText = isEnglish_BuildingA1 ? 'VN' : 'EN';
+    popup_BuildingA1.appendChild(translateBtn);
+};
+
+// Append button to popup
+popup_BuildingA1.appendChild(translateBtn);
+
+document.body.appendChild(popup_BuildingA1);
+
+// Raycaster and mouse vector for Building A
+const raycaster_BuildingA1 = new THREE.Raycaster();
+const mouse_BuildingA1 = new THREE.Vector2();
+let BuildingA1_mesh = null; // Store reference to mesh
+
 // Load BuildingA1.obj
 objLoader.load('./model/image/BuildingA1.obj', (object) => {
     // Set texture for all plane
@@ -391,7 +434,7 @@ objLoader.load('./model/image/BuildingA1.obj', (object) => {
             });
         }
     });
-
+    BuildingA1_mesh = object;
     // Set the object's position and scale
     object.position.set(0, 0, 0);
     object.scale.set(0.026, 0.026, 0.026); // Scale down the mesh
@@ -406,6 +449,29 @@ objLoader.load('./model/image/BuildingA1.obj', (object) => {
 }
 , undefined, (error) => {
     console.error('An error happened while loading the OBJ:', error);
+});
+
+// Handle mouse click (only triggers popup) for Building A1
+window.addEventListener('click', (event) => {
+    if (!BuildingA1_mesh) return; // Prevent action before mesh is loaded
+
+    mouse_BuildingA1.x = (event.clientX / window.innerWidth) * 2 - 1;
+    mouse_BuildingA1.y = -(event.clientY / window.innerHeight) * 2 + 1;
+
+    raycaster_BuildingA1.setFromCamera(mouse_BuildingA1, camera);
+    const intersects = raycaster_BuildingA1.intersectObject(BuildingA1_mesh, true);
+
+    if (intersects.length > 0) {
+        // Hide all other popups
+        popup.style.display = 'none';
+        popup_BuildingA1.style.left = `${event.clientX}px`;
+        popup_BuildingA1.style.top = `${event.clientY}px`;
+        popup_BuildingA1.style.display = 'block';
+
+        setTimeout(() => {
+            popup_BuildingA1.style.display = 'none';
+        }, 2000);
+    }
 });
 
 // Load BuildingA2.obj
