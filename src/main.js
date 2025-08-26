@@ -93,7 +93,7 @@ window.addEventListener('click', (event) => {
 
         setTimeout(() => {
             popup.style.display = 'none';
-        }, 2000);
+        }, 5000);
     }
 });
 
@@ -366,7 +366,7 @@ window.addEventListener('click', (event) => {
 
         setTimeout(() => {
             popup_BuildingA.style.display = 'none';
-        }, 2000);
+        }, 5000);
     }
 });
 
@@ -393,8 +393,8 @@ translateBtn_BuildingA1.style.padding = '3px 8px';
 translateBtn_BuildingA1.style.cursor = 'pointer';
 
 let isEnglish_BuildingA1 = true;
-const msgEN_BuildingA1 = 'Here is Building A1! This place is in front of Gate 18 Hoang Quoc Viet Street.';
-const msgVN_BuildingA1 = 'Đây là tòa nhà A1! Nơi này nằm ở trước cổng 18 Hoàng Quốc Việt.';
+const msgEN_BuildingA1 = 'Here is Building A1! This place is Vietnam Academy of Science and Technology which is in front of Gate 18 Hoang Quoc Viet Street.';
+const msgVN_BuildingA1 = 'Đây là tòa nhà A1! Nơi này là Viện Hàn lâm Khoa học và Công nghệ Việt Nam, nằm trước cổng 18 đường Hoàng Quốc Việt.';
 
 translateBtn_BuildingA1.onclick = function() {
     isEnglish_BuildingA1 = !isEnglish_BuildingA1;
@@ -471,7 +471,7 @@ window.addEventListener('click', (event) => {
 
         setTimeout(() => {
             popup_BuildingA1.style.display = 'none';
-        }, 2000);
+        }, 5000);
     }
 });
 
@@ -578,7 +578,7 @@ window.addEventListener('click', (event) => {
 
         setTimeout(() => {
             popup_BuildingA2.style.display = 'none';
-        }, 2000);
+        }, 5000);
     }
 });
 
@@ -711,9 +711,51 @@ window.addEventListener('click', (event) => {
 
         setTimeout(() => {
             popup_BuildingA3.style.display = 'none';
-        }, 2000);
+        }, 5000);
     }
 });
+
+// Create popup element for building A5
+const popup_BuildingA5 = document.createElement('div');
+popup_BuildingA5.style.position = 'absolute';
+popup_BuildingA5.style.background = '#333';
+popup_BuildingA5.style.color = '#fff';
+popup_BuildingA5.style.padding = '10px';
+popup_BuildingA5.style.borderRadius = '5px';
+popup_BuildingA5.style.display = 'none';
+popup_BuildingA5.innerText = 'Welcome to Building A5!';
+
+// Add translate switch button for building A5
+const translateBtn_BuildingA5 = document.createElement('button');
+translateBtn_BuildingA5.innerText = 'VN';
+translateBtn_BuildingA5.style.marginLeft = '10px';
+translateBtn_BuildingA5.style.background = '#555';
+translateBtn_BuildingA5.style.color = '#fff';
+translateBtn_BuildingA5.style.border = 'none';
+translateBtn_BuildingA5.style.borderRadius = '3px';
+translateBtn_BuildingA5.style.padding = '3px 8px';
+translateBtn_BuildingA5.style.cursor = 'pointer';
+
+let isEnglish_BuildingA5 = true;
+const msgEN_BuildingA5 = 'This is Building A5 ! This place is Vietnam Institute of Mathematics located on the left of A7 building.';
+const msgVN_BuildingA5 = 'Đây là tòa nhà A5! Nơi này là Viện Toán học Việt Nam nằm ở bên trái tòa nhà A7.';
+
+translateBtn_BuildingA5.onclick = function() {
+    isEnglish_BuildingA5 = !isEnglish_BuildingA5;
+    popup_BuildingA5.innerText = isEnglish_BuildingA5 ? msgEN_BuildingA5 : msgVN_BuildingA5;
+    translateBtn_BuildingA5.innerText = isEnglish_BuildingA5 ? 'VN' : 'EN';
+    popup_BuildingA5.appendChild(translateBtn_BuildingA5);
+};
+
+// Append button to popup
+popup_BuildingA5.appendChild(translateBtn_BuildingA5);
+
+document.body.appendChild(popup_BuildingA5);
+
+// Raycaster and mouse vector for Building A5
+const raycaster_BuildingA5 = new THREE.Raycaster();
+const mouse_BuildingA5 = new THREE.Vector2();
+let BuildingA5_mesh = null; // Store reference to mesh
 
 // Load A5.obj
 objLoader.load('./model/image/A5.obj', (object) => {
@@ -736,6 +778,7 @@ objLoader.load('./model/image/A5.obj', (object) => {
             });
         }
     });
+    BuildingA5_mesh = object;
 
     // Set the object's position and scale
     object.position.set(0, 0, 0);
@@ -751,6 +794,76 @@ objLoader.load('./model/image/A5.obj', (object) => {
 }, undefined, (error) => {
     console.error('An error happened while loading the OBJ:', error);
 });
+
+// Handle mouse click (only triggers popup) for Building A5
+window.addEventListener('click', (event) => {
+    if (!BuildingA5_mesh) return; // Prevent action before mesh is loaded
+
+    mouse_BuildingA5.x = (event.clientX / window.innerWidth) * 2 - 1;
+    mouse_BuildingA5.y = -(event.clientY / window.innerHeight) * 2 + 1;
+
+    raycaster_BuildingA5.setFromCamera(mouse_BuildingA5, camera);
+    const intersects = raycaster_BuildingA5.intersectObject(BuildingA5_mesh, true);
+
+    if (intersects.length > 0) {
+        // Hide all other popups
+        popup.style.display = 'none';
+        popup_BuildingA.style.display = 'none';
+        popup_BuildingA1.style.display = 'none';
+        popup_BuildingA2.style.display = 'none';
+        popup_BuildingA3.style.display = 'none';
+        popup_BuildingA5.style.left = `${event.clientX}px`;
+        popup_BuildingA5.style.top = `${event.clientY}px`;
+        popup_BuildingA5.style.display = 'block';
+
+        setTimeout(() => {
+            popup_BuildingA5.style.display = 'none';
+        }, 5000);
+    }
+});
+
+// Create popup element for building A6
+const popup_BuildingA6 = document.createElement('div');
+popup_BuildingA6.style.position = 'absolute';
+popup_BuildingA6.style.background = '#333';
+popup_BuildingA6.style.color = '#fff';
+popup_BuildingA6.style.padding = '10px';
+popup_BuildingA6.style.borderRadius = '5px';
+popup_BuildingA6.style.display = 'none';
+popup_BuildingA6.innerText = 'Welcome to Building A6!';
+
+// Add translate switch button for building A6
+const translateBtn_BuildingA6 = document.createElement('button');
+translateBtn_BuildingA6.innerText = 'VN';
+translateBtn_BuildingA6.style.marginLeft = '10px';
+translateBtn_BuildingA6.style.background = '#555';
+translateBtn_BuildingA6.style.color = '#fff';
+translateBtn_BuildingA6.style.border = 'none';
+translateBtn_BuildingA6.style.borderRadius = '3px';
+translateBtn_BuildingA6.style.padding = '3px 8px';
+translateBtn_BuildingA6.style.cursor = 'pointer';
+
+let isEnglish_BuildingA6 = true;
+const msgEN_BuildingA6 = 'Building A6 is Vietnam National Space Center located in front of A5 building from the north.';
+const msgVN_BuildingA6 = 'Tòa nhà A6 là Trung tâm Vũ trụ Quốc gia Việt Nam nằm ở phía trước tòa nhà A5 từ phía bắc.';
+
+translateBtn_BuildingA6.onclick = function() {
+    isEnglish_BuildingA6 = !isEnglish_BuildingA6;
+    popup_BuildingA6.innerText = isEnglish_BuildingA6 ? msgEN_BuildingA6 : msgVN_BuildingA6;
+    translateBtn_BuildingA6.innerText = isEnglish_BuildingA6 ? 'VN' : 'EN';
+    popup_BuildingA6.appendChild(translateBtn_BuildingA6);
+};
+
+// Append button to popup
+popup_BuildingA6.appendChild(translateBtn_BuildingA6);
+
+document.body.appendChild(popup_BuildingA6);
+
+// Raycaster and mouse vector for Building A6
+const raycaster_BuildingA6 = new THREE.Raycaster();
+const mouse_BuildingA6 = new THREE.Vector2();
+let BuildingA6_mesh = null; // Store reference to mesh
+
 
 // Load BuildingA6.obj
 objLoader.load('./model/image/BuildingA6.obj', (object) => {
@@ -773,6 +886,8 @@ objLoader.load('./model/image/BuildingA6.obj', (object) => {
         }
     });
 
+    BuildingA6_mesh = object;
+
     // Set the object's position and scale
     object.position.set(0, 0, 0);
     object.scale.set(0.026, 0.026, 0.026); // Scale down the mesh
@@ -787,6 +902,76 @@ objLoader.load('./model/image/BuildingA6.obj', (object) => {
 }, undefined, (error) => {
     console.error('An error happened while loading the OBJ:', error);
 });
+
+// Handle mouse click (only triggers popup) for Building A6
+window.addEventListener('click', (event) => {
+    if (!BuildingA6_mesh) return; // Prevent action before mesh is loaded
+
+    mouse_BuildingA6.x = (event.clientX / window.innerWidth) * 2 - 1;
+    mouse_BuildingA6.y = -(event.clientY / window.innerHeight) * 2 + 1;
+
+    raycaster_BuildingA6.setFromCamera(mouse_BuildingA6, camera);
+    const intersects = raycaster_BuildingA6.intersectObject(BuildingA6_mesh, true);
+
+    if (intersects.length > 0) {
+        // Hide all other popups
+        popup.style.display = 'none';
+        popup_BuildingA.style.display = 'none';
+        popup_BuildingA1.style.display = 'none';
+        popup_BuildingA2.style.display = 'none';
+        popup_BuildingA3.style.display = 'none';
+        popup_BuildingA5.style.display = 'none';
+        popup_BuildingA6.style.left = `${event.clientX}px`;
+        popup_BuildingA6.style.top = `${event.clientY}px`;
+        popup_BuildingA6.style.display = 'block';
+
+        setTimeout(() => {
+            popup_BuildingA6.style.display = 'none';
+        }, 5000);
+    }
+});
+
+// Create popup element for building A7
+const popup_BuildingA7 = document.createElement('div');
+popup_BuildingA7.style.position = 'absolute';
+popup_BuildingA7.style.background = '#333';
+popup_BuildingA7.style.color = '#fff';
+popup_BuildingA7.style.padding = '10px';
+popup_BuildingA7.style.borderRadius = '5px';
+popup_BuildingA7.style.display = 'none';
+popup_BuildingA7.innerText = 'Welcome to Building A7!';
+
+// Add translate switch button for building A7
+const translateBtn_BuildingA7 = document.createElement('button');
+translateBtn_BuildingA7.innerText = 'VN';
+translateBtn_BuildingA7.style.marginLeft = '10px';
+translateBtn_BuildingA7.style.background = '#555';
+translateBtn_BuildingA7.style.color = '#fff';
+translateBtn_BuildingA7.style.border = 'none';
+translateBtn_BuildingA7.style.borderRadius = '3px';
+translateBtn_BuildingA7.style.padding = '3px 8px';
+translateBtn_BuildingA7.style.cursor = 'pointer';
+
+let isEnglish_BuildingA7 = true;
+const msgEN_BuildingA7 = 'Building A7 is Center of Informatics and Computing located in front of gate 18B from the north.';
+const msgVN_BuildingA7 = 'Tòa nhà A7 là Trung tâm Thông tin và Tính toán nằm ở phía trước cổng 18B từ phía bắc.';
+
+translateBtn_BuildingA7.onclick = function() {
+    isEnglish_BuildingA7 = !isEnglish_BuildingA7;
+    popup_BuildingA7.innerText = isEnglish_BuildingA7 ? msgEN_BuildingA7 : msgVN_BuildingA7;
+    translateBtn_BuildingA7.innerText = isEnglish_BuildingA7 ? 'VN' : 'EN';
+    popup_BuildingA7.appendChild(translateBtn_BuildingA7);
+};
+
+// Append button to popup
+popup_BuildingA7.appendChild(translateBtn_BuildingA7);
+
+document.body.appendChild(popup_BuildingA7);
+
+// Raycaster and mouse vector for Building A7
+const raycaster_BuildingA7 = new THREE.Raycaster();
+const mouse_BuildingA7 = new THREE.Vector2();
+let BuildingA7_mesh = null; // Store reference to mesh
 
 // Load A7.obj
 objLoader.load('./model/image/A7.obj', (object) => {
@@ -808,7 +993,7 @@ objLoader.load('./model/image/A7.obj', (object) => {
             });
         }
     });
-
+    BuildingA7_mesh = object;
     // Set the object's position and scale
     object.position.set(0, 0, 0);
     object.scale.set(0.026, 0.026, 0.026); // Scale down the mesh
@@ -823,6 +1008,36 @@ objLoader.load('./model/image/A7.obj', (object) => {
 }, undefined, (error) => {
     console.error('An error happened while loading the OBJ:', error);
 });
+
+// Handle mouse click (only triggers popup) for Building A7
+window.addEventListener('click', (event) => {
+    if (!BuildingA7_mesh) return; // Prevent action before mesh is loaded
+
+    mouse_BuildingA7.x = (event.clientX / window.innerWidth) * 2 - 1;
+    mouse_BuildingA7.y = -(event.clientY / window.innerHeight) * 2 + 1;
+
+    raycaster_BuildingA7.setFromCamera(mouse_BuildingA7, camera);
+    const intersects = raycaster_BuildingA7.intersectObject(BuildingA7_mesh, true);
+
+    if (intersects.length > 0) {
+        // Hide all other popups
+        popup.style.display = 'none';
+        popup_BuildingA.style.display = 'none';
+        popup_BuildingA1.style.display = 'none';
+        popup_BuildingA2.style.display = 'none';
+        popup_BuildingA3.style.display = 'none';
+        popup_BuildingA5.style.display = 'none';
+        popup_BuildingA6.style.display = 'none';
+        popup_BuildingA7.style.left = `${event.clientX}px`;
+        popup_BuildingA7.style.top = `${event.clientY}px`;
+        popup_BuildingA7.style.display = 'block';
+
+        setTimeout(() => {
+            popup_BuildingA7.style.display = 'none';
+        }, 5000);
+    }
+});
+
 
 // Load SmallOffice.obj
 objLoader.load('./model/image/SmallOffice.obj', (object) => {
