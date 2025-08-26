@@ -1065,6 +1065,48 @@ objLoader.load('./model/image/SmallOffice.obj', (object) => {
     console.error('An error happened while loading the OBJ:', error);
 });
 
+// Create popup element for building A8
+const popup_BuildingA8 = document.createElement('div');
+popup_BuildingA8.style.position = 'absolute';
+popup_BuildingA8.style.background = '#333';
+popup_BuildingA8.style.color = '#fff';
+popup_BuildingA8.style.padding = '10px';
+popup_BuildingA8.style.borderRadius = '5px';
+popup_BuildingA8.style.display = 'none';
+popup_BuildingA8.innerText = 'Welcome to Building A8!';
+
+// Add translate switch button for building A8
+const translateBtn_BuildingA8 = document.createElement('button');
+translateBtn_BuildingA8.innerText = 'VN';
+translateBtn_BuildingA8.style.marginLeft = '10px';
+translateBtn_BuildingA8.style.background = '#555';
+translateBtn_BuildingA8.style.color = '#fff';
+translateBtn_BuildingA8.style.border = 'none';
+translateBtn_BuildingA8.style.borderRadius = '3px';
+translateBtn_BuildingA8.style.padding = '3px 8px';
+translateBtn_BuildingA8.style.cursor = 'pointer';
+
+let isEnglish_BuildingA8 = true;
+const msgEN_BuildingA8 = 'Building A8 is a modern structure designed for collaborative work and its name is Institute of Geophysics.';
+const msgVN_BuildingA8 = 'Tòa nhà A8 là một công trình hiện đại được thiết kế cho công việc hợp tác và tên của nó là Viện Vật Lý Địa Cầu.';
+
+translateBtn_BuildingA8.onclick = function() {
+    isEnglish_BuildingA8 = !isEnglish_BuildingA8;
+    popup_BuildingA8.innerText = isEnglish_BuildingA8 ? msgEN_BuildingA8 : msgVN_BuildingA8;
+    translateBtn_BuildingA8.innerText = isEnglish_BuildingA8 ? 'VN' : 'EN';
+    popup_BuildingA8.appendChild(translateBtn_BuildingA8);
+};
+
+// Append button to popup
+popup_BuildingA8.appendChild(translateBtn_BuildingA8);
+
+document.body.appendChild(popup_BuildingA8);
+
+// Raycaster and mouse vector for Building A8
+const raycaster_BuildingA8 = new THREE.Raycaster();
+const mouse_BuildingA8 = new THREE.Vector2();
+let BuildingA8_mesh = null; // Store reference to mesh
+
 // Load A8.obj
 objLoader.load('./model/image/A8.obj', (object) => {
     object.traverse((child) => {
@@ -1085,7 +1127,7 @@ objLoader.load('./model/image/A8.obj', (object) => {
             });
         }
     });
-
+    BuildingA8_mesh = object;
     // Set the object's position and scale
     object.position.set(0, 0, 0);
     object.scale.set(0.026, 0.026, 0.026); // Scale down the mesh
@@ -1100,6 +1142,78 @@ objLoader.load('./model/image/A8.obj', (object) => {
 }, undefined, (error) => {
     console.error('An error happened while loading the OBJ:', error);
 });
+
+// Handle mouse click (only triggers popup) for Building A8
+window.addEventListener('click', (event) => {
+    if (!BuildingA8_mesh) return; // Prevent action before mesh is loaded
+
+    mouse_BuildingA8.x = (event.clientX / window.innerWidth) * 2 - 1;
+    mouse_BuildingA8.y = -(event.clientY / window.innerHeight) * 2 + 1;
+
+    raycaster_BuildingA8.setFromCamera(mouse_BuildingA8, camera);
+    const intersects = raycaster_BuildingA8.intersectObject(BuildingA8_mesh, true);
+
+    if (intersects.length > 0) {
+        // Hide all other popups
+        popup.style.display = 'none';
+        popup_BuildingA.style.display = 'none';
+        popup_BuildingA1.style.display = 'none';
+        popup_BuildingA2.style.display = 'none';
+        popup_BuildingA3.style.display = 'none';
+        popup_BuildingA5.style.display = 'none';
+        popup_BuildingA6.style.display = 'none';
+        popup_BuildingA7.style.display = 'none';
+        popup_BuildingA8.style.left = `${event.clientX}px`;
+        popup_BuildingA8.style.top = `${event.clientY}px`;
+        popup_BuildingA8.style.display = 'block';
+
+        setTimeout(() => {
+            popup_BuildingA8.style.display = 'none';
+        }, 5000);
+    }
+});
+
+// Create popup element for building A9
+const popup_BuildingA9 = document.createElement('div');
+popup_BuildingA9.style.position = 'absolute';
+popup_BuildingA9.style.background = '#333';
+popup_BuildingA9.style.color = '#fff';
+popup_BuildingA9.style.padding = '10px';
+popup_BuildingA9.style.borderRadius = '5px';
+popup_BuildingA9.style.display = 'none';
+popup_BuildingA9.innerText = 'Welcome to Building A9!';
+
+// Add translate switch button for building A9
+const translateBtn_BuildingA9 = document.createElement('button');
+translateBtn_BuildingA9.innerText = 'VN';
+translateBtn_BuildingA9.style.marginLeft = '10px';
+translateBtn_BuildingA9.style.background = '#555';
+translateBtn_BuildingA9.style.color = '#fff';
+translateBtn_BuildingA9.style.border = 'none';
+translateBtn_BuildingA9.style.borderRadius = '3px';
+translateBtn_BuildingA9.style.padding = '3px 8px';
+translateBtn_BuildingA9.style.cursor = 'pointer';
+
+let isEnglish_BuildingA9 = true;
+const msgEN_BuildingA9 = 'Building A9 is Institute of Energy Science and it is located behind Medic Center 1 building which is on the right next to Building A8';
+const msgVN_BuildingA9 = 'Tòa nhà A9 là Viện Khoa học Năng lượng và nó nằm phía sau tòa nhà Medic Center 1, bên phải tòa nhà A8.';
+
+translateBtn_BuildingA9.onclick = function() {
+    isEnglish_BuildingA9 = !isEnglish_BuildingA9;
+    popup_BuildingA9.innerText = isEnglish_BuildingA9 ? msgEN_BuildingA9 : msgVN_BuildingA9;
+    translateBtn_BuildingA9.innerText = isEnglish_BuildingA9 ? 'VN' : 'EN';
+    popup_BuildingA9.appendChild(translateBtn_BuildingA9);
+};
+
+// Append button to popup
+popup_BuildingA9.appendChild(translateBtn_BuildingA9);
+
+document.body.appendChild(popup_BuildingA9);
+
+// Raycaster and mouse vector for Building A9
+const raycaster_BuildingA9 = new THREE.Raycaster();
+const mouse_BuildingA9 = new THREE.Vector2();
+let BuildingA9_mesh = null; // Store reference to mesh
 
 // Load A9.obj
 objLoader.load('./model/image/A9.obj', (object) => {
@@ -1122,7 +1236,7 @@ objLoader.load('./model/image/A9.obj', (object) => {
             });
         }
     });
-
+    BuildingA9_mesh = object;
     // Set the object's position and scale
     object.position.set(0, 0, 0);
     object.scale.set(0.026, 0.026, 0.026); // Scale down the mesh
@@ -1136,6 +1250,37 @@ objLoader.load('./model/image/A9.obj', (object) => {
 
 }, undefined, (error) => {
     console.error('An error happened while loading the OBJ:', error);
+});
+
+// Handle mouse click (only triggers popup) for Building A9
+window.addEventListener('click', (event) => {
+    if (!BuildingA9_mesh) return; // Prevent action before mesh is loaded
+
+    mouse_BuildingA9.x = (event.clientX / window.innerWidth) * 2 - 1;
+    mouse_BuildingA9.y = -(event.clientY / window.innerHeight) * 2 + 1;
+
+    raycaster_BuildingA9.setFromCamera(mouse_BuildingA9, camera);
+    const intersects = raycaster_BuildingA9.intersectObject(BuildingA9_mesh, true);
+
+    if (intersects.length > 0) {
+        // Hide all other popups
+        popup.style.display = 'none';
+        popup_BuildingA.style.display = 'none';
+        popup_BuildingA1.style.display = 'none';
+        popup_BuildingA2.style.display = 'none';
+        popup_BuildingA3.style.display = 'none';
+        popup_BuildingA5.style.display = 'none';
+        popup_BuildingA6.style.display = 'none';
+        popup_BuildingA7.style.display = 'none';
+        popup_BuildingA8.style.display = 'none';
+        popup_BuildingA9.style.left = `${event.clientX}px`;
+        popup_BuildingA9.style.top = `${event.clientY}px`;
+        popup_BuildingA9.style.display = 'block';
+
+        setTimeout(() => {
+            popup_BuildingA9.style.display = 'none';
+        }, 5000);
+    }
 });
 
 // Load A10.obj
