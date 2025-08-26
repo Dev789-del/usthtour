@@ -379,32 +379,32 @@ popup_BuildingA1.style.color = '#fff';
 popup_BuildingA1.style.padding = '10px';
 popup_BuildingA1.style.borderRadius = '5px';
 popup_BuildingA1.style.display = 'none';
-popup_BuildingA1.innerText = 'Welcome to Building A!';
+popup_BuildingA1.innerText = 'Welcome to Building A1!';
 
 // Add translate switch button for building A1
-const translateBtn = document.createElement('button');
-translateBtn.innerText = 'VN';
-translateBtn.style.marginLeft = '10px';
-translateBtn.style.background = '#555';
-translateBtn.style.color = '#fff';
-translateBtn.style.border = 'none';
-translateBtn.style.borderRadius = '3px';
-translateBtn.style.padding = '3px 8px';
-translateBtn.style.cursor = 'pointer';
+const translateBtn_BuildingA1 = document.createElement('button');
+translateBtn_BuildingA1.innerText = 'VN';
+translateBtn_BuildingA1.style.marginLeft = '10px';
+translateBtn_BuildingA1.style.background = '#555';
+translateBtn_BuildingA1.style.color = '#fff';
+translateBtn_BuildingA1.style.border = 'none';
+translateBtn_BuildingA1.style.borderRadius = '3px';
+translateBtn_BuildingA1.style.padding = '3px 8px';
+translateBtn_BuildingA1.style.cursor = 'pointer';
 
 let isEnglish_BuildingA1 = true;
 const msgEN_BuildingA1 = 'Here is Building A1! This place is in front of Gate 18 Hoang Quoc Viet Street.';
 const msgVN_BuildingA1 = 'Đây là tòa nhà A1! Nơi này nằm ở trước cổng 18 Hoàng Quốc Việt.';
 
-translateBtn.onclick = function() {
+translateBtn_BuildingA1.onclick = function() {
     isEnglish_BuildingA1 = !isEnglish_BuildingA1;
     popup_BuildingA1.innerText = isEnglish_BuildingA1 ? msgEN_BuildingA1 : msgVN_BuildingA1;
-    translateBtn.innerText = isEnglish_BuildingA1 ? 'VN' : 'EN';
-    popup_BuildingA1.appendChild(translateBtn);
+    translateBtn_BuildingA1.innerText = isEnglish_BuildingA1 ? 'VN' : 'EN';
+    popup_BuildingA1.appendChild(translateBtn_BuildingA1);
 };
 
 // Append button to popup
-popup_BuildingA1.appendChild(translateBtn);
+popup_BuildingA1.appendChild(translateBtn_BuildingA1);
 
 document.body.appendChild(popup_BuildingA1);
 
@@ -464,6 +464,7 @@ window.addEventListener('click', (event) => {
     if (intersects.length > 0) {
         // Hide all other popups
         popup.style.display = 'none';
+        popup_BuildingA.style.display = 'none';
         popup_BuildingA1.style.left = `${event.clientX}px`;
         popup_BuildingA1.style.top = `${event.clientY}px`;
         popup_BuildingA1.style.display = 'block';
@@ -473,6 +474,49 @@ window.addEventListener('click', (event) => {
         }, 2000);
     }
 });
+
+// Create popup element
+const popup_BuildingA2 = document.createElement('div');
+popup_BuildingA2.style.position = 'absolute';
+popup_BuildingA2.style.background = '#333';
+popup_BuildingA2.style.color = '#fff';
+popup_BuildingA2.style.padding = '10px';
+popup_BuildingA2.style.borderRadius = '5px';
+popup_BuildingA2.style.display = 'none';
+popup_BuildingA2.innerText = 'Welcome to Building A2!';
+
+// Add translate switch button for Building A2
+const translateBtn_BuildingA2 = document.createElement('button');
+translateBtn_BuildingA2.innerText = 'VN';
+translateBtn_BuildingA2.style.marginLeft = '10px';
+translateBtn_BuildingA2.style.background = '#555';
+translateBtn_BuildingA2.style.color = '#fff';
+translateBtn_BuildingA2.style.border = 'none';
+translateBtn_BuildingA2.style.borderRadius = '3px';
+translateBtn_BuildingA2.style.padding = '3px 8px';
+translateBtn_BuildingA2.style.cursor = 'pointer';
+
+let isEnglish_BuildingA2 = true;
+const msgEN_BuildingA2 = 'Welcome to Building A2! This place is in front of Building A1 and its name is Vietnam Academy of Science and Technology.';
+const msgVN_BuildingA2 = 'Chào mừng đến với tòa nhà A2! Nơi này nằm ở trước tòa nhà A1 và tên của nó là Viện Hàn lâm Khoa học và Công nghệ Việt Nam.';
+
+translateBtn_BuildingA2.onclick = function() {
+    isEnglish_BuildingA2 = !isEnglish_BuildingA2;
+    popup_BuildingA2.innerText = isEnglish_BuildingA2 ? msgEN_BuildingA2 : msgVN_BuildingA2;
+    translateBtn_BuildingA2.innerText = isEnglish_BuildingA2 ? 'VN' : 'EN';
+    popup_BuildingA2.appendChild(translateBtn_BuildingA2);
+};
+
+// Append button to popup
+popup_BuildingA2.appendChild(translateBtn_BuildingA2);
+
+document.body.appendChild(popup_BuildingA2);
+
+// Raycaster and mouse vector for Building A2
+const raycaster_BuildingA2 = new THREE.Raycaster();
+const mouse_BuildingA2 = new THREE.Vector2();
+let BuildingA2_mesh = null; // Store reference to mesh
+
 
 // Load BuildingA2.obj
 objLoader.load('./model/image/BuildingA2.obj', (object) => {
@@ -495,6 +539,8 @@ objLoader.load('./model/image/BuildingA2.obj', (object) => {
             });
         }
     });
+    
+    BuildingA2_mesh = object;
 
     // Set the object's position and scale
     object.position.set(0, 0, 0);
@@ -509,6 +555,31 @@ objLoader.load('./model/image/BuildingA2.obj', (object) => {
 
 }, undefined, (error) => {
     console.error('An error happened while loading the OBJ:', error);
+});
+
+// Handle mouse click (only triggers popup) for Building A2
+window.addEventListener('click', (event) => {
+    if (!BuildingA2_mesh) return; // Prevent action before mesh is loaded
+
+    mouse_BuildingA2.x = (event.clientX / window.innerWidth) * 2 - 1;
+    mouse_BuildingA2.y = -(event.clientY / window.innerHeight) * 2 + 1;
+
+    raycaster_BuildingA2.setFromCamera(mouse_BuildingA2, camera);
+    const intersects = raycaster_BuildingA2.intersectObject(BuildingA2_mesh, true);
+
+    if (intersects.length > 0) {
+        // Hide all other popups
+        popup.style.display = 'none';
+        popup_BuildingA.style.display = 'none';
+        popup_BuildingA1.style.display = 'none';
+        popup_BuildingA2.style.left = `${event.clientX}px`;
+        popup_BuildingA2.style.top = `${event.clientY}px`;
+        popup_BuildingA2.style.display = 'block';
+
+        setTimeout(() => {
+            popup_BuildingA2.style.display = 'none';
+        }, 2000);
+    }
 });
 
 // Load Pond.obj
@@ -537,6 +608,8 @@ objLoader.load('./model/image/Pond.obj', (object) => {
 }, undefined, (error) => {
     console.error('An error happened while loading the OBJ:', error);
 });
+
+
 
 // Load BuildingA3.obj
 objLoader.load('./model/image/BuildingA3.obj', (object) => {
