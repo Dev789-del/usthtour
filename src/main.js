@@ -609,7 +609,47 @@ objLoader.load('./model/image/Pond.obj', (object) => {
     console.error('An error happened while loading the OBJ:', error);
 });
 
+// Create popup element for building A3
+const popup_BuildingA3 = document.createElement('div');
+popup_BuildingA3.style.position = 'absolute';
+popup_BuildingA3.style.background = '#333';
+popup_BuildingA3.style.color = '#fff';
+popup_BuildingA3.style.padding = '10px';
+popup_BuildingA3.style.borderRadius = '5px';
+popup_BuildingA3.style.display = 'none';
+popup_BuildingA3.innerText = 'Welcome to Building A3!';
 
+// Add translate switch button for building A3
+const translateBtn_BuildingA3 = document.createElement('button');
+translateBtn_BuildingA3.innerText = 'VN';
+translateBtn_BuildingA3.style.marginLeft = '10px';
+translateBtn_BuildingA3.style.background = '#555';
+translateBtn_BuildingA3.style.color = '#fff';
+translateBtn_BuildingA3.style.border = 'none';
+translateBtn_BuildingA3.style.borderRadius = '3px';
+translateBtn_BuildingA3.style.padding = '3px 8px';
+translateBtn_BuildingA3.style.cursor = 'pointer';
+
+let isEnglish_BuildingA3 = true;
+const msgEN_BuildingA3 = 'Here is Building A3! This place is Institute of Information Technology located on the left of A5 building.';
+const msgVN_BuildingA3 = 'Đây là tòa nhà A3! Nơi này là Viện Công nghệ Thông tin nằm ở bên trái tòa nhà A5.';
+
+translateBtn_BuildingA3.onclick = function() {
+    isEnglish_BuildingA3 = !isEnglish_BuildingA3;
+    popup_BuildingA3.innerText = isEnglish_BuildingA3 ? msgEN_BuildingA3 : msgVN_BuildingA3;
+    translateBtn_BuildingA3.innerText = isEnglish_BuildingA3 ? 'VN' : 'EN';
+    popup_BuildingA3.appendChild(translateBtn_BuildingA3);
+};
+
+// Append button to popup
+popup_BuildingA3.appendChild(translateBtn_BuildingA3);
+
+document.body.appendChild(popup_BuildingA3);
+
+// Raycaster and mouse vector for Building A3
+const raycaster_BuildingA3 = new THREE.Raycaster();
+const mouse_BuildingA3 = new THREE.Vector2();
+let BuildingA3_mesh = null; // Store reference to mesh
 
 // Load BuildingA3.obj
 objLoader.load('./model/image/BuildingA3.obj', (object) => {
@@ -632,6 +672,7 @@ objLoader.load('./model/image/BuildingA3.obj', (object) => {
             });
         }
     });
+    BuildingA3_mesh = object;
 
     // Set the object's position and scale
     object.position.set(0, 0, 0);
@@ -646,6 +687,32 @@ objLoader.load('./model/image/BuildingA3.obj', (object) => {
 
 }, undefined, (error) => {
     console.error('An error happened while loading the OBJ:', error);
+});
+
+// Handle mouse click (only triggers popup) for Building A3
+window.addEventListener('click', (event) => {
+    if (!BuildingA3_mesh) return; // Prevent action before mesh is loaded
+
+    mouse_BuildingA3.x = (event.clientX / window.innerWidth) * 2 - 1;
+    mouse_BuildingA3.y = -(event.clientY / window.innerHeight) * 2 + 1;
+
+    raycaster_BuildingA3.setFromCamera(mouse_BuildingA3, camera);
+    const intersects = raycaster_BuildingA3.intersectObject(BuildingA3_mesh, true);
+
+    if (intersects.length > 0) {
+        // Hide all other popups
+        popup.style.display = 'none';
+        popup_BuildingA.style.display = 'none';
+        popup_BuildingA1.style.display = 'none';
+        popup_BuildingA2.style.display = 'none';
+        popup_BuildingA3.style.left = `${event.clientX}px`;
+        popup_BuildingA3.style.top = `${event.clientY}px`;
+        popup_BuildingA3.style.display = 'block';
+
+        setTimeout(() => {
+            popup_BuildingA3.style.display = 'none';
+        }, 2000);
+    }
 });
 
 // Load A5.obj
