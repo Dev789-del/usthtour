@@ -2507,6 +2507,47 @@ window.addEventListener('click', (event) => {
     }
 });
 
+// Create popup element for A22
+const popup_A22 = document.createElement('div');
+popup_A22.style.position = 'absolute';
+popup_A22.style.background = '#333';
+popup_A22.style.color = '#fff';
+popup_A22.style.padding = '10px';
+popup_A22.style.borderRadius = '5px';
+popup_A22.innerText = 'Welcome to Building A22!';
+
+// Add translate switch button for A22
+const translateBtn_A22 = document.createElement('button');
+translateBtn_A22.innerText = 'VN';
+translateBtn_A22.style.marginLeft = '10px';
+translateBtn_A22.style.background = '#555';
+translateBtn_A22.style.color = '#fff';
+translateBtn_A22.style.border = 'none';
+translateBtn_A22.style.borderRadius = '3px';
+translateBtn_A22.style.padding = '3px 8px';
+translateBtn_A22.style.cursor = 'pointer';
+
+let isEnglish_A22 = true;
+const msgEN_A22 = 'A22 is Institute of Space Technology of Vietnam Academy of Science & Technology and our university. It is also known as Space Technology Institute (STI).';
+const msgVN_A22 = 'A22 là Viện Công nghệ Vũ trụ của Viện Hàn lâm Khoa học và Công nghệ Việt Nam và trường đại học của chúng tôi. Nó cũng được biết đến với tên gọi Viện Công nghệ Vũ trụ (STI).';
+
+translateBtn_A22.onclick = function() {
+    isEnglish_A22 = !isEnglish_A22;
+    popup_A22.innerText = isEnglish_A22 ? msgEN_A22 : msgVN_A22;
+    translateBtn_A22.innerText = isEnglish_A22 ? 'VN' : 'EN';
+    popup_A22.appendChild(translateBtn_A22);
+};
+
+// Append button to popup
+popup_A22.appendChild(translateBtn_A22);
+
+document.body.appendChild(popup_A22);
+
+// Raycaster and mouse vector for A22
+const raycaster_A22 = new THREE.Raycaster();
+const mouse_A22 = new THREE.Vector2();
+let A22_mesh = null; // Store reference to mesh
+
 // Load A22.obj
 objLoader.load('./model/image/A22.obj', (object) => {
     // Make texture adjustments for A22
@@ -2528,6 +2569,7 @@ objLoader.load('./model/image/A22.obj', (object) => {
             });
         }
     });
+    A22_mesh = object;
 
     object.position.set(0, 0, 0);
     object.scale.set(0.026, 0.026, 0.026); // Scale down the mesh
@@ -2541,6 +2583,93 @@ objLoader.load('./model/image/A22.obj', (object) => {
 }, undefined, (error) => {
     console.error('An error happened while loading the OBJ:', error);
 });
+
+// Handle mouse click (only triggers popup) for A22
+window.addEventListener('click', (event) => {
+    if (!A22_mesh) return; // Prevent action before mesh is loaded
+
+    mouse_A22.x = (event.clientX / window.innerWidth) * 2 - 1;
+    mouse_A22.y = -(event.clientY / window.innerHeight) * 2 + 1;
+
+    mouse_A22.x = (event.clientX / window.innerWidth) * 2 - 1;
+    mouse_A22.y = -(event.clientY / window.innerHeight) * 2 + 1;
+
+    raycaster_A22.setFromCamera(mouse_A22, camera);
+    const intersects = raycaster_A22.intersectObject(A22_mesh, true);
+
+    if (intersects.length > 0) {
+        // Hide all other popups
+        
+        popup_BuildingA.style.display = 'none';
+        popup_BuildingA1.style.display = 'none';
+        popup_BuildingA2.style.display = 'none';
+        popup_BuildingA3.style.display = 'none';
+        popup_BuildingA5.style.display = 'none';
+        popup_BuildingA6.style.display = 'none';
+        popup_BuildingA7.style.display = 'none';
+        popup_BuildingA8.style.display = 'none';
+        popup_BuildingA9.style.display = 'none';
+        popup_BuildingA10.style.display = 'none';
+        popup_BuildingA11.style.display = 'none';
+        popup_BuildingA12.style.display = 'none';
+        popup_BuildingA13.style.display = 'none';
+        popup_BuildingA14.style.display = 'none';
+        popup_Medic1.style.display = 'none';
+        popup_VastMedic.style.display = 'none';
+        popup_A18_1.style.display = 'none';
+        popup_A18_2.style.display = 'none';
+        popup_A20.style.display = 'none';
+        popup_A21.style.display = 'none';
+        popup_A22.style.left = `${event.clientX}px`;
+        popup_A22.style.top = `${event.clientY}px`;
+        popup_A22.style.display = 'block';
+
+        setTimeout(() => {
+            popup_A22.style.display = 'none';
+        }, 5000);
+    }
+});
+
+// Create popup element for A23
+const popup_A23 = document.createElement('div');
+popup_A23.style.position = 'absolute';
+popup_A23.style.background = '#333';
+popup_A23.style.color = '#fff';
+popup_A23.style.padding = '10px';
+popup_A23.style.borderRadius = '5px';
+popup_A23.innerText = 'Welcome to Building A23!';
+
+// Add translate switch button for A23
+const translateBtn_A23 = document.createElement('button');
+translateBtn_A23.innerText = 'VN';
+translateBtn_A23.style.marginLeft = '10px';
+translateBtn_A23.style.background = '#555';
+translateBtn_A23.style.color = '#fff';
+translateBtn_A23.style.border = 'none';
+translateBtn_A23.style.borderRadius = '3px';
+translateBtn_A23.style.padding = '3px 8px';
+translateBtn_A23.style.cursor = 'pointer';
+
+let isEnglish_A23 = true;
+const msgEN_A23 = 'A23 is Institute of Space Technology of Vietnam Academy of Science & Technology and our university along with building A22';
+const msgVN_A23 = 'A23 là Viện Công nghệ Vũ trụ của Viện Hàn lâm Khoa học và Công nghệ Việt Nam và trường đại học của chúng tôi cùng với tòa nhà A22.';
+
+translateBtn_A23.onclick = function() {
+    isEnglish_A23 = !isEnglish_A23;
+    popup_A23.innerText = isEnglish_A23 ? msgEN_A23 : msgVN_A23;
+    translateBtn_A23.innerText = isEnglish_A23 ? 'VN' : 'EN';
+    popup_A23.appendChild(translateBtn_A23);
+};
+
+// Append button to popup
+popup_A23.appendChild(translateBtn_A23);
+
+document.body.appendChild(popup_A23);
+
+// Raycaster and mouse vector for A23
+const raycaster_A23 = new THREE.Raycaster();
+const mouse_A23 = new THREE.Vector2();
+let A23_mesh = null; // Store reference to mesh
 
 // Load A23.obj
 objLoader.load('./model/image/A23.obj', (object) => {
@@ -2563,7 +2692,7 @@ objLoader.load('./model/image/A23.obj', (object) => {
             });
         }
     });
-
+    A23_mesh = object;
     object.position.set(0, 0, 0);
     object.scale.set(0.026, 0.026, 0.026); // Scale down the mesh
     scene.add(object);
@@ -2576,6 +2705,94 @@ objLoader.load('./model/image/A23.obj', (object) => {
 }, undefined, (error) => {
     console.error('An error happened while loading the OBJ:', error);
 });
+
+// Handle mouse click (only triggers popup) for A23
+window.addEventListener('click', (event) => {
+    if (!A23_mesh) return; // Prevent action before mesh is loaded
+
+    mouse_A23.x = (event.clientX / window.innerWidth) * 2 - 1;
+    mouse_A23.y = -(event.clientY / window.innerHeight) * 2 + 1;
+
+    mouse_A23.x = (event.clientX / window.innerWidth) * 2 - 1;
+    mouse_A23.y = -(event.clientY / window.innerHeight) * 2 + 1;
+
+    raycaster_A23.setFromCamera(mouse_A23, camera);
+    const intersects = raycaster_A23.intersectObject(A23_mesh, true);
+
+    if (intersects.length > 0) {
+        // Hide all other popups
+        
+        popup_BuildingA.style.display = 'none';
+        popup_BuildingA1.style.display = 'none';
+        popup_BuildingA2.style.display = 'none';
+        popup_BuildingA3.style.display = 'none';
+        popup_BuildingA5.style.display = 'none';
+        popup_BuildingA6.style.display = 'none';
+        popup_BuildingA7.style.display = 'none';
+        popup_BuildingA8.style.display = 'none';
+        popup_BuildingA9.style.display = 'none';
+        popup_BuildingA10.style.display = 'none';
+        popup_BuildingA11.style.display = 'none';
+        popup_BuildingA12.style.display = 'none';
+        popup_BuildingA13.style.display = 'none';
+        popup_BuildingA14.style.display = 'none';
+        popup_Medic1.style.display = 'none';
+        popup_VastMedic.style.display = 'none';
+        popup_A18_1.style.display = 'none';
+        popup_A18_2.style.display = 'none';
+        popup_A20.style.display = 'none';
+        popup_A21.style.display = 'none';
+        popup_A22.style.display = 'none';
+        popup_A23.style.left = `${event.clientX}px`;
+        popup_A23.style.top = `${event.clientY}px`;
+        popup_A23.style.display = 'block';
+
+        setTimeout(() => {
+            popup_A23.style.display = 'none';
+        }, 5000);
+    }
+});
+
+// Create popup element for A30
+const popup_A30 = document.createElement('div');
+popup_A30.style.position = 'absolute';
+popup_A30.style.background = '#333';
+popup_A30.style.color = '#fff';
+popup_A30.style.padding = '10px';
+popup_A30.style.borderRadius = '5px';
+popup_A30.innerText = 'Welcome to Building A30!';
+
+// Add translate switch button for A30
+const translateBtn_A30 = document.createElement('button');
+translateBtn_A30.innerText = 'VN';
+translateBtn_A30.style.marginLeft = '10px';
+translateBtn_A30.style.background = '#555';
+translateBtn_A30.style.color = '#fff';
+translateBtn_A30.style.border = 'none';
+translateBtn_A30.style.borderRadius = '3px';
+translateBtn_A30.style.padding = '3px 8px';
+translateBtn_A30.style.cursor = 'pointer';
+
+let isEnglish_A30 = true;
+const msgEN_A30 = 'A30 is Institute of Environmental Technology of Hanoi University of Science and Technology.';
+const msgVN_A30 = 'A30 là Viện Công nghệ Môi trường của Trường Đại học Khoa học và Công nghệ Hà Nội.';
+
+translateBtn_A30.onclick = function() {
+    isEnglish_A30 = !isEnglish_A30;
+    popup_A30.innerText = isEnglish_A30 ? msgEN_A30 : msgVN_A30;
+    translateBtn_A30.innerText = isEnglish_A30 ? 'VN' : 'EN';
+    popup_A30.appendChild(translateBtn_A30);
+};
+
+// Append button to popup
+popup_A30.appendChild(translateBtn_A30);
+
+document.body.appendChild(popup_A30);
+
+// Raycaster and mouse vector for A30
+const raycaster_A30 = new THREE.Raycaster();
+const mouse_A30 = new THREE.Vector2();
+let A30_mesh = null; // Store reference to mesh
 
 // Load A30.obj
 objLoader.load('./model/image/A30.obj', (object) => {
@@ -2607,7 +2824,7 @@ objLoader.load('./model/image/A30.obj', (object) => {
             });
         }
     });
-
+    A30_mesh = object;
     object.position.set(0, 0, 0);
     object.scale.set(0.026, 0.026, 0.026); // Scale down the mesh
     scene.add(object);
@@ -2620,6 +2837,97 @@ objLoader.load('./model/image/A30.obj', (object) => {
 }, undefined, (error) => {
     console.error('An error happened while loading the OBJ:', error);
 });
+
+// Handle mouse click (only triggers popup) for A30
+window.addEventListener('click', (event) => {
+    if (!A30_mesh) return; // Prevent action before mesh is loaded
+
+    mouse_A30.x = (event.clientX / window.innerWidth) * 2 - 1;
+    mouse_A30.y = -(event.clientY / window.innerHeight) * 2 + 1;
+
+    mouse_A30.x = (event.clientX / window.innerWidth) * 2 - 1;
+    mouse_A30.y = -(event.clientY / window.innerHeight) * 2 + 1;
+
+    raycaster_A30.setFromCamera(mouse_A30, camera);
+    const intersects = raycaster_A30.intersectObject(A30_mesh, true);
+
+    if (intersects.length > 0) {
+        // Hide all other popups
+        
+        popup_BuildingA.style.display = 'none';
+        popup_BuildingA1.style.display = 'none';
+        popup_BuildingA2.style.display = 'none';
+        popup_BuildingA3.style.display = 'none';
+        popup_BuildingA5.style.display = 'none';
+        popup_BuildingA6.style.display = 'none';
+        popup_BuildingA7.style.display = 'none';
+        popup_BuildingA8.style.display = 'none';
+        popup_BuildingA9.style.display = 'none';
+        popup_BuildingA10.style.display = 'none';
+        popup_BuildingA11.style.display = 'none';
+        popup_BuildingA12.style.display = 'none';
+        popup_BuildingA13.style.display = 'none';
+        popup_BuildingA14.style.display = 'none';
+        popup_Medic1.style.display = 'none';
+        popup_VastMedic.style.display = 'none';
+        popup_A18_1.style.display = 'none';
+        popup_A18_2.style.display = 'none';
+        popup_A20.style.display = 'none';
+        popup_A21.style.display = 'none';
+        popup_A22.style.display = 'none';
+        popup_A23.style.display = 'none';
+        popup_A25.style.display = 'none';
+        popup_A26.style.display = 'none';
+        popup_A30.style.left = `${event.clientX}px`;
+        popup_A30.style.top = `${event.clientY}px`;
+        popup_A30.style.display = 'block';
+
+        setTimeout(() => {
+            popup_A30.style.display = 'none';
+        }, 5000);
+    }
+});
+
+// Create popup element for A25
+const popup_A25 = document.createElement('div');
+popup_A25.style.position = 'absolute';
+popup_A25.style.background = '#333';
+popup_A25.style.color = '#fff';
+popup_A25.style.padding = '10px';
+popup_A25.style.borderRadius = '5px';
+popup_A25.innerText = 'Welcome to Building A25!';
+
+// Add translate switch button for A25
+const translateBtn_A25 = document.createElement('button');
+translateBtn_A25.innerText = 'VN';
+translateBtn_A25.style.marginLeft = '10px';
+translateBtn_A25.style.background = '#555';
+translateBtn_A25.style.color = '#fff';
+translateBtn_A25.style.border = 'none';
+translateBtn_A25.style.borderRadius = '3px';
+translateBtn_A25.style.padding = '3px 8px';
+translateBtn_A25.style.cursor = 'pointer';
+
+let isEnglish_A25 = true;
+const msgEN_A25 = 'A25 is Institute of Physics which lies inside USTH(University of Science and Technology of Hanoi) which lies on the right next to building A30.';
+const msgVN_A25 = 'A25 là Viện Vật lý nằm trong USTH (Đại học Khoa học và Công nghệ Hà Nội) nằm bên phải tòa nhà A30.';
+
+translateBtn_A25.onclick = function() {
+    isEnglish_A25 = !isEnglish_A25;
+    popup_A25.innerText = isEnglish_A25 ? msgEN_A25 : msgVN_A25;
+    translateBtn_A25.innerText = isEnglish_A25 ? 'VN' : 'EN';
+    popup_A25.appendChild(translateBtn_A25);
+};
+
+// Append button to popup
+popup_A25.appendChild(translateBtn_A25);
+
+document.body.appendChild(popup_A25);
+
+// Raycaster and mouse vector for A25
+const raycaster_A25 = new THREE.Raycaster();
+const mouse_A25 = new THREE.Vector2();
+let A25_mesh = null; // Store reference to mesh
 
 // Load A25.obj
 objLoader.load('./model/image/A25.obj', (object) => {
@@ -2642,7 +2950,7 @@ objLoader.load('./model/image/A25.obj', (object) => {
             });
         }
     });
-
+    A25_mesh = object;
     object.position.set(0, 0, 0);
     object.scale.set(0.026, 0.026, 0.026); // Scale down the mesh
     scene.add(object);
@@ -2655,6 +2963,96 @@ objLoader.load('./model/image/A25.obj', (object) => {
 }, undefined, (error) => {
     console.error('An error happened while loading the OBJ:', error);
 });
+
+// Handle mouse click (only triggers popup) for A25
+window.addEventListener('click', (event) => {
+    if (!A25_mesh) return; // Prevent action before mesh is loaded
+
+    mouse_A25.x = (event.clientX / window.innerWidth) * 2 - 1;
+    mouse_A25.y = -(event.clientY / window.innerHeight) * 2 + 1;
+
+    mouse_A25.x = (event.clientX / window.innerWidth) * 2 - 1;
+    mouse_A25.y = -(event.clientY / window.innerHeight) * 2 + 1;
+
+    raycaster_A25.setFromCamera(mouse_A25, camera);
+    const intersects = raycaster_A25.intersectObject(A25_mesh, true);
+
+    if (intersects.length > 0) {
+        // Hide all other popups
+        
+        popup_BuildingA.style.display = 'none';
+        popup_BuildingA1.style.display = 'none';
+        popup_BuildingA2.style.display = 'none';
+        popup_BuildingA3.style.display = 'none';
+        popup_BuildingA5.style.display = 'none';
+        popup_BuildingA6.style.display = 'none';
+        popup_BuildingA7.style.display = 'none';
+        popup_BuildingA8.style.display = 'none';
+        popup_BuildingA9.style.display = 'none';
+        popup_BuildingA10.style.display = 'none';
+        popup_BuildingA11.style.display = 'none';
+        popup_BuildingA12.style.display = 'none';
+        popup_BuildingA13.style.display = 'none';
+        popup_BuildingA14.style.display = 'none';
+        popup_Medic1.style.display = 'none';
+        popup_VastMedic.style.display = 'none';
+        popup_A18_1.style.display = 'none';
+        popup_A18_2.style.display = 'none';
+        popup_A20.style.display = 'none';
+        popup_A21.style.display = 'none';
+        popup_A22.style.display = 'none';
+        popup_A23.style.display = 'none';
+        popup_A30.style.display = 'none';
+        popup_A25.style.left = `${event.clientX}px`;
+        popup_A25.style.top = `${event.clientY}px`;
+        popup_A25.style.display = 'block';
+
+        setTimeout(() => {
+            popup_A25.style.display = 'none';
+        }, 5000);
+    }
+});
+
+// Create popup element for A26
+const popup_A26 = document.createElement('div');
+popup_A26.style.position = 'absolute';
+popup_A26.style.background = '#333';
+popup_A26.style.color = '#fff';
+popup_A26.style.padding = '10px';
+popup_A26.style.borderRadius = '5px';
+popup_A26.innerText = 'Welcome to Building A26!';
+
+// Add translate switch button for A26
+const translateBtn_A26 = document.createElement('button');
+translateBtn_A26.innerText = 'VN';
+translateBtn_A26.style.marginLeft = '10px';
+translateBtn_A26.style.background = '#555';
+translateBtn_A26.style.color = '#fff';
+translateBtn_A26.style.border = 'none';
+translateBtn_A26.style.borderRadius = '3px';
+translateBtn_A26.style.padding = '3px 8px';
+translateBtn_A26.style.cursor = 'pointer';
+
+let isEnglish_A26 = true;
+const msgEN_A26 = 'A26 is Center of Applied Physics and Scientific Instruments which is a part of Institute of Physics(A25).';
+const msgVN_A26 = 'A26 là Trung tâm Vật lý ứng dụng và Thiết bị khoa học, là một phần của Viện Vật lý (A25).';
+
+translateBtn_A26.onclick = function() {
+    isEnglish_A26 = !isEnglish_A26;
+    popup_A26.innerText = isEnglish_A26 ? msgEN_A26 : msgVN_A26;
+    translateBtn_A26.innerText = isEnglish_A26 ? 'VN' : 'EN';
+    popup_A26.appendChild(translateBtn_A26);
+};
+
+// Append button to popup
+popup_A26.appendChild(translateBtn_A26);
+
+document.body.appendChild(popup_A26);
+
+// Raycaster and mouse vector for A26
+const raycaster_A26 = new THREE.Raycaster();
+const mouse_A26 = new THREE.Vector2();
+let A26_mesh = null; // Store reference to mesh
 
 // Load A26.obj
 objLoader.load('./model/image/A26.obj', (object) => {
@@ -2677,6 +3075,7 @@ objLoader.load('./model/image/A26.obj', (object) => {
             });
         }
     });
+    A26_mesh = object;
 
     object.position.set(0, 0, 0);
     object.scale.set(0.026, 0.026, 0.026); // Scale down the mesh
@@ -2689,6 +3088,56 @@ objLoader.load('./model/image/A26.obj', (object) => {
     controls.target.copy(center);
 }, undefined, (error) => {
     console.error('An error happened while loading the OBJ:', error);
+});
+
+// Handle mouse click (only triggers popup) for A26
+window.addEventListener('click', (event) => {
+    if (!A26_mesh) return; // Prevent action before mesh is loaded
+
+    mouse_A26.x = (event.clientX / window.innerWidth) * 2 - 1;
+    mouse_A26.y = -(event.clientY / window.innerHeight) * 2 + 1;
+
+    mouse_A26.x = (event.clientX / window.innerWidth) * 2 - 1;
+    mouse_A26.y = -(event.clientY / window.innerHeight) * 2 + 1;
+
+    raycaster_A26.setFromCamera(mouse_A26, camera);
+    const intersects = raycaster_A26.intersectObject(A26_mesh, true);
+
+    if (intersects.length > 0) {
+        // Hide all other popups
+        
+        popup_BuildingA.style.display = 'none';
+        popup_BuildingA1.style.display = 'none';
+        popup_BuildingA2.style.display = 'none';
+        popup_BuildingA3.style.display = 'none';
+        popup_BuildingA5.style.display = 'none';
+        popup_BuildingA6.style.display = 'none';
+        popup_BuildingA7.style.display = 'none';
+        popup_BuildingA8.style.display = 'none';
+        popup_BuildingA9.style.display = 'none';
+        popup_BuildingA10.style.display = 'none';
+        popup_BuildingA11.style.display = 'none';
+        popup_BuildingA12.style.display = 'none';
+        popup_BuildingA13.style.display = 'none';
+        popup_BuildingA14.style.display = 'none';
+        popup_Medic1.style.display = 'none';
+        popup_VastMedic.style.display = 'none';
+        popup_A18_1.style.display = 'none';
+        popup_A18_2.style.display = 'none';
+        popup_A20.style.display = 'none';
+        popup_A21.style.display = 'none';
+        popup_A22.style.display = 'none';
+        popup_A23.style.display = 'none';
+        popup_A30.style.display = 'none';
+        popup_A25.style.display = 'none';
+        popup_A26.style.left = `${event.clientX}px`;
+        popup_A26.style.top = `${event.clientY}px`;
+        popup_A26.style.display = 'block';
+
+        setTimeout(() => {
+            popup_A26.style.display = 'none';
+        }, 5000);
+    }
 });
 
 // Load B2.obj
