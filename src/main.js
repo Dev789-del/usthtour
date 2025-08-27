@@ -31,21 +31,6 @@ const directionalLight = new THREE.DirectionalLight(0xffffff, 0.6);
 directionalLight.position.set(5, 10, 7.5);
 scene.add(directionalLight);
 
-// Create popup element
-const popup = document.createElement('div');
-popup.style.position = 'absolute';
-popup.style.background = '#333';
-popup.style.color = '#fff';
-popup.style.padding = '10px';
-popup.style.borderRadius = '5px';
-popup.style.display = 'none';
-popup.innerText = 'Welcome to the USTH sidewalk! Here you can find various information and resources related to the university.';
-document.body.appendChild(popup);
-
-// Raycaster and mouse vector
-const raycaster = new THREE.Raycaster();
-const mouse = new THREE.Vector2();
-let sidewalkMesh = null; // Store reference to mesh
 
 // Load sidewalk only once
 const objLoader = new OBJLoader();
@@ -56,7 +41,6 @@ objLoader.load('./model/image/Sidewalk.obj', (object) => {
                 map: new THREE.TextureLoader().load('./model/image/street_sidewalk_texture.jpg'),
                 side: THREE.DoubleSide
             });
-            sidewalkMesh = child; // Save mesh for click detection
         }
     });
 
@@ -75,28 +59,6 @@ undefined,
     console.error('An error happened while loading the OBJ:', error);
 }
 );
-
-// Handle mouse click (only triggers popup)
-window.addEventListener('click', (event) => {
-    if (!sidewalkMesh) return; // Prevent action before mesh is loaded
-
-    mouse.x = (event.clientX / window.innerWidth) * 2 - 1;
-    mouse.y = -(event.clientY / window.innerHeight) * 2 + 1;
-
-    raycaster.setFromCamera(mouse, camera);
-    const intersects = raycaster.intersectObject(sidewalkMesh, true);
-
-    if (intersects.length > 0) {
-        popup.style.left = `${event.clientX}px`;
-        popup.style.top = `${event.clientY}px`;
-        popup.style.display = 'block';
-
-        setTimeout(() => {
-            popup.style.display = 'none';
-        }, 5000);
-    }
-});
-
 
 // Load street components
 objLoader.load('./model/image/StreetComponents.obj', (object) => {
@@ -359,7 +321,6 @@ window.addEventListener('click', (event) => {
 
     if (intersects.length > 0) {
         // Hide all other popups
-        popup.style.display = 'none';
         popup_BuildingA.style.left = `${event.clientX}px`;
         popup_BuildingA.style.top = `${event.clientY}px`;
         popup_BuildingA.style.display = 'block';
@@ -463,7 +424,6 @@ window.addEventListener('click', (event) => {
 
     if (intersects.length > 0) {
         // Hide all other popups
-        popup.style.display = 'none';
         popup_BuildingA.style.display = 'none';
         popup_BuildingA1.style.left = `${event.clientX}px`;
         popup_BuildingA1.style.top = `${event.clientY}px`;
@@ -569,7 +529,6 @@ window.addEventListener('click', (event) => {
 
     if (intersects.length > 0) {
         // Hide all other popups
-        popup.style.display = 'none';
         popup_BuildingA.style.display = 'none';
         popup_BuildingA1.style.display = 'none';
         popup_BuildingA2.style.left = `${event.clientX}px`;
@@ -701,7 +660,6 @@ window.addEventListener('click', (event) => {
 
     if (intersects.length > 0) {
         // Hide all other popups
-        popup.style.display = 'none';
         popup_BuildingA.style.display = 'none';
         popup_BuildingA1.style.display = 'none';
         popup_BuildingA2.style.display = 'none';
@@ -807,7 +765,6 @@ window.addEventListener('click', (event) => {
 
     if (intersects.length > 0) {
         // Hide all other popups
-        popup.style.display = 'none';
         popup_BuildingA.style.display = 'none';
         popup_BuildingA1.style.display = 'none';
         popup_BuildingA2.style.display = 'none';
@@ -915,7 +872,7 @@ window.addEventListener('click', (event) => {
 
     if (intersects.length > 0) {
         // Hide all other popups
-        popup.style.display = 'none';
+        
         popup_BuildingA.style.display = 'none';
         popup_BuildingA1.style.display = 'none';
         popup_BuildingA2.style.display = 'none';
@@ -1021,7 +978,6 @@ window.addEventListener('click', (event) => {
 
     if (intersects.length > 0) {
         // Hide all other popups
-        popup.style.display = 'none';
         popup_BuildingA.style.display = 'none';
         popup_BuildingA1.style.display = 'none';
         popup_BuildingA2.style.display = 'none';
@@ -1155,7 +1111,7 @@ window.addEventListener('click', (event) => {
 
     if (intersects.length > 0) {
         // Hide all other popups
-        popup.style.display = 'none';
+        
         popup_BuildingA.style.display = 'none';
         popup_BuildingA1.style.display = 'none';
         popup_BuildingA2.style.display = 'none';
@@ -1264,7 +1220,7 @@ window.addEventListener('click', (event) => {
 
     if (intersects.length > 0) {
         // Hide all other popups
-        popup.style.display = 'none';
+        
         popup_BuildingA.style.display = 'none';
         popup_BuildingA1.style.display = 'none';
         popup_BuildingA2.style.display = 'none';
@@ -1373,7 +1329,7 @@ window.addEventListener('click', (event) => {
 
     if (intersects.length > 0) {
         // Hide all other popups
-        popup.style.display = 'none';
+        
         popup_BuildingA.style.display = 'none';
         popup_BuildingA1.style.display = 'none';
         popup_BuildingA2.style.display = 'none';
@@ -1392,6 +1348,48 @@ window.addEventListener('click', (event) => {
         }, 5000);
     }
 });
+
+// Create popup element for building A11
+const popup_BuildingA11 = document.createElement('div');
+popup_BuildingA11.style.position = 'absolute';
+popup_BuildingA11.style.background = '#333';
+popup_BuildingA11.style.color = '#fff';
+popup_BuildingA11.style.padding = '10px';
+popup_BuildingA11.style.borderRadius = '5px';
+popup_BuildingA11.style.display = 'none';
+popup_BuildingA11.innerText = 'Welcome to Building A11!';
+
+// Add translate switch button for building A11
+const translateBtn_BuildingA11 = document.createElement('button');
+translateBtn_BuildingA11.innerText = 'VN';
+translateBtn_BuildingA11.style.marginLeft = '10px';
+translateBtn_BuildingA11.style.background = '#555';
+translateBtn_BuildingA11.style.color = '#fff';
+translateBtn_BuildingA11.style.border = 'none';
+translateBtn_BuildingA11.style.borderRadius = '3px';
+translateBtn_BuildingA11.style.padding = '3px 8px';
+translateBtn_BuildingA11.style.cursor = 'pointer';
+
+let isEnglish_BuildingA11 = true;
+const msgEN_BuildingA11 = 'Building A11 is our academic library and Institute for Scientific Information which is located to the east of Building A10.';
+const msgVN_BuildingA11 = 'Tòa nhà A11 là thư viện học thuật và Viện Thông tin Khoa học của chúng tôi, nằm về phía đông của tòa nhà A10.';
+
+translateBtn_BuildingA11.onclick = function() {
+    isEnglish_BuildingA11 = !isEnglish_BuildingA11;
+    popup_BuildingA11.innerText = isEnglish_BuildingA11 ? msgEN_BuildingA11 : msgVN_BuildingA11;
+    translateBtn_BuildingA11.innerText = isEnglish_BuildingA11 ? 'VN' : 'EN';
+    popup_BuildingA11.appendChild(translateBtn_BuildingA11);
+};
+
+// Append button to popup
+popup_BuildingA11.appendChild(translateBtn_BuildingA11);
+
+document.body.appendChild(popup_BuildingA11);
+
+// Raycaster and mouse vector for Building A11
+const raycaster_BuildingA11 = new THREE.Raycaster();
+const mouse_BuildingA11 = new THREE.Vector2();
+let BuildingA11_mesh = null; // Store reference to mesh
 
 // Load A11.obj
 objLoader.load('./model/image/A11.obj', (object) => {
@@ -1422,7 +1420,7 @@ objLoader.load('./model/image/A11.obj', (object) => {
             });
         }
     });
-
+    BuildingA11_mesh = object;
     // Set the object's position and scale
     object.position.set(0, 0, 0);
     object.scale.set(0.026, 0.026, 0.026); // Scale down the mesh
@@ -1437,6 +1435,81 @@ objLoader.load('./model/image/A11.obj', (object) => {
 }, undefined, (error) => {
     console.error('An error happened while loading the OBJ:', error);
 });
+
+// Handle mouse click (only triggers popup) for Building A11
+window.addEventListener('click', (event) => {
+    if (!BuildingA11_mesh) return; // Prevent action before mesh is loaded
+
+    mouse_BuildingA11.x = (event.clientX / window.innerWidth) * 2 - 1;
+    mouse_BuildingA11.y = -(event.clientY / window.innerHeight) * 2 + 1;
+
+    raycaster_BuildingA11.setFromCamera(mouse_BuildingA11, camera);
+    const intersects = raycaster_BuildingA11.intersectObject(BuildingA11_mesh, true);
+
+    if (intersects.length > 0) {
+        // Hide all other popups
+        
+        popup_BuildingA.style.display = 'none';
+        popup_BuildingA1.style.display = 'none';
+        popup_BuildingA2.style.display = 'none';
+        popup_BuildingA3.style.display = 'none';
+        popup_BuildingA5.style.display = 'none';
+        popup_BuildingA6.style.display = 'none';
+        popup_BuildingA7.style.display = 'none';
+        popup_BuildingA8.style.display = 'none';
+        popup_BuildingA9.style.display = 'none';
+        popup_BuildingA10.style.display = 'none';
+        popup_BuildingA11.style.left = `${event.clientX}px`;
+        popup_BuildingA11.style.top = `${event.clientY}px`;
+        popup_BuildingA11.style.display = 'block';
+
+        setTimeout(() => {
+            popup_BuildingA11.style.display = 'none';
+        }, 5000);
+    }
+});
+
+// Create popup element for building A12
+const popup_BuildingA12 = document.createElement('div');
+popup_BuildingA12.style.position = 'absolute';
+popup_BuildingA12.style.background = '#333';
+popup_BuildingA12.style.color = '#fff';
+popup_BuildingA12.style.padding = '10px';
+popup_BuildingA12.style.borderRadius = '5px';
+popup_BuildingA12.style.display = 'none';
+popup_BuildingA12.innerText = 'Welcome to Building A12!';
+
+// Add translate switch button for building A12
+const translateBtn_BuildingA12 = document.createElement('button');
+translateBtn_BuildingA12.innerText = 'VN';
+translateBtn_BuildingA12.style.marginLeft = '10px';
+translateBtn_BuildingA12.style.background = '#555';
+translateBtn_BuildingA12.style.color = '#fff';
+translateBtn_BuildingA12.style.border = 'none';
+translateBtn_BuildingA12.style.borderRadius = '3px';
+translateBtn_BuildingA12.style.padding = '3px 8px';
+translateBtn_BuildingA12.style.cursor = 'pointer';
+
+let isEnglish_BuildingA12 = true;
+const msgEN_BuildingA12 = 'Building A12 is Institure for Tropical Technology along with Building A13 which is located to the east of Building A11.';
+const msgVN_BuildingA12 = 'Tòa nhà A12 là Viện Công nghệ Nhiệt đới cùng với Tòa nhà A13, nằm ở phía đông của Tòa nhà A11.';
+
+translateBtn_BuildingA12.onclick = function() {
+    isEnglish_BuildingA12 = !isEnglish_BuildingA12;
+    popup_BuildingA12.innerText = isEnglish_BuildingA12 ? msgEN_BuildingA12 : msgVN_BuildingA12;
+    translateBtn_BuildingA12.innerText = isEnglish_BuildingA12 ? 'VN' : 'EN';
+    popup_BuildingA12.appendChild(translateBtn_BuildingA12);
+};
+
+// Append button to popup
+popup_BuildingA12.appendChild(translateBtn_BuildingA12);
+
+document.body.appendChild(popup_BuildingA12);
+
+// Raycaster and mouse vector for Building A12
+const raycaster_BuildingA12 = new THREE.Raycaster();
+const mouse_BuildingA12 = new THREE.Vector2();
+let BuildingA12_mesh = null; // Store reference to mesh
 
 // Load A12.obj
 objLoader.load('./model/image/A12.obj', (object) => {
@@ -1459,7 +1532,7 @@ objLoader.load('./model/image/A12.obj', (object) => {
             });
         }
     });
-
+    BuildingA12_mesh = object;
     object.position.set(0, 0, 0);
     object.scale.set(0.026, 0.026, 0.026); // Scale down the mesh
     scene.add(object);
@@ -1472,6 +1545,82 @@ objLoader.load('./model/image/A12.obj', (object) => {
 }, undefined, (error) => {
     console.error('An error happened while loading the OBJ:', error);
 });
+
+// Handle mouse click (only triggers popup) for Building A12
+window.addEventListener('click', (event) => {
+    if (!BuildingA12_mesh) return; // Prevent action before mesh is loaded
+
+    mouse_BuildingA12.x = (event.clientX / window.innerWidth) * 2 - 1;
+    mouse_BuildingA12.y = -(event.clientY / window.innerHeight) * 2 + 1;
+
+    raycaster_BuildingA12.setFromCamera(mouse_BuildingA12, camera);
+    const intersects = raycaster_BuildingA12.intersectObject(BuildingA12_mesh, true);
+
+    if (intersects.length > 0) {
+        // Hide all other popups
+        
+        popup_BuildingA.style.display = 'none';
+        popup_BuildingA1.style.display = 'none';
+        popup_BuildingA2.style.display = 'none';
+        popup_BuildingA3.style.display = 'none';
+        popup_BuildingA5.style.display = 'none';
+        popup_BuildingA6.style.display = 'none';
+        popup_BuildingA7.style.display = 'none';
+        popup_BuildingA8.style.display = 'none';
+        popup_BuildingA9.style.display = 'none';
+        popup_BuildingA10.style.display = 'none';
+        popup_BuildingA11.style.display = 'none';
+        popup_BuildingA12.style.left = `${event.clientX}px`;
+        popup_BuildingA12.style.top = `${event.clientY}px`;
+        popup_BuildingA12.style.display = 'block';
+
+        setTimeout(() => {
+            popup_BuildingA12.style.display = 'none';
+        }, 5000);
+    }
+});
+
+// Create popup element for building A13
+const popup_BuildingA13 = document.createElement('div');
+popup_BuildingA13.style.position = 'absolute';
+popup_BuildingA13.style.background = '#333';
+popup_BuildingA13.style.color = '#fff';
+popup_BuildingA13.style.padding = '10px';
+popup_BuildingA13.style.borderRadius = '5px';
+popup_BuildingA13.style.display = 'none';
+popup_BuildingA13.innerText = 'Welcome to Building A13!';
+
+// Add translate switch button for building A13
+const translateBtn_BuildingA13 = document.createElement('button');
+translateBtn_BuildingA13.innerText = 'VN';
+translateBtn_BuildingA13.style.marginLeft = '10px';
+translateBtn_BuildingA13.style.background = '#555';
+translateBtn_BuildingA13.style.color = '#fff';
+translateBtn_BuildingA13.style.border = 'none';
+translateBtn_BuildingA13.style.borderRadius = '3px';
+translateBtn_BuildingA13.style.padding = '3px 8px';
+translateBtn_BuildingA13.style.cursor = 'pointer';
+
+let isEnglish_BuildingA13 = true;
+const msgEN_BuildingA13 = 'Building A13 is part of the Institute for Tropical Technology along with Building A12.';
+const msgVN_BuildingA13 = 'Tòa nhà A13 là một phần của Viện Kỹ thuật Nhiệt đới cùng với Tòa nhà A12.';
+
+translateBtn_BuildingA13.onclick = function() {
+    isEnglish_BuildingA13 = !isEnglish_BuildingA13;
+    popup_BuildingA13.innerText = isEnglish_BuildingA13 ? msgEN_BuildingA13 : msgVN_BuildingA13;
+    translateBtn_BuildingA13.innerText = isEnglish_BuildingA13 ? 'VN' : 'EN';
+    popup_BuildingA13.appendChild(translateBtn_BuildingA13);
+};
+
+// Append button to popup
+popup_BuildingA13.appendChild(translateBtn_BuildingA13);
+
+document.body.appendChild(popup_BuildingA13);
+
+// Raycaster and mouse vector for Building A13
+const raycaster_BuildingA13 = new THREE.Raycaster();
+const mouse_BuildingA13 = new THREE.Vector2();
+let BuildingA13_mesh = null; // Store reference to mesh
 
 // Load A13.obj
 objLoader.load('./model/image/A13.obj', (object) => {
@@ -1494,6 +1643,7 @@ objLoader.load('./model/image/A13.obj', (object) => {
             });
         }
     });
+    BuildingA13_mesh = object;
 
     object.position.set(0, 0, 0);
     object.scale.set(0.026, 0.026, 0.026); // Scale down the mesh
@@ -1507,6 +1657,83 @@ objLoader.load('./model/image/A13.obj', (object) => {
 }, undefined, (error) => {
     console.error('An error happened while loading the OBJ:', error);
 });
+
+// Handle mouse click (only triggers popup) for Building A13
+window.addEventListener('click', (event) => {
+    if (!BuildingA13_mesh) return; // Prevent action before mesh is loaded
+
+    mouse_BuildingA13.x = (event.clientX / window.innerWidth) * 2 - 1;
+    mouse_BuildingA13.y = -(event.clientY / window.innerHeight) * 2 + 1;
+
+    raycaster_BuildingA13.setFromCamera(mouse_BuildingA13, camera);
+    const intersects = raycaster_BuildingA13.intersectObject(BuildingA13_mesh, true);
+
+    if (intersects.length > 0) {
+        // Hide all other popups
+        
+        popup_BuildingA.style.display = 'none';
+        popup_BuildingA1.style.display = 'none';
+        popup_BuildingA2.style.display = 'none';
+        popup_BuildingA3.style.display = 'none';
+        popup_BuildingA5.style.display = 'none';
+        popup_BuildingA6.style.display = 'none';
+        popup_BuildingA7.style.display = 'none';
+        popup_BuildingA8.style.display = 'none';
+        popup_BuildingA9.style.display = 'none';
+        popup_BuildingA10.style.display = 'none';
+        popup_BuildingA11.style.display = 'none';
+        popup_BuildingA12.style.display = 'none';
+        popup_BuildingA13.style.left = `${event.clientX}px`;
+        popup_BuildingA13.style.top = `${event.clientY}px`;
+        popup_BuildingA13.style.display = 'block';
+
+        setTimeout(() => {
+            popup_BuildingA13.style.display = 'none';
+        }, 5000);
+    }
+});
+
+// Create popup element for building A14
+const popup_BuildingA14 = document.createElement('div');
+popup_BuildingA14.style.position = 'absolute';
+popup_BuildingA14.style.background = '#333';
+popup_BuildingA14.style.color = '#fff';
+popup_BuildingA14.style.padding = '10px';
+popup_BuildingA14.style.borderRadius = '5px';
+popup_BuildingA14.style.display = 'none';
+popup_BuildingA14.innerText = 'Welcome to Building A14!';
+
+// Add translate switch button for building A14
+const translateBtn_BuildingA14 = document.createElement('button');
+translateBtn_BuildingA14.innerText = 'VN';
+translateBtn_BuildingA14.style.marginLeft = '10px';
+translateBtn_BuildingA14.style.background = '#555';
+translateBtn_BuildingA14.style.color = '#fff';
+translateBtn_BuildingA14.style.border = 'none';
+translateBtn_BuildingA14.style.borderRadius = '3px';
+translateBtn_BuildingA14.style.padding = '3px 8px';
+translateBtn_BuildingA14.style.cursor = 'pointer';
+
+let isEnglish_BuildingA14 = true;
+const msgEN_BuildingA14 = 'Building A14 is our academic canteen which lies behind Institute for Tropical Technology(A12 & A13)';
+const msgVN_BuildingA14 = 'Tòa nhà A14 là căng tin của viện hàn lâm chúng tôi nằm phía sau Viện Kỹ thuật Nhiệt đới (A12 & A13)';
+
+translateBtn_BuildingA14.onclick = function() {
+    isEnglish_BuildingA14 = !isEnglish_BuildingA14;
+    popup_BuildingA14.innerText = isEnglish_BuildingA14 ? msgEN_BuildingA14 : msgVN_BuildingA14;
+    translateBtn_BuildingA14.innerText = isEnglish_BuildingA14 ? 'VN' : 'EN';
+    popup_BuildingA14.appendChild(translateBtn_BuildingA14);
+};
+
+// Append button to popup
+popup_BuildingA14.appendChild(translateBtn_BuildingA14);
+
+document.body.appendChild(popup_BuildingA14);
+
+// Raycaster and mouse vector for Building A14
+const raycaster_BuildingA14 = new THREE.Raycaster();
+const mouse_BuildingA14 = new THREE.Vector2();
+let BuildingA14_mesh = null; // Store reference to mesh
 
 // Load A14.obj
 objLoader.load('./model/image/A14.obj', (object) => {
@@ -1529,7 +1756,7 @@ objLoader.load('./model/image/A14.obj', (object) => {
             });
         }
     });
-
+    BuildingA14_mesh = object;
     object.position.set(0, 0, 0);
     object.scale.set(0.026, 0.026, 0.026); // Scale down the mesh
     scene.add(object);
@@ -1542,6 +1769,84 @@ objLoader.load('./model/image/A14.obj', (object) => {
 }, undefined, (error) => {
     console.error('An error happened while loading the OBJ:', error);
 });
+
+// Handle mouse click (only triggers popup) for Building A14
+window.addEventListener('click', (event) => {
+    if (!BuildingA14_mesh) return; // Prevent action before mesh is loaded
+
+    mouse_BuildingA14.x = (event.clientX / window.innerWidth) * 2 - 1;
+    mouse_BuildingA14.y = -(event.clientY / window.innerHeight) * 2 + 1;
+
+    raycaster_BuildingA14.setFromCamera(mouse_BuildingA14, camera);
+    const intersects = raycaster_BuildingA14.intersectObject(BuildingA14_mesh, true);
+
+    if (intersects.length > 0) {
+        // Hide all other popups
+        
+        popup_BuildingA.style.display = 'none';
+        popup_BuildingA1.style.display = 'none';
+        popup_BuildingA2.style.display = 'none';
+        popup_BuildingA3.style.display = 'none';
+        popup_BuildingA5.style.display = 'none';
+        popup_BuildingA6.style.display = 'none';
+        popup_BuildingA7.style.display = 'none';
+        popup_BuildingA8.style.display = 'none';
+        popup_BuildingA9.style.display = 'none';
+        popup_BuildingA10.style.display = 'none';
+        popup_BuildingA11.style.display = 'none';
+        popup_BuildingA12.style.display = 'none';
+        popup_BuildingA13.style.display = 'none';
+        popup_BuildingA14.style.left = `${event.clientX}px`;
+        popup_BuildingA14.style.top = `${event.clientY}px`;
+        popup_BuildingA14.style.display = 'block';
+
+        setTimeout(() => {
+            popup_BuildingA14.style.display = 'none';
+        }, 5000);
+    }
+});
+
+// Create popup element for Medic Center 1
+const popup_Medic1 = document.createElement('div');
+popup_Medic1.style.position = 'absolute';
+popup_Medic1.style.background = '#333';
+popup_Medic1.style.color = '#fff';
+popup_Medic1.style.padding = '10px';
+popup_Medic1.style.borderRadius = '5px';
+popup_Medic1.style.display = 'none';
+popup_Medic1.innerText = 'Welcome to Medic Center 1!';
+
+// Add translate switch button for Medic Center 1
+const translateBtn_Medic1 = document.createElement('button');
+translateBtn_Medic1.innerText = 'VN';
+translateBtn_Medic1.style.marginLeft = '10px';
+translateBtn_Medic1.style.background = '#555';
+translateBtn_Medic1.style.color = '#fff';
+translateBtn_Medic1.style.border = 'none';
+translateBtn_Medic1.style.borderRadius = '3px';
+translateBtn_Medic1.style.padding = '3px 8px';
+translateBtn_Medic1.style.cursor = 'pointer';
+
+let isEnglish_Medic1 = true;
+const msgEN_Medic1 = 'Medic Center 1 is our small clinic located between building A8 and A10.';
+const msgVN_Medic1 = 'Trung tâm Y tế 1 là phòng khám nhỏ của chúng tôi nằm giữa tòa nhà A8 và A10.';
+
+translateBtn_Medic1.onclick = function() {
+    isEnglish_Medic1 = !isEnglish_Medic1;
+    popup_Medic1.innerText = isEnglish_Medic1 ? msgEN_Medic1 : msgVN_Medic1;
+    translateBtn_Medic1.innerText = isEnglish_Medic1 ? 'VN' : 'EN';
+    popup_Medic1.appendChild(translateBtn_Medic1);
+};
+
+// Append button to popup
+popup_Medic1.appendChild(translateBtn_Medic1);
+
+document.body.appendChild(popup_Medic1);
+
+// Raycaster and mouse vector for Medic Center 1
+const raycaster_Medic1 = new THREE.Raycaster();
+const mouse_Medic1 = new THREE.Vector2();
+let Medic1_mesh = null; // Store reference to mesh
 
 // Load Medic1.obj
 objLoader.load('./model/image/Medic1.obj', (object) => {
@@ -1564,7 +1869,7 @@ objLoader.load('./model/image/Medic1.obj', (object) => {
             });
         }
     });
-
+    Medic1_mesh = object;
     object.position.set(0, 0, 0);
     object.scale.set(0.026, 0.026, 0.026); // Scale down the mesh
     scene.add(object);
@@ -1576,6 +1881,43 @@ objLoader.load('./model/image/Medic1.obj', (object) => {
     controls.target.copy(center);
 }, undefined, (error) => {
     console.error('An error happened while loading the OBJ:', error);
+});
+
+// Handle mouse click (only triggers popup) for Medic Center 1
+window.addEventListener('click', (event) => {
+    if (!Medic1_mesh) return; // Prevent action before mesh is loaded
+
+    mouse_Medic1.x = (event.clientX / window.innerWidth) * 2 - 1;
+    mouse_Medic1.y = -(event.clientY / window.innerHeight) * 2 + 1;
+
+    raycaster_Medic1.setFromCamera(mouse_Medic1, camera);
+    const intersects = raycaster_Medic1.intersectObject(Medic1_mesh, true);
+
+    if (intersects.length > 0) {
+        // Hide all other popups
+        
+        popup_BuildingA.style.display = 'none';
+        popup_BuildingA1.style.display = 'none';
+        popup_BuildingA2.style.display = 'none';
+        popup_BuildingA3.style.display = 'none';
+        popup_BuildingA5.style.display = 'none';
+        popup_BuildingA6.style.display = 'none';
+        popup_BuildingA7.style.display = 'none';
+        popup_BuildingA8.style.display = 'none';
+        popup_BuildingA9.style.display = 'none';
+        popup_BuildingA10.style.display = 'none';
+        popup_BuildingA11.style.display = 'none';
+        popup_BuildingA12.style.display = 'none';
+        popup_BuildingA13.style.display = 'none';
+        popup_BuildingA14.style.display = 'none';
+        popup_Medic1.style.left = `${event.clientX}px`;
+        popup_Medic1.style.top = `${event.clientY}px`;
+        popup_Medic1.style.display = 'block';
+
+        setTimeout(() => {
+            popup_Medic1.style.display = 'none';
+        }, 5000);
+    }
 });
 
 // Load Medic2.obj
