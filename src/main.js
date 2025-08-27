@@ -1920,6 +1920,48 @@ window.addEventListener('click', (event) => {
     }
 });
 
+// Create popup element for VastMedic
+const popup_VastMedic = document.createElement('div');
+popup_VastMedic.style.position = 'absolute';
+popup_VastMedic.style.background = '#333';
+popup_VastMedic.style.color = '#fff';
+popup_VastMedic.style.padding = '10px';
+popup_VastMedic.style.borderRadius = '5px';
+popup_VastMedic.style.display = 'none';
+popup_VastMedic.innerText = 'Welcome to Vast Medic Center!';
+
+// Add translate switch button for VastMedic
+const translateBtn_VastMedic = document.createElement('button');
+translateBtn_VastMedic.innerText = 'VN';
+translateBtn_VastMedic.style.marginLeft = '10px';
+translateBtn_VastMedic.style.background = '#555';
+translateBtn_VastMedic.style.color = '#fff';
+translateBtn_VastMedic.style.border = 'none';
+translateBtn_VastMedic.style.borderRadius = '3px';
+translateBtn_VastMedic.style.padding = '3px 8px';
+translateBtn_VastMedic.style.cursor = 'pointer';
+
+let isEnglish_VastMedic = true;
+const msgEN_VastMedic = 'This building is Vast Medical Center for Vietnam Academy of Science & Technology and our university. People can access a wide range of medical services here.';
+const msgVN_VastMedic = 'Tòa nhà này là Trung tâm Y tế Vast của Viện Hàn lâm Khoa học và Công nghệ Việt Nam và trường đại học của chúng tôi. Mọi người có thể tiếp cận nhiều dịch vụ y tế tại đây.';
+
+translateBtn_VastMedic.onclick = function() {
+    isEnglish_VastMedic = !isEnglish_VastMedic;
+    popup_VastMedic.innerText = isEnglish_VastMedic ? msgEN_VastMedic : msgVN_VastMedic;
+    translateBtn_VastMedic.innerText = isEnglish_VastMedic ? 'VN' : 'EN';
+    popup_VastMedic.appendChild(translateBtn_VastMedic);
+};
+
+// Append button to popup
+popup_VastMedic.appendChild(translateBtn_VastMedic);
+
+document.body.appendChild(popup_VastMedic);
+
+// Raycaster and mouse vector for VastMedic
+const raycaster_VastMedic = new THREE.Raycaster();
+const mouse_VastMedic = new THREE.Vector2();
+let VastMedic_mesh = null; // Store reference to mesh
+
 // Load Medic2.obj
 objLoader.load('./model/image/Medic2.obj', (object) => {
     // Make texture adjustments for Medic2
@@ -1941,7 +1983,7 @@ objLoader.load('./model/image/Medic2.obj', (object) => {
             });
         }
     });
-
+    VastMedic_mesh = object;
     object.position.set(0, 0, 0);
     object.scale.set(0.026, 0.026, 0.026); // Scale down the mesh
     scene.add(object);
@@ -1954,6 +1996,86 @@ objLoader.load('./model/image/Medic2.obj', (object) => {
 }, undefined, (error) => {
     console.error('An error happened while loading the OBJ:', error);
 });
+
+// Handle mouse click (only triggers popup) for Vast Medic Center
+window.addEventListener('click', (event) => {
+    if (!VastMedic_mesh) return; // Prevent action before mesh is loaded
+
+    mouse_VastMedic.x = (event.clientX / window.innerWidth) * 2 - 1;
+    mouse_VastMedic.y = -(event.clientY / window.innerHeight) * 2 + 1;
+
+    raycaster_VastMedic.setFromCamera(mouse_VastMedic, camera);
+    const intersects = raycaster_VastMedic.intersectObject(VastMedic_mesh, true);
+
+    if (intersects.length > 0) {
+        // Hide all other popups
+        
+        popup_BuildingA.style.display = 'none';
+        popup_BuildingA1.style.display = 'none';
+        popup_BuildingA2.style.display = 'none';
+        popup_BuildingA3.style.display = 'none';
+        popup_BuildingA5.style.display = 'none';
+        popup_BuildingA6.style.display = 'none';
+        popup_BuildingA7.style.display = 'none';
+        popup_BuildingA8.style.display = 'none';
+        popup_BuildingA9.style.display = 'none';
+        popup_BuildingA10.style.display = 'none';
+        popup_BuildingA11.style.display = 'none';
+        popup_BuildingA12.style.display = 'none';
+        popup_BuildingA13.style.display = 'none';
+        popup_BuildingA14.style.display = 'none';
+        popup_Medic1.style.display = 'none';
+        popup_VastMedic.style.left = `${event.clientX}px`;
+        popup_VastMedic.style.top = `${event.clientY}px`;
+        popup_VastMedic.style.display = 'block';
+
+        setTimeout(() => {
+            popup_VastMedic.style.display = 'none';
+        }, 5000);
+    }
+});
+
+// Create popup element for A18-1
+const popup_A18_1 = document.createElement('div');
+popup_A18_1.style.position = 'absolute';
+popup_A18_1.style.background = '#333';
+popup_A18_1.style.color = '#fff';
+popup_A18_1.style.padding = '10px';
+popup_A18_1.style.borderRadius = '5px';
+popup_A18_1.style.display = 'none';
+popup_A18_1.innerText = 'Welcome to A18-1!';
+
+// Add translate switch button for A18-1
+const translateBtn_A18_1 = document.createElement('button');
+translateBtn_A18_1.innerText = 'VN';
+translateBtn_A18_1.style.marginLeft = '10px';
+translateBtn_A18_1.style.background = '#555';
+translateBtn_A18_1.style.color = '#fff';
+translateBtn_A18_1.style.border = 'none';
+translateBtn_A18_1.style.borderRadius = '3px';
+translateBtn_A18_1.style.padding = '3px 8px';
+translateBtn_A18_1.style.cursor = 'pointer';
+
+let isEnglish_A18_1 = true;
+const msgEN_A18_1 = 'This building is A18-1 for Vietnam Academy of Science & Technology and our university. Also, its name is Institute of Chemistry along with Building A18-2.';
+const msgVN_A18_1 = 'Tòa nhà này là A18-1 của Viện Hàn lâm Khoa học và Công nghệ Việt Nam và trường đại học của chúng tôi. Tên của nó cũng là Viện Hóa học cùng với Tòa nhà A18-2.';
+
+translateBtn_A18_1.onclick = function() {
+    isEnglish_A18_1 = !isEnglish_A18_1;
+    popup_A18_1.innerText = isEnglish_A18_1 ? msgEN_A18_1 : msgVN_A18_1;
+    translateBtn_A18_1.innerText = isEnglish_A18_1 ? 'VN' : 'EN';
+    popup_A18_1.appendChild(translateBtn_A18_1);
+};
+
+// Append button to popup
+popup_A18_1.appendChild(translateBtn_A18_1);
+
+document.body.appendChild(popup_A18_1);
+
+// Raycaster and mouse vector for A18-1
+const raycaster_A18_1 = new THREE.Raycaster();
+const mouse_A18_1 = new THREE.Vector2();
+let A18_1_mesh = null; // Store reference to mesh
 
 // Load A18-1.obj
 objLoader.load('./model/image/A18-1.obj', (object) => {
@@ -1976,6 +2098,7 @@ objLoader.load('./model/image/A18-1.obj', (object) => {
             });
         }
     });
+    A18_1_mesh = object;
 
     object.position.set(0, 0, 0);
     object.scale.set(0.026, 0.026, 0.026); // Scale down the mesh
@@ -1989,6 +2112,87 @@ objLoader.load('./model/image/A18-1.obj', (object) => {
 }, undefined, (error) => {
     console.error('An error happened while loading the OBJ:', error);
 });
+
+// Handle mouse click (only triggers popup) for A18-1
+window.addEventListener('click', (event) => {
+    if (!A18_1_mesh) return; // Prevent action before mesh is loaded
+
+    mouse_A18_1.x = (event.clientX / window.innerWidth) * 2 - 1;
+    mouse_A18_1.y = -(event.clientY / window.innerHeight) * 2 + 1;
+
+    raycaster_A18_1.setFromCamera(mouse_A18_1, camera);
+    const intersects = raycaster_A18_1.intersectObject(A18_1_mesh, true);
+
+    if (intersects.length > 0) {
+        // Hide all other popups
+        
+        popup_BuildingA.style.display = 'none';
+        popup_BuildingA1.style.display = 'none';
+        popup_BuildingA2.style.display = 'none';
+        popup_BuildingA3.style.display = 'none';
+        popup_BuildingA5.style.display = 'none';
+        popup_BuildingA6.style.display = 'none';
+        popup_BuildingA7.style.display = 'none';
+        popup_BuildingA8.style.display = 'none';
+        popup_BuildingA9.style.display = 'none';
+        popup_BuildingA10.style.display = 'none';
+        popup_BuildingA11.style.display = 'none';
+        popup_BuildingA12.style.display = 'none';
+        popup_BuildingA13.style.display = 'none';
+        popup_BuildingA14.style.display = 'none';
+        popup_Medic1.style.display = 'none';
+        popup_VastMedic.style.display = 'none';
+        popup_A18_1.style.left = `${event.clientX}px`;
+        popup_A18_1.style.top = `${event.clientY}px`;
+        popup_A18_1.style.display = 'block';
+
+        setTimeout(() => {
+            popup_A18_1.style.display = 'none';
+        }, 5000);
+    }
+});
+
+// Create popup element for A18-2
+const popup_A18_2 = document.createElement('div');
+popup_A18_2.style.position = 'absolute';
+popup_A18_2.style.background = '#333';
+popup_A18_2.style.color = '#fff';
+popup_A18_2.style.padding = '10px';
+popup_A18_2.style.borderRadius = '5px';
+popup_A18_2.style.display = 'none';
+popup_A18_2.innerText = 'Welcome to Building A18-2!';
+
+// Add translate switch button for A18-2
+const translateBtn_A18_2 = document.createElement('button');
+translateBtn_A18_2.innerText = 'VN';
+translateBtn_A18_2.style.marginLeft = '10px';
+translateBtn_A18_2.style.background = '#555';
+translateBtn_A18_2.style.color = '#fff';
+translateBtn_A18_2.style.border = 'none';
+translateBtn_A18_2.style.borderRadius = '3px';
+translateBtn_A18_2.style.padding = '3px 8px';
+translateBtn_A18_2.style.cursor = 'pointer';
+
+let isEnglish_A18_2 = true;
+const msgEN_A18_2 = 'This building is A18-2 of Vietnam Academy of Science & Technology and our university. Also, its name is Institute of Chemistry along with Building A18-1.';
+const msgVN_A18_2 = 'Tòa nhà này là A18-2 của Viện Hàn lâm Khoa học và Công nghệ Việt Nam và trường đại học của chúng tôi. Tên của nó cũng là Viện Hóa học cùng với Tòa nhà A18-1.';
+
+translateBtn_A18_2.onclick = function() {
+    isEnglish_A18_2 = !isEnglish_A18_2;
+    popup_A18_2.innerText = isEnglish_A18_2 ? msgEN_A18_2 : msgVN_A18_2;
+    translateBtn_A18_2.innerText = isEnglish_A18_2 ? 'VN' : 'EN';
+    popup_A18_2.appendChild(translateBtn_A18_2);
+};
+
+// Append button to popup
+popup_A18_2.appendChild(translateBtn_A18_2);
+
+document.body.appendChild(popup_A18_2);
+
+// Raycaster and mouse vector for A18-2
+const raycaster_A18_2 = new THREE.Raycaster();
+const mouse_A18_2 = new THREE.Vector2();
+let A18_2_mesh = null; // Store reference to mesh
 
 // Load A18-2.obj
 objLoader.load('./model/image/A18-2.obj', (object) => {
@@ -2010,7 +2214,7 @@ objLoader.load('./model/image/A18-2.obj', (object) => {
             });
         }
     });
-
+    A18_2_mesh = object;
     object.position.set(0, 0, 0);
     object.scale.set(0.026, 0.026, 0.026); // Scale down the mesh
     scene.add(object);
@@ -2023,6 +2227,88 @@ objLoader.load('./model/image/A18-2.obj', (object) => {
 }, undefined, (error) => {
     console.error('An error happened while loading the OBJ:', error);
 });
+
+// Handle mouse click (only triggers popup) for A18-2
+window.addEventListener('click', (event) => {
+    if (!A18_2_mesh) return; // Prevent action before mesh is loaded
+
+    mouse_A18_2.x = (event.clientX / window.innerWidth) * 2 - 1;
+    mouse_A18_2.y = -(event.clientY / window.innerHeight) * 2 + 1;
+
+    raycaster_A18_2.setFromCamera(mouse_A18_2, camera);
+    const intersects = raycaster_A18_2.intersectObject(A18_2_mesh, true);
+
+    if (intersects.length > 0) {
+        // Hide all other popups
+        
+        popup_BuildingA.style.display = 'none';
+        popup_BuildingA1.style.display = 'none';
+        popup_BuildingA2.style.display = 'none';
+        popup_BuildingA3.style.display = 'none';
+        popup_BuildingA5.style.display = 'none';
+        popup_BuildingA6.style.display = 'none';
+        popup_BuildingA7.style.display = 'none';
+        popup_BuildingA8.style.display = 'none';
+        popup_BuildingA9.style.display = 'none';
+        popup_BuildingA10.style.display = 'none';
+        popup_BuildingA11.style.display = 'none';
+        popup_BuildingA12.style.display = 'none';
+        popup_BuildingA13.style.display = 'none';
+        popup_BuildingA14.style.display = 'none';
+        popup_Medic1.style.display = 'none';
+        popup_VastMedic.style.display = 'none';
+        popup_A18_1.style.display = 'none';
+        popup_A18_2.style.left = `${event.clientX}px`;
+        popup_A18_2.style.top = `${event.clientY}px`;
+        popup_A18_2.style.display = 'block';
+
+        setTimeout(() => {
+            popup_A18_2.style.display = 'none';
+        }, 5000);
+    }
+});
+
+// Create popup element for A20
+const popup_A20 = document.createElement('div');
+popup_A20.style.position = 'absolute';
+popup_A20.style.background = '#333';
+popup_A20.style.color = '#fff';
+popup_A20.style.padding = '10px';
+popup_A20.style.borderRadius = '5px';
+popup_A20.style.display = 'none';
+popup_A20.innerText = 'Welcome to Building A20!';
+
+// Add translate switch button for A20
+const translateBtn_A20 = document.createElement('button');
+translateBtn_A20.innerText = 'VN';
+translateBtn_A20.style.marginLeft = '10px';
+translateBtn_A20.style.background = '#555';
+translateBtn_A20.style.color = '#fff';
+translateBtn_A20.style.border = 'none';
+translateBtn_A20.style.borderRadius = '3px';
+translateBtn_A20.style.padding = '3px 8px';
+translateBtn_A20.style.cursor = 'pointer';
+
+let isEnglish_A20 = true;
+const msgEN_A20 = 'This building is A20 of Vietnam Academy of Science & Technology and our university. Also, its name is Vietnam National Museum of Nature which opens from Tuesday to Friday with opening hours from 8:30AM to 11:30AM and 1:30PM to 4:30PM.';
+const msgVN_A20 = 'Tòa nhà này là A20 của Viện Hàn lâm Khoa học và Công nghệ Việt Nam và trường đại học của chúng tôi. Tên của tòa nhà này là Bảo tàng Thiên nhiên Việt Nam mở cửa từ thứ Ba đến thứ Sáu với giờ mở cửa từ 8:30AM đến 11:30AM trong buổi sáng và 1:30PM đến 4:30PM vào buổi chiều.';
+
+translateBtn_A20.onclick = function() {
+    isEnglish_A20 = !isEnglish_A20;
+    popup_A20.innerText = isEnglish_A20 ? msgEN_A20 : msgVN_A20;
+    translateBtn_A20.innerText = isEnglish_A20 ? 'VN' : 'EN';
+    popup_A20.appendChild(translateBtn_A20);
+};
+
+// Append button to popup
+popup_A20.appendChild(translateBtn_A20);
+
+document.body.appendChild(popup_A20);
+
+// Raycaster and mouse vector for A20
+const raycaster_A20 = new THREE.Raycaster();
+const mouse_A20 = new THREE.Vector2();
+let A20_mesh = null; // Store reference to mesh
 
 // Load A20.obj
 objLoader.load('./model/image/A20.obj', (object) => {
@@ -2045,7 +2331,7 @@ objLoader.load('./model/image/A20.obj', (object) => {
             });
         }
     });
-
+    A20_mesh = object;
     object.position.set(0, 0, 0);
     object.scale.set(0.026, 0.026, 0.026); // Scale down the mesh
     scene.add(object);
@@ -2058,6 +2344,88 @@ objLoader.load('./model/image/A20.obj', (object) => {
 }, undefined, (error) => {
     console.error('An error happened while loading the OBJ:', error);
 });
+
+// Handle mouse click (only triggers popup) for A20
+window.addEventListener('click', (event) => {
+    if (!A20_mesh) return; // Prevent action before mesh is loaded
+
+    mouse_A20.x = (event.clientX / window.innerWidth) * 2 - 1;
+    mouse_A20.y = -(event.clientY / window.innerHeight) * 2 + 1;
+
+    raycaster_A20.setFromCamera(mouse_A20, camera);
+    const intersects = raycaster_A20.intersectObject(A20_mesh, true);
+
+    if (intersects.length > 0) {
+        // Hide all other popups
+        
+        popup_BuildingA.style.display = 'none';
+        popup_BuildingA1.style.display = 'none';
+        popup_BuildingA2.style.display = 'none';
+        popup_BuildingA3.style.display = 'none';
+        popup_BuildingA5.style.display = 'none';
+        popup_BuildingA6.style.display = 'none';
+        popup_BuildingA7.style.display = 'none';
+        popup_BuildingA8.style.display = 'none';
+        popup_BuildingA9.style.display = 'none';
+        popup_BuildingA10.style.display = 'none';
+        popup_BuildingA11.style.display = 'none';
+        popup_BuildingA12.style.display = 'none';
+        popup_BuildingA13.style.display = 'none';
+        popup_BuildingA14.style.display = 'none';
+        popup_Medic1.style.display = 'none';
+        popup_VastMedic.style.display = 'none';
+        popup_A18_1.style.display = 'none';
+        popup_A18_2.style.display = 'none';
+        popup_A20.style.left = `${event.clientX}px`;
+        popup_A20.style.top = `${event.clientY}px`;
+        popup_A20.style.display = 'block';
+
+        setTimeout(() => {
+            popup_A20.style.display = 'none';
+        }, 5000);
+    }
+});
+
+// Create popup element for A21
+const popup_A21 = document.createElement('div');
+popup_A21.style.position = 'absolute';
+popup_A21.style.background = '#333';
+popup_A21.style.color = '#fff';
+popup_A21.style.padding = '10px';
+popup_A21.style.borderRadius = '5px';
+popup_A21.innerText = 'Welcome to Building A21!';
+
+// Add translate switch button for A21
+const translateBtn_A21 = document.createElement('button');
+translateBtn_A21.innerText = 'VN';
+translateBtn_A21.style.marginLeft = '10px';
+translateBtn_A21.style.background = '#555';
+translateBtn_A21.style.color = '#fff';
+translateBtn_A21.style.border = 'none';
+translateBtn_A21.style.borderRadius = '3px';
+translateBtn_A21.style.padding = '3px 8px';
+translateBtn_A21.style.cursor = 'pointer';
+
+let isEnglish_A21 = true;
+const msgEN_A21 = 'This building is A21 of Vietnam Academy of Science & Technology and our university. Also, its name is University of Science and Technology of Hanoi(USTH) and it is also our main office building.';
+const msgVN_A21 = 'Tòa nhà này là A21 của Viện Hàn lâm Khoa học và Công nghệ Việt Nam và trường đại học của chúng tôi. Tên của tòa nhà này là Trường Đại học Khoa học và Công nghệ Hà Nội (USTH) và cũng là tòa nhà văn phòng chính của chúng tôi.';
+
+translateBtn_A21.onclick = function() {
+    isEnglish_A21 = !isEnglish_A21;
+    popup_A21.innerText = isEnglish_A21 ? msgEN_A21 : msgVN_A21;
+    translateBtn_A21.innerText = isEnglish_A21 ? 'VN' : 'EN';
+    popup_A21.appendChild(translateBtn_A21);
+};
+
+// Append button to popup
+popup_A21.appendChild(translateBtn_A21);
+
+document.body.appendChild(popup_A21);
+
+// Raycaster and mouse vector for A20
+const raycaster_A21 = new THREE.Raycaster();
+const mouse_A21 = new THREE.Vector2();
+let A21_mesh = null; // Store reference to mesh
 
 // Load A21.obj
 objLoader.load('./model/image/A21.obj', (object) => {
@@ -2080,7 +2448,7 @@ objLoader.load('./model/image/A21.obj', (object) => {
             });
         }
     });
-
+    A21_mesh = object;
     object.position.set(0, 0, 0);
     object.scale.set(0.026, 0.026, 0.026); // Scale down the mesh
     scene.add(object);
@@ -2092,6 +2460,51 @@ objLoader.load('./model/image/A21.obj', (object) => {
     controls.target.copy(center);
 }, undefined, (error) => {
     console.error('An error happened while loading the OBJ:', error);
+});
+
+// Handle mouse click (only triggers popup) for A21
+window.addEventListener('click', (event) => {
+    if (!A21_mesh) return; // Prevent action before mesh is loaded
+
+    mouse_A21.x = (event.clientX / window.innerWidth) * 2 - 1;
+    mouse_A21.y = -(event.clientY / window.innerHeight) * 2 + 1;
+
+    mouse_A21.x = (event.clientX / window.innerWidth) * 2 - 1;
+    mouse_A21.y = -(event.clientY / window.innerHeight) * 2 + 1;
+
+    raycaster_A21.setFromCamera(mouse_A21, camera);
+    const intersects = raycaster_A21.intersectObject(A21_mesh, true);
+
+    if (intersects.length > 0) {
+        // Hide all other popups
+        
+        popup_BuildingA.style.display = 'none';
+        popup_BuildingA1.style.display = 'none';
+        popup_BuildingA2.style.display = 'none';
+        popup_BuildingA3.style.display = 'none';
+        popup_BuildingA5.style.display = 'none';
+        popup_BuildingA6.style.display = 'none';
+        popup_BuildingA7.style.display = 'none';
+        popup_BuildingA8.style.display = 'none';
+        popup_BuildingA9.style.display = 'none';
+        popup_BuildingA10.style.display = 'none';
+        popup_BuildingA11.style.display = 'none';
+        popup_BuildingA12.style.display = 'none';
+        popup_BuildingA13.style.display = 'none';
+        popup_BuildingA14.style.display = 'none';
+        popup_Medic1.style.display = 'none';
+        popup_VastMedic.style.display = 'none';
+        popup_A18_1.style.display = 'none';
+        popup_A18_2.style.display = 'none';
+        popup_A20.style.display = 'none';
+        popup_A21.style.left = `${event.clientX}px`;
+        popup_A21.style.top = `${event.clientY}px`;
+        popup_A21.style.display = 'block';
+
+        setTimeout(() => {
+            popup_A21.style.display = 'none';
+        }, 5000);
+    }
 });
 
 // Load A22.obj
