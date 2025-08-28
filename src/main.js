@@ -2753,141 +2753,6 @@ window.addEventListener('click', (event) => {
     }
 });
 
-// Create popup element for A30
-const popup_A30 = document.createElement('div');
-popup_A30.style.position = 'absolute';
-popup_A30.style.background = '#333';
-popup_A30.style.color = '#fff';
-popup_A30.style.padding = '10px';
-popup_A30.style.borderRadius = '5px';
-popup_A30.innerText = 'Welcome to Building A30!';
-
-// Add translate switch button for A30
-const translateBtn_A30 = document.createElement('button');
-translateBtn_A30.innerText = 'VN';
-translateBtn_A30.style.marginLeft = '10px';
-translateBtn_A30.style.background = '#555';
-translateBtn_A30.style.color = '#fff';
-translateBtn_A30.style.border = 'none';
-translateBtn_A30.style.borderRadius = '3px';
-translateBtn_A30.style.padding = '3px 8px';
-translateBtn_A30.style.cursor = 'pointer';
-
-let isEnglish_A30 = true;
-const msgEN_A30 = 'A30 is Institute of Environmental Technology of Hanoi University of Science and Technology.';
-const msgVN_A30 = 'A30 là Viện Công nghệ Môi trường của Trường Đại học Khoa học và Công nghệ Hà Nội.';
-
-translateBtn_A30.onclick = function() {
-    isEnglish_A30 = !isEnglish_A30;
-    popup_A30.innerText = isEnglish_A30 ? msgEN_A30 : msgVN_A30;
-    translateBtn_A30.innerText = isEnglish_A30 ? 'VN' : 'EN';
-    popup_A30.appendChild(translateBtn_A30);
-};
-
-// Append button to popup
-popup_A30.appendChild(translateBtn_A30);
-
-document.body.appendChild(popup_A30);
-
-// Raycaster and mouse vector for A30
-const raycaster_A30 = new THREE.Raycaster();
-const mouse_A30 = new THREE.Vector2();
-let A30_mesh = null; // Store reference to mesh
-
-// Load A30.obj
-objLoader.load('./model/image/A30.obj', (object) => {
-    // Make texture adjustments for A30
-    object.traverse((child) => {
-        if (child.isMesh && child.name && child.name.includes('Plane.069')) {
-            child.material = new THREE.MeshStandardMaterial({
-                map: new THREE.TextureLoader().load('./model/image/BuildingA30_texture.png'),
-                side: THREE.DoubleSide
-            });
-        }
-    });
-
-    // Make texture adjustments for A30's small building
-    object.traverse((child) => {
-        if (child.isMesh && child.name && child.name.includes('Plane.063')) {
-            child.material = new THREE.MeshStandardMaterial({
-                map: new THREE.TextureLoader().load('./model/image/SmallA30_texture.png'),
-                side: THREE.DoubleSide
-            });
-        }
-    });
-    // Make text mesh with texture
-    object.traverse((child) => {
-        if (child.isMesh && child.name && child.name.includes('Text')) {
-            child.material = new THREE.MeshStandardMaterial({
-                map: new THREE.TextureLoader().load('./model/image/dark_blue_texture.png'),
-                side: THREE.DoubleSide
-            });
-        }
-    });
-    A30_mesh = object;
-    object.position.set(0, 0, 0);
-    object.scale.set(0.026, 0.026, 0.026); // Scale down the mesh
-    scene.add(object);
-    const box = new THREE.Box3().setFromObject(object);
-    const center = box.getCenter(new THREE.Vector3());
-    // Place camera in front of the building, aligned with the mesh center's y-coordinate
-    camera.position.set(center.x, box.max.y + 2, center.z+2);
-    camera.lookAt(center);
-    controls.target.copy(center);
-}, undefined, (error) => {
-    console.error('An error happened while loading the OBJ:', error);
-});
-
-// Handle mouse click (only triggers popup) for A30
-window.addEventListener('click', (event) => {
-    if (!A30_mesh) return; // Prevent action before mesh is loaded
-
-    mouse_A30.x = (event.clientX / window.innerWidth) * 2 - 1;
-    mouse_A30.y = -(event.clientY / window.innerHeight) * 2 + 1;
-
-    mouse_A30.x = (event.clientX / window.innerWidth) * 2 - 1;
-    mouse_A30.y = -(event.clientY / window.innerHeight) * 2 + 1;
-
-    raycaster_A30.setFromCamera(mouse_A30, camera);
-    const intersects = raycaster_A30.intersectObject(A30_mesh, true);
-
-    if (intersects.length > 0) {
-        // Hide all other popups
-        
-        popup_BuildingA.style.display = 'none';
-        popup_BuildingA1.style.display = 'none';
-        popup_BuildingA2.style.display = 'none';
-        popup_BuildingA3.style.display = 'none';
-        popup_BuildingA5.style.display = 'none';
-        popup_BuildingA6.style.display = 'none';
-        popup_BuildingA7.style.display = 'none';
-        popup_BuildingA8.style.display = 'none';
-        popup_BuildingA9.style.display = 'none';
-        popup_BuildingA10.style.display = 'none';
-        popup_BuildingA11.style.display = 'none';
-        popup_BuildingA12.style.display = 'none';
-        popup_BuildingA13.style.display = 'none';
-        popup_BuildingA14.style.display = 'none';
-        popup_Medic1.style.display = 'none';
-        popup_VastMedic.style.display = 'none';
-        popup_A18_1.style.display = 'none';
-        popup_A18_2.style.display = 'none';
-        popup_A20.style.display = 'none';
-        popup_A21.style.display = 'none';
-        popup_A22.style.display = 'none';
-        popup_A23.style.display = 'none';
-        popup_A25.style.display = 'none';
-        popup_A26.style.display = 'none';
-        popup_A30.style.left = `${event.clientX}px`;
-        popup_A30.style.top = `${event.clientY}px`;
-        popup_A30.style.display = 'block';
-
-        setTimeout(() => {
-            popup_A30.style.display = 'none';
-        }, 5000);
-    }
-});
-
 // Create popup element for A25
 const popup_A25 = document.createElement('div');
 popup_A25.style.position = 'absolute';
@@ -3002,7 +2867,6 @@ window.addEventListener('click', (event) => {
         popup_A21.style.display = 'none';
         popup_A22.style.display = 'none';
         popup_A23.style.display = 'none';
-        popup_A30.style.display = 'none';
         popup_A25.style.left = `${event.clientX}px`;
         popup_A25.style.top = `${event.clientY}px`;
         popup_A25.style.display = 'block';
@@ -3128,7 +2992,6 @@ window.addEventListener('click', (event) => {
         popup_A21.style.display = 'none';
         popup_A22.style.display = 'none';
         popup_A23.style.display = 'none';
-        popup_A30.style.display = 'none';
         popup_A25.style.display = 'none';
         popup_A26.style.left = `${event.clientX}px`;
         popup_A26.style.top = `${event.clientY}px`;
@@ -3140,40 +3003,46 @@ window.addEventListener('click', (event) => {
     }
 });
 
-// Load B2.obj
-objLoader.load('./model/image/B2.obj', (object) => {
-    // Make texture adjustments for B2
-    object.traverse((child) => {
-        if (child.isMesh && child.name && child.name.includes('Plane')) {
-            child.material = new THREE.MeshStandardMaterial({
-                map: new THREE.TextureLoader().load('./model/image/building_default_color.png'),
-                side: THREE.DoubleSide
-            });
-        }
-    });
+// Create popup element for A27
+const popup_A27 = document.createElement('div');
+popup_A27.style.position = 'absolute';
+popup_A27.style.background = '#333';
+popup_A27.style.color = '#fff';
+popup_A27.style.padding = '10px';
+popup_A27.style.borderRadius = '5px';
+popup_A27.innerText = 'Welcome to Building A27!';
 
-    // Make text mesh with texture
-    object.traverse((child) => {
-        if (child.isMesh && child.name && child.name.includes('Text')) {
-            child.material = new THREE.MeshStandardMaterial({
-                map: new THREE.TextureLoader().load('./model/image/dark_blue_texture.png'),
-                side: THREE.DoubleSide
-            });
-        }
-    });
+// Add translate switch button for A27
+const translateBtn_A27 = document.createElement('button');
+translateBtn_A27.innerText = 'VN';
+translateBtn_A27.style.marginLeft = '10px';
+translateBtn_A27.style.background = '#555';
+translateBtn_A27.style.color = '#fff';
+translateBtn_A27.style.border = 'none';
+translateBtn_A27.style.borderRadius = '3px';
+translateBtn_A27.style.padding = '3px 8px';
+translateBtn_A27.style.cursor = 'pointer';
 
-    object.position.set(0, 0, 0);
-    object.scale.set(0.026, 0.026, 0.026); // Scale down the mesh
-    scene.add(object);
-    const box = new THREE.Box3().setFromObject(object);
-    const center = box.getCenter(new THREE.Vector3());
-    // Place camera in front of the building, aligned with the mesh center's y-coordinate
-    camera.position.set(center.x, box.max.y + 2, center.z+2);
-    camera.lookAt(center);
-    controls.target.copy(center);
-}, undefined, (error) => {
-    console.error('An error happened while loading the OBJ:', error);
-});
+let isEnglish_A27 = true;
+const msgEN_A27 = 'Building A27 contains two parts: Institute of Marine Geology and Geophysics with Institute of Geography.';
+const msgVN_A27 = 'Tòa nhà A27 có hai phần: Viện Địa chất và Địa vật lý Biển với Viện Địa lý.';
+
+translateBtn_A27.onclick = function() {
+    isEnglish_A27 = !isEnglish_A27;
+    popup_A27.innerText = isEnglish_A27 ? msgEN_A27 : msgVN_A27;
+    translateBtn_A27.innerText = isEnglish_A27 ? 'VN' : 'EN';
+    popup_A27.appendChild(translateBtn_A27);
+};
+
+// Append button to popup
+popup_A27.appendChild(translateBtn_A27);
+
+document.body.appendChild(popup_A27);
+
+// Raycaster and mouse vector for A27
+const raycaster_A27 = new THREE.Raycaster();
+const mouse_A27 = new THREE.Vector2();
+let A27_mesh = null; // Store reference to mesh
 
 // Load A27.obj
 objLoader.load('./model/image/A27.obj', (object) => {
@@ -3206,6 +3075,7 @@ objLoader.load('./model/image/A27.obj', (object) => {
             });
         }
     });
+    A27_mesh = object;
 
     object.position.set(0, 0, 0);
     object.scale.set(0.026, 0.026, 0.026); // Scale down the mesh
@@ -3219,6 +3089,97 @@ objLoader.load('./model/image/A27.obj', (object) => {
 }, undefined, (error) => {
     console.error('An error happened while loading the OBJ:', error);
 });
+
+// Handle mouse click (only triggers popup) for A27
+window.addEventListener('click', (event) => {
+    if (!A27_mesh) return; // Prevent action before mesh is loaded
+
+    mouse_A27.x = (event.clientX / window.innerWidth) * 2 - 1;
+    mouse_A27.y = -(event.clientY / window.innerHeight) * 2 + 1;
+
+    mouse_A27.x = (event.clientX / window.innerWidth) * 2 - 1;
+    mouse_A27.y = -(event.clientY / window.innerHeight) * 2 + 1;
+
+    raycaster_A27.setFromCamera(mouse_A27, camera);
+    const intersects = raycaster_A27.intersectObject(A27_mesh, true);
+
+    if (intersects.length > 0) {
+        // Hide all other popups
+        
+        popup_BuildingA.style.display = 'none';
+        popup_BuildingA1.style.display = 'none';
+        popup_BuildingA2.style.display = 'none';
+        popup_BuildingA3.style.display = 'none';
+        popup_BuildingA5.style.display = 'none';
+        popup_BuildingA6.style.display = 'none';
+        popup_BuildingA7.style.display = 'none';
+        popup_BuildingA8.style.display = 'none';
+        popup_BuildingA9.style.display = 'none';
+        popup_BuildingA10.style.display = 'none';
+        popup_BuildingA11.style.display = 'none';
+        popup_BuildingA12.style.display = 'none';
+        popup_BuildingA13.style.display = 'none';
+        popup_BuildingA14.style.display = 'none';
+        popup_Medic1.style.display = 'none';
+        popup_VastMedic.style.display = 'none';
+        popup_A18_1.style.display = 'none';
+        popup_A18_2.style.display = 'none';
+        popup_A20.style.display = 'none';
+        popup_A21.style.display = 'none';
+        popup_A22.style.display = 'none';
+        popup_A23.style.display = 'none';
+        popup_A25.style.display = 'none';
+        popup_A26.style.display = 'none';
+        popup_A27.style.left = `${event.clientX}px`;
+        popup_A27.style.top = `${event.clientY}px`;
+        popup_A27.style.display = 'block';
+
+        setTimeout(() => {
+            popup_A27.style.display = 'none';
+        }, 5000);
+    }
+});
+
+// Create popup element for A28
+const popup_A28 = document.createElement('div');
+popup_A28.style.position = 'absolute';
+popup_A28.style.background = '#333';
+popup_A28.style.color = '#fff';
+popup_A28.style.padding = '10px';
+popup_A28.style.borderRadius = '5px';
+popup_A28.innerText = 'Welcome to Building A28!';
+
+// Add translate switch button for A28
+const translateBtn_A28 = document.createElement('button');
+translateBtn_A28.innerText = 'VN';
+translateBtn_A28.style.marginLeft = '10px';
+translateBtn_A28.style.background = '#555';
+translateBtn_A28.style.color = '#fff';
+translateBtn_A28.style.border = 'none';
+translateBtn_A28.style.borderRadius = '3px';
+translateBtn_A28.style.padding = '3px 8px';
+translateBtn_A28.style.cursor = 'pointer';
+
+let isEnglish_A28 = true;
+const msgEN_A28 = 'Building A28 is Center for Research and Technology Transfer and also our university dormitory.';
+const msgVN_A28 = 'Tòa nhà A28 là Trung tâm Nghiên cứu và Chuyển giao Công nghệ và cũng là ký túc xá của trường chúng tôi.';
+
+translateBtn_A28.onclick = function() {
+    isEnglish_A28 = !isEnglish_A28;
+    popup_A28.innerText = isEnglish_A28 ? msgEN_A28 : msgVN_A28;
+    translateBtn_A28.innerText = isEnglish_A28 ? 'VN' : 'EN';
+    popup_A28.appendChild(translateBtn_A28);
+};
+
+// Append button to popup
+popup_A28.appendChild(translateBtn_A28);
+
+document.body.appendChild(popup_A28);
+
+// Raycaster and mouse vector for A28
+const raycaster_A28 = new THREE.Raycaster();
+const mouse_A28 = new THREE.Vector2();
+let A28_mesh = null; // Store reference to mesh
 
 // Load A28.obj
 objLoader.load('./model/image/A28.obj', (object) => {
@@ -3240,6 +3201,7 @@ objLoader.load('./model/image/A28.obj', (object) => {
                 });
         }
     });
+    A28_mesh = object;
 
     object.position.set(0, 0, 0);
     object.scale.set(0.026, 0.026, 0.026); // Scale down the mesh
@@ -3254,13 +3216,115 @@ objLoader.load('./model/image/A28.obj', (object) => {
     console.error('An error happened while loading the OBJ:', error);
 });
 
-// Load 2H.obj
-objLoader.load('./model/image/2H.obj', (object) => {
-    // Make texture adjustments for 2H
+// Handle mouse click (only triggers popup) for A28
+window.addEventListener('click', (event) => {
+    if (!A28_mesh) return; // Prevent action before mesh is loaded
+
+    mouse_A28.x = (event.clientX / window.innerWidth) * 2 - 1;
+    mouse_A28.y = -(event.clientY / window.innerHeight) * 2 + 1;
+
+    mouse_A28.x = (event.clientX / window.innerWidth) * 2 - 1;
+    mouse_A28.y = -(event.clientY / window.innerHeight) * 2 + 1;
+
+    raycaster_A28.setFromCamera(mouse_A28, camera);
+    const intersects = raycaster_A28.intersectObject(A28_mesh, true);
+
+    if (intersects.length > 0) {
+        // Hide all other popups
+        
+        popup_BuildingA.style.display = 'none';
+        popup_BuildingA1.style.display = 'none';
+        popup_BuildingA2.style.display = 'none';
+        popup_BuildingA3.style.display = 'none';
+        popup_BuildingA5.style.display = 'none';
+        popup_BuildingA6.style.display = 'none';
+        popup_BuildingA7.style.display = 'none';
+        popup_BuildingA8.style.display = 'none';
+        popup_BuildingA9.style.display = 'none';
+        popup_BuildingA10.style.display = 'none';
+        popup_BuildingA11.style.display = 'none';
+        popup_BuildingA12.style.display = 'none';
+        popup_BuildingA13.style.display = 'none';
+        popup_BuildingA14.style.display = 'none';
+        popup_Medic1.style.display = 'none';
+        popup_VastMedic.style.display = 'none';
+        popup_A18_1.style.display = 'none';
+        popup_A18_2.style.display = 'none';
+        popup_A20.style.display = 'none';
+        popup_A21.style.display = 'none';
+        popup_A22.style.display = 'none';
+        popup_A23.style.display = 'none';
+        popup_A25.style.display = 'none';
+        popup_A26.style.display = 'none';
+        popup_A27.style.display = 'none';
+        popup_A28.style.left = `${event.clientX}px`;
+        popup_A28.style.top = `${event.clientY}px`;
+        popup_A28.style.display = 'block';
+
+        setTimeout(() => {
+            popup_A27.style.display = 'none';
+        }, 5000);
+    }
+});
+
+// Create popup element for A30
+const popup_A30 = document.createElement('div');
+popup_A30.style.position = 'absolute';
+popup_A30.style.background = '#333';
+popup_A30.style.color = '#fff';
+popup_A30.style.padding = '10px';
+popup_A30.style.borderRadius = '5px';
+popup_A30.innerText = 'Welcome to Building A30!';
+
+// Add translate switch button for A30
+const translateBtn_A30 = document.createElement('button');
+translateBtn_A30.innerText = 'VN';
+translateBtn_A30.style.marginLeft = '10px';
+translateBtn_A30.style.background = '#555';
+translateBtn_A30.style.color = '#fff';
+translateBtn_A30.style.border = 'none';
+translateBtn_A30.style.borderRadius = '3px';
+translateBtn_A30.style.padding = '3px 8px';
+translateBtn_A30.style.cursor = 'pointer';
+
+let isEnglish_A30 = true;
+const msgEN_A30 = 'A30 is Institute of Environmental Technology of Hanoi University of Science and Technology.';
+const msgVN_A30 = 'A30 là Viện Công nghệ Môi trường của Trường Đại học Khoa học và Công nghệ Hà Nội.';
+
+translateBtn_A30.onclick = function() {
+    isEnglish_A30 = !isEnglish_A30;
+    popup_A30.innerText = isEnglish_A30 ? msgEN_A30 : msgVN_A30;
+    translateBtn_A30.innerText = isEnglish_A30 ? 'VN' : 'EN';
+    popup_A30.appendChild(translateBtn_A30);
+};
+
+// Append button to popup
+popup_A30.appendChild(translateBtn_A30);
+
+document.body.appendChild(popup_A30);
+
+// Raycaster and mouse vector for A30
+const raycaster_A30 = new THREE.Raycaster();
+const mouse_A30 = new THREE.Vector2();
+let A30_mesh = null; // Store reference to mesh
+
+// Load A30.obj
+objLoader.load('./model/image/A30.obj', (object) => {
+    // Make texture adjustments for A30
     object.traverse((child) => {
-        if (child.isMesh && child.name && child.name.includes('Plane')) {
+        if (child.isMesh && child.name && child.name.includes('Plane.069')) {
             child.material = new THREE.MeshStandardMaterial({
-                map: new THREE.TextureLoader().load('./model/image/glass_building_texture.jpg'),
+                map: new THREE.TextureLoader().load('./model/image/BuildingA30_texture.png'),
+                side: THREE.DoubleSide
+            });
+        }
+    });
+
+    // Make texture adjustments for A30's small building
+    object.traverse((child) => {
+        if (child.isMesh && child.name && child.name.includes('Plane.063')) {
+            child.material = new THREE.MeshStandardMaterial({
+                map: new THREE.TextureLoader().load('./model/image/SmallA30_texture.png'),
                 side: THREE.DoubleSide
             });
         }
@@ -3274,7 +3338,7 @@ objLoader.load('./model/image/2H.obj', (object) => {
             });
         }
     });
-
+    A30_mesh = object;
     object.position.set(0, 0, 0);
     object.scale.set(0.026, 0.026, 0.026); // Scale down the mesh
     scene.add(object);
@@ -3287,6 +3351,99 @@ objLoader.load('./model/image/2H.obj', (object) => {
 }, undefined, (error) => {
     console.error('An error happened while loading the OBJ:', error);
 });
+
+// Handle mouse click (only triggers popup) for A30
+window.addEventListener('click', (event) => {
+    if (!A30_mesh) return; // Prevent action before mesh is loaded
+
+    mouse_A30.x = (event.clientX / window.innerWidth) * 2 - 1;
+    mouse_A30.y = -(event.clientY / window.innerHeight) * 2 + 1;
+
+    mouse_A30.x = (event.clientX / window.innerWidth) * 2 - 1;
+    mouse_A30.y = -(event.clientY / window.innerHeight) * 2 + 1;
+
+    raycaster_A30.setFromCamera(mouse_A30, camera);
+    const intersects = raycaster_A30.intersectObject(A30_mesh, true);
+
+    if (intersects.length > 0) {
+        // Hide all other popups
+        
+        popup_BuildingA.style.display = 'none';
+        popup_BuildingA1.style.display = 'none';
+        popup_BuildingA2.style.display = 'none';
+        popup_BuildingA3.style.display = 'none';
+        popup_BuildingA5.style.display = 'none';
+        popup_BuildingA6.style.display = 'none';
+        popup_BuildingA7.style.display = 'none';
+        popup_BuildingA8.style.display = 'none';
+        popup_BuildingA9.style.display = 'none';
+        popup_BuildingA10.style.display = 'none';
+        popup_BuildingA11.style.display = 'none';
+        popup_BuildingA12.style.display = 'none';
+        popup_BuildingA13.style.display = 'none';
+        popup_BuildingA14.style.display = 'none';
+        popup_Medic1.style.display = 'none';
+        popup_VastMedic.style.display = 'none';
+        popup_A18_1.style.display = 'none';
+        popup_A18_2.style.display = 'none';
+        popup_A20.style.display = 'none';
+        popup_A21.style.display = 'none';
+        popup_A22.style.display = 'none';
+        popup_A23.style.display = 'none';
+        popup_A25.style.display = 'none';
+        popup_A26.style.display = 'none';
+        popup_A27.style.display = 'none';
+        popup_A28.style.display = 'none';
+        popup_A30.style.left = `${event.clientX}px`;
+        popup_A30.style.top = `${event.clientY}px`;
+        popup_A30.style.display = 'block';
+
+        setTimeout(() => {
+            popup_A30.style.display = 'none';
+        }, 5000);
+    }
+});
+
+// Create popup element for 1H
+const popup_1H = document.createElement('div');
+popup_1H.style.position = 'absolute';
+popup_1H.style.background = '#333';
+popup_1H.style.color = '#fff';
+popup_1H.style.padding = '10px';
+popup_1H.style.borderRadius = '5px';
+popup_1H.innerText = 'Welcome to Building 1H!';
+
+// Add translate switch button for 1H
+const translateBtn_1H = document.createElement('button');
+translateBtn_1H.innerText = 'VN';
+translateBtn_1H.style.marginLeft = '10px';
+translateBtn_1H.style.background = '#555';
+translateBtn_1H.style.color = '#fff';
+translateBtn_1H.style.border = 'none';
+translateBtn_1H.style.borderRadius = '3px';
+translateBtn_1H.style.padding = '3px 8px';
+translateBtn_1H.style.cursor = 'pointer';
+
+let isEnglish_1H = true;
+const msgEN_1H = 'Building 1H is a part of Institute of Physics which lies behind Building 2H from the north.';
+const msgVN_1H = 'Tòa nhà 1H là một phần của Viện Vật lý nằm sau tòa nhà 2H từ phía bắc.';
+
+translateBtn_1H.onclick = function() {
+    isEnglish_1H = !isEnglish_1H;
+    popup_1H.innerText = isEnglish_1H ? msgEN_1H : msgVN_1H;
+    translateBtn_1H.innerText = isEnglish_1H ? 'VN' : 'EN';
+    popup_1H.appendChild(translateBtn_1H);
+};
+
+// Append button to popup
+popup_1H.appendChild(translateBtn_1H);
+
+document.body.appendChild(popup_1H);
+
+// Raycaster and mouse vector for 1H
+const raycaster_1H = new THREE.Raycaster();
+const mouse_1H = new THREE.Vector2();
+let mesh_1H = null; // Store reference to mesh
 
 // Load 1H.obj
 objLoader.load('./model/image/1H.obj', (object) => {
@@ -3308,7 +3465,7 @@ objLoader.load('./model/image/1H.obj', (object) => {
             });
         }
     });
-
+    mesh_1H = object;
     object.position.set(0, 0, 0);
     object.scale.set(0.026, 0.026, 0.026); // Scale down the mesh
     scene.add(object);
@@ -3320,6 +3477,188 @@ objLoader.load('./model/image/1H.obj', (object) => {
     controls.target.copy(center);
 }, undefined, (error) => {
     console.error('An error happened while loading the OBJ:', error);
+});
+
+// Handle mouse click (only triggers popup) for 1H
+window.addEventListener('click', (event) => {
+    if (!mesh_1H) return; // Prevent action before mesh is loaded
+
+    mouse_1H.x = (event.clientX / window.innerWidth) * 2 - 1;
+    mouse_1H.y = -(event.clientY / window.innerHeight) * 2 + 1;
+
+    mouse_1H.x = (event.clientX / window.innerWidth) * 2 - 1;
+    mouse_1H.y = -(event.clientY / window.innerHeight) * 2 + 1;
+
+    raycaster_1H.setFromCamera(mouse_1H, camera);
+    const intersects = raycaster_1H.intersectObject(mesh_1H, true);
+
+    if (intersects.length > 0) {
+        // Hide all other popups
+        
+        popup_BuildingA.style.display = 'none';
+        popup_BuildingA1.style.display = 'none';
+        popup_BuildingA2.style.display = 'none';
+        popup_BuildingA3.style.display = 'none';
+        popup_BuildingA5.style.display = 'none';
+        popup_BuildingA6.style.display = 'none';
+        popup_BuildingA7.style.display = 'none';
+        popup_BuildingA8.style.display = 'none';
+        popup_BuildingA9.style.display = 'none';
+        popup_BuildingA10.style.display = 'none';
+        popup_BuildingA11.style.display = 'none';
+        popup_BuildingA12.style.display = 'none';
+        popup_BuildingA13.style.display = 'none';
+        popup_BuildingA14.style.display = 'none';
+        popup_Medic1.style.display = 'none';
+        popup_VastMedic.style.display = 'none';
+        popup_A18_1.style.display = 'none';
+        popup_A18_2.style.display = 'none';
+        popup_A20.style.display = 'none';
+        popup_A21.style.display = 'none';
+        popup_A22.style.display = 'none';
+        popup_A23.style.display = 'none';
+        popup_A25.style.display = 'none';
+        popup_A26.style.display = 'none';
+        popup_A27.style.display = 'none';
+        popup_A28.style.display = 'none';
+        popup_A30.style.display = 'none';
+        popup_1H.style.left = `${event.clientX}px`;
+        popup_1H.style.top = `${event.clientY}px`;
+        popup_1H.style.display = 'block';
+
+        setTimeout(() => {
+            popup_1H.style.display = 'none';
+        }, 5000);
+    }
+});
+
+// Create popup element for 2H
+const popup_2H = document.createElement('div');
+popup_2H.style.position = 'absolute';
+popup_2H.style.background = '#333';
+popup_2H.style.color = '#fff';
+popup_2H.style.padding = '10px';
+popup_2H.style.borderRadius = '5px';
+popup_2H.innerText = 'Welcome to Building 2H!';
+
+// Add translate switch button for 2H
+const translateBtn_2H = document.createElement('button');
+translateBtn_2H.innerText = 'VN';
+translateBtn_2H.style.marginLeft = '10px';
+translateBtn_2H.style.background = '#555';
+translateBtn_2H.style.color = '#fff';
+translateBtn_2H.style.border = 'none';
+translateBtn_2H.style.borderRadius = '3px';
+translateBtn_2H.style.padding = '3px 8px';
+translateBtn_2H.style.cursor = 'pointer';
+
+let isEnglish_2H = true;
+const msgEN_2H = 'Building 2H is a part of Institute of Physics and it is also the center of quantum electronics.';
+const msgVN_2H = 'Tòa nhà 2H là một phần của Viện Vật lý và nó cũng là trung tâm điện tử lượng tử.';
+
+translateBtn_2H.onclick = function() {
+    isEnglish_2H = !isEnglish_2H;
+    popup_2H.innerText = isEnglish_2H ? msgEN_2H : msgVN_2H;
+    translateBtn_2H.innerText = isEnglish_2H ? 'VN' : 'EN';
+    popup_2H.appendChild(translateBtn_2H);
+};
+
+// Append button to popup
+popup_2H.appendChild(translateBtn_2H);
+
+document.body.appendChild(popup_2H);
+
+// Raycaster and mouse vector for 2H
+const raycaster_2H = new THREE.Raycaster();
+const mouse_2H = new THREE.Vector2();
+let mesh_2H = null; // Store reference to mesh
+
+// Load 2H.obj
+objLoader.load('./model/image/2H.obj', (object) => {
+    // Make texture adjustments for 2H
+    object.traverse((child) => {
+        if (child.isMesh && child.name && child.name.includes('Plane')) {
+            child.material = new THREE.MeshStandardMaterial({
+                map: new THREE.TextureLoader().load('./model/image/glass_building_texture.jpg'),
+                side: THREE.DoubleSide
+            });
+        }
+    });
+    // Make text mesh with texture
+    object.traverse((child) => {
+        if (child.isMesh && child.name && child.name.includes('Text')) {
+            child.material = new THREE.MeshStandardMaterial({
+                map: new THREE.TextureLoader().load('./model/image/dark_blue_texture.png'),
+                side: THREE.DoubleSide
+            });
+        }
+    });
+    mesh_2H = object;
+    object.position.set(0, 0, 0);
+    object.scale.set(0.026, 0.026, 0.026); // Scale down the mesh
+    scene.add(object);
+    const box = new THREE.Box3().setFromObject(object);
+    const center = box.getCenter(new THREE.Vector3());
+    // Place camera in front of the building, aligned with the mesh center's y-coordinate
+    camera.position.set(center.x, box.max.y + 2, center.z+2);
+    camera.lookAt(center);
+    controls.target.copy(center);
+}, undefined, (error) => {
+    console.error('An error happened while loading the OBJ:', error);
+});
+
+// Handle mouse click (only triggers popup) for 2H
+window.addEventListener('click', (event) => {
+    if (!mesh_2H) return; // Prevent action before mesh is loaded
+
+    mouse_2H.x = (event.clientX / window.innerWidth) * 2 - 1;
+    mouse_2H.y = -(event.clientY / window.innerHeight) * 2 + 1;
+
+    mouse_2H.x = (event.clientX / window.innerWidth) * 2 - 1;
+    mouse_2H.y = -(event.clientY / window.innerHeight) * 2 + 1;
+
+    raycaster_2H.setFromCamera(mouse_2H, camera);
+    const intersects = raycaster_2H.intersectObject(mesh_2H, true);
+
+    if (intersects.length > 0) {
+        // Hide all other popups
+        
+        popup_BuildingA.style.display = 'none';
+        popup_BuildingA1.style.display = 'none';
+        popup_BuildingA2.style.display = 'none';
+        popup_BuildingA3.style.display = 'none';
+        popup_BuildingA5.style.display = 'none';
+        popup_BuildingA6.style.display = 'none';
+        popup_BuildingA7.style.display = 'none';
+        popup_BuildingA8.style.display = 'none';
+        popup_BuildingA9.style.display = 'none';
+        popup_BuildingA10.style.display = 'none';
+        popup_BuildingA11.style.display = 'none';
+        popup_BuildingA12.style.display = 'none';
+        popup_BuildingA13.style.display = 'none';
+        popup_BuildingA14.style.display = 'none';
+        popup_Medic1.style.display = 'none';
+        popup_VastMedic.style.display = 'none';
+        popup_A18_1.style.display = 'none';
+        popup_A18_2.style.display = 'none';
+        popup_A20.style.display = 'none';
+        popup_A21.style.display = 'none';
+        popup_A22.style.display = 'none';
+        popup_A23.style.display = 'none';
+        popup_A25.style.display = 'none';
+        popup_A26.style.display = 'none';
+        popup_A27.style.display = 'none';
+        popup_A28.style.display = 'none';
+        popup_A30.style.display = 'none';
+        popup_1H.style.display = 'none';
+        popup_2H.style.left = `${event.clientX}px`;
+        popup_2H.style.top = `${event.clientY}px`;
+        popup_2H.style.display = 'block';
+
+        setTimeout(() => {
+            popup_2H.style.display = 'none';
+        }, 5000);
+    }
 });
 
 // Load 2A.obj
@@ -3435,6 +3774,41 @@ objLoader.load('./model/image/B1.obj', (object) => {
             });
         }
     });
+    // Make text mesh with texture
+    object.traverse((child) => {
+        if (child.isMesh && child.name && child.name.includes('Text')) {
+            child.material = new THREE.MeshStandardMaterial({
+                map: new THREE.TextureLoader().load('./model/image/dark_blue_texture.png'),
+                side: THREE.DoubleSide
+            });
+        }
+    });
+
+    object.position.set(0, 0, 0);
+    object.scale.set(0.026, 0.026, 0.026); // Scale down the mesh
+    scene.add(object);
+    const box = new THREE.Box3().setFromObject(object);
+    const center = box.getCenter(new THREE.Vector3());
+    // Place camera in front of the building, aligned with the mesh center's y-coordinate
+    camera.position.set(center.x, box.max.y + 2, center.z+2);
+    camera.lookAt(center);
+    controls.target.copy(center);
+}, undefined, (error) => {
+    console.error('An error happened while loading the OBJ:', error);
+});
+
+// Load B2.obj
+objLoader.load('./model/image/B2.obj', (object) => {
+    // Make texture adjustments for B2
+    object.traverse((child) => {
+        if (child.isMesh && child.name && child.name.includes('Plane')) {
+            child.material = new THREE.MeshStandardMaterial({
+                map: new THREE.TextureLoader().load('./model/image/building_default_color.png'),
+                side: THREE.DoubleSide
+            });
+        }
+    });
+
     // Make text mesh with texture
     object.traverse((child) => {
         if (child.isMesh && child.name && child.name.includes('Text')) {
