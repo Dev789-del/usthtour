@@ -4768,13 +4768,10 @@ window.addEventListener('click', function(event) {
         // Append the image to the body
         document.body.appendChild(img);
 
-        // Remove all images and make a new one after the third click
-        var images = document.querySelectorAll('img');
-        if (images.length >= 3) {
-            images.forEach(function(image) {
-                image.remove();
-            });
-        }
+        // Remove location image after 3 seconds
+        setTimeout(() => {
+            img.remove();
+        }, 2000);
     });
 
 
@@ -4797,6 +4794,51 @@ function moveCamera(event) {
 }
 
 window.addEventListener('keydown', moveCamera);
+// Upload greeting.gif 
+const greeting = new Image();
+greeting.src = './world/greeting.gif';
+greeting.style.position = 'absolute';
+greeting.style.bottom = '10px';
+greeting.style.left = '10px';
+greeting.style.zIndex = '9999'; // Ensure it's always on top
+document.body.appendChild(greeting);
+
+// Prevent greeting.gif from being removed by popup logic
+function removeLocationImages() {
+    document.querySelectorAll('img').forEach(img => {
+        if (img !== greeting) img.remove();
+    });
+}
+
+// Create popup element for the case we click greeting.gif
+const popup_greeting = document.createElement('div');
+popup_greeting.style.position = 'absolute';
+popup_greeting.style.background = '#333';
+popup_greeting.style.color = '#fff';
+popup_greeting.style.padding = '10px';
+popup_greeting.style.borderRadius = '5px';
+popup_greeting.style.display = 'none';
+popup_greeting.innerText = 'Welcome to USTH Tour!';
+
+document.body.appendChild(popup_greeting);
+
+// Show popup above greeting.gif when it is clicked
+greeting.addEventListener('click', function(event) {
+    // Get gif position and size
+    const rect = greeting.getBoundingClientRect();
+    // Temporarily show popup to get its size
+    popup_greeting.style.display = 'block';
+    popup_greeting.style.visibility = 'hidden';
+    // Calculate position above gif, centered horizontally
+    const left = rect.left + rect.width / 2 - popup_greeting.offsetWidth / 2;
+    const top = rect.top - popup_greeting.offsetHeight - 10;
+    popup_greeting.style.left = `${Math.max(left, 10)}px`;
+    popup_greeting.style.top = `${Math.max(top, 10)}px`;
+    popup_greeting.style.visibility = 'visible';
+    setTimeout(() => {
+        popup_greeting.style.display = 'none';
+    }, 2000);
+});
 
 // Animation loop
 function animate() {
