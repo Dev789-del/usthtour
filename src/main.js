@@ -32,6 +32,7 @@ directionalLight.position.set(5, 10, 7.5);
 scene.add(directionalLight);
 
 
+
 // Load sidewalk only once
 const objLoader = new OBJLoader();
 objLoader.load('./model/image/Sidewalk.obj', (object) => {
@@ -50,8 +51,6 @@ objLoader.load('./model/image/Sidewalk.obj', (object) => {
 
     const box = new THREE.Box3().setFromObject(object);
     const center = box.getCenter(new THREE.Vector3());
-    camera.position.set(center.x, box.max.y + 2, center.z + 2);
-    camera.lookAt(center);
     controls.target.copy(center);
 },
 undefined,
@@ -85,12 +84,7 @@ objLoader.load('./model/image/StreetComponents.obj', (object) => {
     scene.add(object);
     const box = new THREE.Box3().setFromObject(object);
     const center = box.getCenter(new THREE.Vector3());
-    // Place camera in front of the building, aligned with the mesh center's y-coordinate
-    camera.position.set(center.x, box.max.y + 2, center.z+2);
-    camera.lookAt(center);
     controls.target.copy(center);
-    
-
 },
 undefined,
 (error) => {
@@ -205,9 +199,6 @@ objLoader.load('./model/image/Gate.obj', (object) => {
     scene.add(object);
     const box = new THREE.Box3().setFromObject(object);
     const center = box.getCenter(new THREE.Vector3());
-    // Place camera in front of the building, aligned with the mesh center's y-coordinate
-    camera.position.set(center.x, box.max.y + 2, center.z+2);
-    camera.lookAt(center);
     controls.target.copy(center);
 
 },
@@ -297,9 +288,6 @@ objLoader.load('./model/image/BuildingA.obj', (object) => {
     scene.add(object);
     const box = new THREE.Box3().setFromObject(object);
     const center = box.getCenter(new THREE.Vector3());
-    // Place camera in front of the building, aligned with the mesh center's y-coordinate
-    camera.position.set(center.x, box.max.y + 2, center.z+2);
-    camera.lookAt(center);
     controls.target.copy(center);
 
 },
@@ -402,9 +390,6 @@ objLoader.load('./model/image/BuildingA1.obj', (object) => {
     scene.add(object);
     const box = new THREE.Box3().setFromObject(object);
     const center = box.getCenter(new THREE.Vector3());
-    // Place camera in front of the building, aligned with the mesh center's y-coordinate
-    camera.position.set(center.x, box.max.y + 2, center.z+2);
-    camera.lookAt(center);
     controls.target.copy(center);
 
 }
@@ -509,7 +494,7 @@ objLoader.load('./model/image/BuildingA2.obj', (object) => {
     const box = new THREE.Box3().setFromObject(object);
     const center = box.getCenter(new THREE.Vector3());
     // Place camera in front of the building, aligned with the mesh center's y-coordinate
-    camera.position.set(center.x, box.max.y + 2, center.z+2);
+    camera.position.set(center.x + 1.6, box.max.y + 1, center.z + 2.75);
     camera.lookAt(center);
     controls.target.copy(center);
 
@@ -559,9 +544,6 @@ objLoader.load('./model/image/Pond.obj', (object) => {
     scene.add(object);
     const box = new THREE.Box3().setFromObject(object);
     const center = box.getCenter(new THREE.Vector3());
-    // Place camera in front of the building, aligned with the mesh center's y-coordinate
-    camera.position.set(center.x, box.max.y + 2, center.z+2);
-    camera.lookAt(center);
     controls.target.copy(center);
 
 }, undefined, (error) => {
@@ -639,9 +621,6 @@ objLoader.load('./model/image/BuildingA3.obj', (object) => {
     scene.add(object);
     const box = new THREE.Box3().setFromObject(object);
     const center = box.getCenter(new THREE.Vector3());
-    // Place camera in front of the building, aligned with the mesh center's y-coordinate
-    camera.position.set(center.x, box.max.y + 2, center.z+2);
-    camera.lookAt(center);
     controls.target.copy(center);
 
 }, undefined, (error) => {
@@ -744,9 +723,6 @@ objLoader.load('./model/image/A5.obj', (object) => {
     scene.add(object);
     const box = new THREE.Box3().setFromObject(object);
     const center = box.getCenter(new THREE.Vector3());
-    // Place camera in front of the building, aligned with the mesh center's y-coordinate
-    camera.position.set(center.x, box.max.y + 2, center.z+2);
-    camera.lookAt(center);
     controls.target.copy(center);
 
 }, undefined, (error) => {
@@ -851,9 +827,6 @@ objLoader.load('./model/image/BuildingA6.obj', (object) => {
     scene.add(object);
     const box = new THREE.Box3().setFromObject(object);
     const center = box.getCenter(new THREE.Vector3());
-    // Place camera in front of the building, aligned with the mesh center's y-coordinate
-    camera.position.set(center.x, box.max.y + 2, center.z+2);
-    camera.lookAt(center);
     controls.target.copy(center);
 
 }, undefined, (error) => {
@@ -957,9 +930,6 @@ objLoader.load('./model/image/A7.obj', (object) => {
     scene.add(object);
     const box = new THREE.Box3().setFromObject(object);
     const center = box.getCenter(new THREE.Vector3());
-    // Place camera in front of the building, aligned with the mesh center's y-coordinate
-    camera.position.set(center.x, box.max.y + 2, center.z+2);
-    camera.lookAt(center);
     controls.target.copy(center);
 
 }, undefined, (error) => {
@@ -1012,9 +982,6 @@ objLoader.load('./model/image/SmallOffice.obj', (object) => {
     scene.add(object);
     const box = new THREE.Box3().setFromObject(object);
     const center = box.getCenter(new THREE.Vector3());
-    // Place camera in front of the building, aligned with the mesh center's y-coordinate
-    camera.position.set(center.x, box.max.y + 2, center.z+2);
-    camera.lookAt(center);
     controls.target.copy(center);
 
 }, undefined, (error) => {
@@ -1090,9 +1057,6 @@ objLoader.load('./model/image/A8.obj', (object) => {
     scene.add(object);
     const box = new THREE.Box3().setFromObject(object);
     const center = box.getCenter(new THREE.Vector3());
-    // Place camera in front of the building, aligned with the mesh center's y-coordinate
-    camera.position.set(center.x, box.max.y + 2, center.z+2);
-    camera.lookAt(center);
     controls.target.copy(center);
 
 }, undefined, (error) => {
@@ -1199,9 +1163,6 @@ objLoader.load('./model/image/A9.obj', (object) => {
     scene.add(object);
     const box = new THREE.Box3().setFromObject(object);
     const center = box.getCenter(new THREE.Vector3());
-    // Place camera in front of the building, aligned with the mesh center's y-coordinate
-    camera.position.set(center.x, box.max.y + 2, center.z+2);
-    camera.lookAt(center);
     controls.target.copy(center);
 
 }, undefined, (error) => {
@@ -1308,9 +1269,6 @@ objLoader.load('./model/image/A10.obj', (object) => {
     scene.add(object);
     const box = new THREE.Box3().setFromObject(object);
     const center = box.getCenter(new THREE.Vector3());
-    // Place camera in front of the building, aligned with the mesh center's y-coordinate
-    camera.position.set(center.x, box.max.y + 2, center.z+2);
-    camera.lookAt(center);
     controls.target.copy(center);
 
 }, undefined, (error) => {
@@ -1427,9 +1385,6 @@ objLoader.load('./model/image/A11.obj', (object) => {
     scene.add(object);
     const box = new THREE.Box3().setFromObject(object);
     const center = box.getCenter(new THREE.Vector3());
-    // Place camera in front of the building, aligned with the mesh center's y-coordinate
-    camera.position.set(center.x, box.max.y + 2, center.z+2);
-    camera.lookAt(center);
     controls.target.copy(center);
 
 }, undefined, (error) => {
@@ -1538,9 +1493,6 @@ objLoader.load('./model/image/A12.obj', (object) => {
     scene.add(object);
     const box = new THREE.Box3().setFromObject(object);
     const center = box.getCenter(new THREE.Vector3());
-    // Place camera in front of the building, aligned with the mesh center's y-coordinate
-    camera.position.set(center.x, box.max.y + 2, center.z+2);
-    camera.lookAt(center);
     controls.target.copy(center);
 }, undefined, (error) => {
     console.error('An error happened while loading the OBJ:', error);
@@ -1650,9 +1602,6 @@ objLoader.load('./model/image/A13.obj', (object) => {
     scene.add(object);
     const box = new THREE.Box3().setFromObject(object);
     const center = box.getCenter(new THREE.Vector3());
-    // Place camera in front of the building, aligned with the mesh center's y-coordinate
-    camera.position.set(center.x, box.max.y + 2, center.z+2);
-    camera.lookAt(center);
     controls.target.copy(center);
 }, undefined, (error) => {
     console.error('An error happened while loading the OBJ:', error);
@@ -1762,9 +1711,6 @@ objLoader.load('./model/image/A14.obj', (object) => {
     scene.add(object);
     const box = new THREE.Box3().setFromObject(object);
     const center = box.getCenter(new THREE.Vector3());
-    // Place camera in front of the building, aligned with the mesh center's y-coordinate
-    camera.position.set(center.x, box.max.y + 2, center.z+2);
-    camera.lookAt(center);
     controls.target.copy(center);
 }, undefined, (error) => {
     console.error('An error happened while loading the OBJ:', error);
@@ -1875,9 +1821,6 @@ objLoader.load('./model/image/Medic1.obj', (object) => {
     scene.add(object);
     const box = new THREE.Box3().setFromObject(object);
     const center = box.getCenter(new THREE.Vector3());
-    // Place camera in front of the building, aligned with the mesh center's y-coordinate
-    camera.position.set(center.x, box.max.y + 2, center.z+2);
-    camera.lookAt(center);
     controls.target.copy(center);
 }, undefined, (error) => {
     console.error('An error happened while loading the OBJ:', error);
@@ -1989,9 +1932,6 @@ objLoader.load('./model/image/Medic2.obj', (object) => {
     scene.add(object);
     const box = new THREE.Box3().setFromObject(object);
     const center = box.getCenter(new THREE.Vector3());
-    // Place camera in front of the building, aligned with the mesh center's y-coordinate
-    camera.position.set(center.x, box.max.y + 2, center.z+2);
-    camera.lookAt(center);
     controls.target.copy(center);
 }, undefined, (error) => {
     console.error('An error happened while loading the OBJ:', error);
@@ -2105,9 +2045,6 @@ objLoader.load('./model/image/A18-1.obj', (object) => {
     scene.add(object);
     const box = new THREE.Box3().setFromObject(object);
     const center = box.getCenter(new THREE.Vector3());
-    // Place camera in front of the building, aligned with the mesh center's y-coordinate
-    camera.position.set(center.x, box.max.y + 2, center.z+2);
-    camera.lookAt(center);
     controls.target.copy(center);
 }, undefined, (error) => {
     console.error('An error happened while loading the OBJ:', error);
@@ -2220,9 +2157,6 @@ objLoader.load('./model/image/A18-2.obj', (object) => {
     scene.add(object);
     const box = new THREE.Box3().setFromObject(object);
     const center = box.getCenter(new THREE.Vector3());
-    // Place camera in front of the building, aligned with the mesh center's y-coordinate
-    camera.position.set(center.x, box.max.y + 2, center.z+2);
-    camera.lookAt(center);
     controls.target.copy(center);
 }, undefined, (error) => {
     console.error('An error happened while loading the OBJ:', error);
@@ -2337,9 +2271,6 @@ objLoader.load('./model/image/A20.obj', (object) => {
     scene.add(object);
     const box = new THREE.Box3().setFromObject(object);
     const center = box.getCenter(new THREE.Vector3());
-    // Place camera in front of the building, aligned with the mesh center's y-coordinate
-    camera.position.set(center.x, box.max.y + 2, center.z+2);
-    camera.lookAt(center);
     controls.target.copy(center);
 }, undefined, (error) => {
     console.error('An error happened while loading the OBJ:', error);
@@ -2454,9 +2385,6 @@ objLoader.load('./model/image/A21.obj', (object) => {
     scene.add(object);
     const box = new THREE.Box3().setFromObject(object);
     const center = box.getCenter(new THREE.Vector3());
-    // Place camera in front of the building, aligned with the mesh center's y-coordinate
-    camera.position.set(center.x, box.max.y + 2, center.z+2);
-    camera.lookAt(center);
     controls.target.copy(center);
 }, undefined, (error) => {
     console.error('An error happened while loading the OBJ:', error);
@@ -2573,9 +2501,6 @@ objLoader.load('./model/image/A22.obj', (object) => {
     scene.add(object);
     const box = new THREE.Box3().setFromObject(object);
     const center = box.getCenter(new THREE.Vector3());
-    // Place camera in front of the building, aligned with the mesh center's y-coordinate
-    camera.position.set(center.x, box.max.y + 2, center.z+2);
-    camera.lookAt(center);
     controls.target.copy(center);
 }, undefined, (error) => {
     console.error('An error happened while loading the OBJ:', error);
@@ -2692,9 +2617,6 @@ objLoader.load('./model/image/A23.obj', (object) => {
     scene.add(object);
     const box = new THREE.Box3().setFromObject(object);
     const center = box.getCenter(new THREE.Vector3());
-    // Place camera in front of the building, aligned with the mesh center's y-coordinate
-    camera.position.set(center.x, box.max.y + 2, center.z+2);
-    camera.lookAt(center);
     controls.target.copy(center);
 }, undefined, (error) => {
     console.error('An error happened while loading the OBJ:', error);
@@ -2812,9 +2734,6 @@ objLoader.load('./model/image/A25.obj', (object) => {
     scene.add(object);
     const box = new THREE.Box3().setFromObject(object);
     const center = box.getCenter(new THREE.Vector3());
-    // Place camera in front of the building, aligned with the mesh center's y-coordinate
-    camera.position.set(center.x, box.max.y + 2, center.z+2);
-    camera.lookAt(center);
     controls.target.copy(center);
 }, undefined, (error) => {
     console.error('An error happened while loading the OBJ:', error);
@@ -2934,9 +2853,6 @@ objLoader.load('./model/image/A26.obj', (object) => {
     scene.add(object);
     const box = new THREE.Box3().setFromObject(object);
     const center = box.getCenter(new THREE.Vector3());
-    // Place camera in front of the building, aligned with the mesh center's y-coordinate
-    camera.position.set(center.x, box.max.y + 2, center.z+2);
-    camera.lookAt(center);
     controls.target.copy(center);
 }, undefined, (error) => {
     console.error('An error happened while loading the OBJ:', error);
@@ -3067,9 +2983,6 @@ objLoader.load('./model/image/A27.obj', (object) => {
     scene.add(object);
     const box = new THREE.Box3().setFromObject(object);
     const center = box.getCenter(new THREE.Vector3());
-    // Place camera in front of the building, aligned with the mesh center's y-coordinate
-    camera.position.set(center.x, box.max.y + 2, center.z+2);
-    camera.lookAt(center);
     controls.target.copy(center);
 }, undefined, (error) => {
     console.error('An error happened while loading the OBJ:', error);
@@ -3190,9 +3103,6 @@ objLoader.load('./model/image/A28.obj', (object) => {
     scene.add(object);
     const box = new THREE.Box3().setFromObject(object);
     const center = box.getCenter(new THREE.Vector3());
-    // Place camera in front of the building, aligned with the mesh center's y-coordinate
-    camera.position.set(center.x, box.max.y + 2, center.z+2);
-    camera.lookAt(center);
     controls.target.copy(center);
 }, undefined, (error) => {
     console.error('An error happened while loading the OBJ:', error);
@@ -3323,9 +3233,6 @@ objLoader.load('./model/image/A30.obj', (object) => {
     scene.add(object);
     const box = new THREE.Box3().setFromObject(object);
     const center = box.getCenter(new THREE.Vector3());
-    // Place camera in front of the building, aligned with the mesh center's y-coordinate
-    camera.position.set(center.x, box.max.y + 2, center.z+2);
-    camera.lookAt(center);
     controls.target.copy(center);
 }, undefined, (error) => {
     console.error('An error happened while loading the OBJ:', error);
@@ -3447,9 +3354,6 @@ objLoader.load('./model/image/1H.obj', (object) => {
     scene.add(object);
     const box = new THREE.Box3().setFromObject(object);
     const center = box.getCenter(new THREE.Vector3());
-    // Place camera in front of the building, aligned with the mesh center's y-coordinate
-    camera.position.set(center.x, box.max.y + 2, center.z+2);
-    camera.lookAt(center);
     controls.target.copy(center);
 }, undefined, (error) => {
     console.error('An error happened while loading the OBJ:', error);
@@ -3572,9 +3476,6 @@ objLoader.load('./model/image/2H.obj', (object) => {
     scene.add(object);
     const box = new THREE.Box3().setFromObject(object);
     const center = box.getCenter(new THREE.Vector3());
-    // Place camera in front of the building, aligned with the mesh center's y-coordinate
-    camera.position.set(center.x, box.max.y + 2, center.z+2);
-    camera.lookAt(center);
     controls.target.copy(center);
 }, undefined, (error) => {
     console.error('An error happened while loading the OBJ:', error);
@@ -3699,9 +3600,6 @@ objLoader.load('./model/image/2A.obj', (object) => {
     scene.add(object);
     const box = new THREE.Box3().setFromObject(object);
     const center = box.getCenter(new THREE.Vector3());
-    // Place camera in front of the building, aligned with the mesh center's y-coordinate
-    camera.position.set(center.x, box.max.y + 2, center.z+2);
-    camera.lookAt(center);
     controls.target.copy(center);
 }, undefined, (error) => {
     console.error('An error happened while loading the OBJ:', error);
@@ -3826,9 +3724,6 @@ objLoader.load('./model/image/2B.obj', (object) => {
     scene.add(object);
     const box = new THREE.Box3().setFromObject(object);
     const center = box.getCenter(new THREE.Vector3());
-    // Place camera in front of the building, aligned with the mesh center's y-coordinate
-    camera.position.set(center.x, box.max.y + 2, center.z+2);
-    camera.lookAt(center);
     controls.target.copy(center);
 }, undefined, (error) => {
     console.error('An error happened while loading the OBJ:', error);
@@ -3954,9 +3849,6 @@ objLoader.load('./model/image/2C.obj', (object) => {
     scene.add(object);
     const box = new THREE.Box3().setFromObject(object);
     const center = box.getCenter(new THREE.Vector3());
-    // Place camera in front of the building, aligned with the mesh center's y-coordinate
-    camera.position.set(center.x, box.max.y + 2, center.z+2);
-    camera.lookAt(center);
     controls.target.copy(center);
 }, undefined, (error) => {
     console.error('An error happened while loading the OBJ:', error);
@@ -4085,9 +3977,6 @@ objLoader.load('./model/image/B1.obj', (object) => {
     scene.add(object);
     const box = new THREE.Box3().setFromObject(object);
     const center = box.getCenter(new THREE.Vector3());
-    // Place camera in front of the building, aligned with the mesh center's y-coordinate
-    camera.position.set(center.x, box.max.y + 2, center.z+2);
-    camera.lookAt(center);
     controls.target.copy(center);
 }, undefined, (error) => {
     console.error('An error happened while loading the OBJ:', error);
@@ -4217,9 +4106,6 @@ objLoader.load('./model/image/B2.obj', (object) => {
     scene.add(object);
     const box = new THREE.Box3().setFromObject(object);
     const center = box.getCenter(new THREE.Vector3());
-    // Place camera in front of the building, aligned with the mesh center's y-coordinate
-    camera.position.set(center.x, box.max.y + 2, center.z+2);
-    camera.lookAt(center);
     controls.target.copy(center);
 }, undefined, (error) => {
     console.error('An error happened while loading the OBJ:', error);
@@ -4349,9 +4235,6 @@ objLoader.load('./model/image/B3.obj', (object) => {
     scene.add(object);
     const box = new THREE.Box3().setFromObject(object);
     const center = box.getCenter(new THREE.Vector3());
-    // Place camera in front of the building, aligned with the mesh center's y-coordinate
-    camera.position.set(center.x, box.max.y + 2, center.z+2);
-    camera.lookAt(center);
     controls.target.copy(center);
 }, undefined, (error) => {
     console.error('An error happened while loading the OBJ:', error);
@@ -4481,9 +4364,6 @@ objLoader.load('./model/image/B4.obj', (object) => {
     scene.add(object);
     const box = new THREE.Box3().setFromObject(object);
     const center = box.getCenter(new THREE.Vector3());
-    // Place camera in front of the building, aligned with the mesh center's y-coordinate
-    camera.position.set(center.x, box.max.y + 2, center.z+2);
-    camera.lookAt(center);
     controls.target.copy(center);
 }, undefined, (error) => {
     console.error('An error happened while loading the OBJ:', error);
@@ -4614,9 +4494,6 @@ objLoader.load('./model/image/B5.obj', (object) => {
     scene.add(object);
     const box = new THREE.Box3().setFromObject(object);
     const center = box.getCenter(new THREE.Vector3());
-    // Place camera in front of the building, aligned with the mesh center's y-coordinate
-    camera.position.set(center.x, box.max.y + 2, center.z+2);
-    camera.lookAt(center);
     controls.target.copy(center);
 }, undefined, (error) => {
     console.error('An error happened while loading the OBJ:', error);
@@ -4675,7 +4552,7 @@ window.addEventListener('click', (event) => {
         popup_B5.style.top = `${event.clientY}px`;
         popup_B5.style.display = 'block';
 
-        setTimeout(() => {
+        setTimeout(() => {w
             popup_B5.style.display = 'none';
         }, 5000);
     }
@@ -4711,9 +4588,15 @@ window.addEventListener('keydown', (event) => {
             break;
     }
 });
-//Make sure the camera follows the car even when it moves
-camera.position.set(car.position.x, car.position.y + 3, car.position.z ); // Set camera position behind the car
-camera.lookAt(car.position); // Make the camera look at the car
+
+// Set up camera to follow car from above
+const cameraHeight = 5;
+const cameraOffset = new THREE.Vector2(0, 0, cameraHeight);
+
+// Initialize camera position above the car
+camera.position.copy(car.position).add(cameraOffset);
+camera.lookAt(car.position);
+
 controls.target.copy(car.position); // Update controls target to follow the car
 
 // Add the car to the scene
@@ -4725,29 +4608,6 @@ window.addEventListener('resize', () => {
     camera.updateProjectionMatrix();
     renderer.setSize(window.innerWidth, window.innerHeight);
 }); 
-
-// When we click on a random position, move the camera to that position from above
-// window.addEventListener('click', (event) => {
-//     // Convert click position to normalized device coordinates
-//     const mouse = new THREE.Vector2(
-//         (event.clientX / window.innerWidth) * 2 - 1,
-//         -(event.clientY / window.innerHeight) * 2 + 1
-//     );
-
-//     // Create a raycaster from the camera through the mouse position
-//     const raycaster = new THREE.Raycaster();
-//     raycaster.setFromCamera(mouse, camera);
-
-//     // Calculate the intersection with the ground plane
-//     const plane = new THREE.Plane(new THREE.Vector3(0, 5, 0), 0); // Horizontal plane
-//     const intersection = new THREE.Vector3();
-//     if (raycaster.ray.intersectPlane(plane, intersection)) {
-//         // Move camera to the clicked position from above
-//         camera.position.set(intersection.x, 3, intersection.z); // Set height to 3 units above the ground
-//         camera.lookAt(intersection);
-//         controls.target.copy(intersection);
-//     }
-// });
 
 // Add click event listener to place an image at the clicked position
 window.addEventListener('click', function(event) {
@@ -4818,7 +4678,7 @@ popup_greeting.style.color = '#fff';
 popup_greeting.style.padding = '10px';
 popup_greeting.style.borderRadius = '5px';
 popup_greeting.style.display = 'none';
-popup_greeting.innerText = 'Welcome to USTH Tour!';
+popup_greeting.innerText = 'Welcome to USTH Tour! Click on buildings to learn more about them. Use W,A,S,D keys to move the car and arrow keys to move the camera. Click anywhere to place a marker.';
 
 document.body.appendChild(popup_greeting);
 
@@ -4832,6 +4692,43 @@ greeting.addEventListener('click', function(event) {
     // Calculate position above gif, centered horizontally
     const left = rect.left + rect.width / 2 - popup_greeting.offsetWidth / 2;
     const top = rect.top - popup_greeting.offsetHeight - 10;
+    popup_BuildingA.style.display = 'none';
+    popup_BuildingA1.style.display = 'none';
+    popup_BuildingA2.style.display = 'none';
+    popup_BuildingA3.style.display = 'none';
+    popup_BuildingA5.style.display = 'none';
+    popup_BuildingA6.style.display = 'none';
+    popup_BuildingA7.style.display = 'none';
+    popup_BuildingA8.style.display = 'none';
+    popup_BuildingA9.style.display = 'none';
+    popup_BuildingA10.style.display = 'none';
+    popup_BuildingA11.style.display = 'none';
+    popup_BuildingA12.style.display = 'none';
+    popup_BuildingA13.style.display = 'none';
+    popup_BuildingA14.style.display = 'none';
+    popup_Medic1.style.display = 'none';
+    popup_VastMedic.style.display = 'none';
+    popup_A18_1.style.display = 'none';
+    popup_A18_2.style.display = 'none';
+    popup_A20.style.display = 'none';
+    popup_A21.style.display = 'none';
+    popup_A22.style.display = 'none';
+    popup_A23.style.display = 'none';
+    popup_A25.style.display = 'none';
+    popup_A26.style.display = 'none';
+    popup_A27.style.display = 'none';
+    popup_A28.style.display = 'none';
+    popup_A30.style.display = 'none';
+    popup_1H.style.display = 'none';
+    popup_2H.style.display = 'none';
+    popup_2A.style.display = 'none';
+    popup_2B.style.display = 'none';
+    popup_2C.style.display = 'none';
+    popup_B1.style.display = 'none';
+    popup_B2.style.display = 'none';
+    popup_B3.style.display = 'none';
+    popup_B4.style.display = 'none';
+    popup_B5.style.display = 'none';
     popup_greeting.style.left = `${Math.max(left, 10)}px`;
     popup_greeting.style.top = `${Math.max(top, 10)}px`;
     popup_greeting.style.visibility = 'visible';
@@ -4839,6 +4736,8 @@ greeting.addEventListener('click', function(event) {
         popup_greeting.style.display = 'none';
     }, 2000);
 });
+
+
 
 // Animation loop
 function animate() {
