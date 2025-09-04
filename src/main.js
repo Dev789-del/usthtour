@@ -216,7 +216,7 @@ popup_BuildingA.style.color = '#fff';
 popup_BuildingA.style.padding = '10px';
 popup_BuildingA.style.borderRadius = '5px';
 popup_BuildingA.style.display = 'none';
-popup_BuildingA.innerText = 'Welcome to Building A!';
+popup_BuildingA.innerText = 'Welcome to Building A! This place is the closest to Gate 18C from the north.';
 
 // Add translate switch button
 const translateBtn = document.createElement('button');
@@ -328,7 +328,7 @@ popup_BuildingA1.style.color = '#fff';
 popup_BuildingA1.style.padding = '10px';
 popup_BuildingA1.style.borderRadius = '5px';
 popup_BuildingA1.style.display = 'none';
-popup_BuildingA1.innerText = 'Welcome to Building A1!';
+popup_BuildingA1.innerText = 'Here is Building A1! This place is Vietnam Academy of Science and Technology which is in front of Gate 18 Hoang Quoc Viet Street.';
 
 // Add translate switch button for building A1
 const translateBtn_BuildingA1 = document.createElement('button');
@@ -428,7 +428,7 @@ popup_BuildingA2.style.color = '#fff';
 popup_BuildingA2.style.padding = '10px';
 popup_BuildingA2.style.borderRadius = '5px';
 popup_BuildingA2.style.display = 'none';
-popup_BuildingA2.innerText = 'Welcome to Building A2!';
+popup_BuildingA2.innerText = 'Welcome to Building A2! This place is in front of Building A1 and its name is Vietnam Academy of Science and Technology.';
 
 // Add translate switch button for Building A2
 const translateBtn_BuildingA2 = document.createElement('button');
@@ -558,7 +558,7 @@ popup_BuildingA3.style.color = '#fff';
 popup_BuildingA3.style.padding = '10px';
 popup_BuildingA3.style.borderRadius = '5px';
 popup_BuildingA3.style.display = 'none';
-popup_BuildingA3.innerText = 'Welcome to Building A3!';
+popup_BuildingA3.innerText = 'Here is Building A3! This place is Institute of Information Technology located on the left of A5 building.';
 
 // Add translate switch button for building A3
 const translateBtn_BuildingA3 = document.createElement('button');
@@ -660,7 +660,7 @@ popup_BuildingA5.style.color = '#fff';
 popup_BuildingA5.style.padding = '10px';
 popup_BuildingA5.style.borderRadius = '5px';
 popup_BuildingA5.style.display = 'none';
-popup_BuildingA5.innerText = 'Welcome to Building A5!';
+popup_BuildingA5.innerText = 'This is Building A5! This place is Vietnam Institute of Mathematics located on the left of A7 building.';
 
 // Add translate switch button for building A5
 const translateBtn_BuildingA5 = document.createElement('button');
@@ -674,7 +674,7 @@ translateBtn_BuildingA5.style.padding = '3px 8px';
 translateBtn_BuildingA5.style.cursor = 'pointer';
 
 let isEnglish_BuildingA5 = true;
-const msgEN_BuildingA5 = 'This is Building A5 ! This place is Vietnam Institute of Mathematics located on the left of A7 building.';
+const msgEN_BuildingA5 = 'This is Building A5! This place is Vietnam Institute of Mathematics located on the left of A7 building.';
 const msgVN_BuildingA5 = 'Đây là tòa nhà A5! Nơi này là Viện Toán học Việt Nam nằm ở bên trái tòa nhà A7.';
 
 translateBtn_BuildingA5.onclick = function() {
@@ -763,7 +763,7 @@ popup_BuildingA6.style.color = '#fff';
 popup_BuildingA6.style.padding = '10px';
 popup_BuildingA6.style.borderRadius = '5px';
 popup_BuildingA6.style.display = 'none';
-popup_BuildingA6.innerText = 'Welcome to Building A6!';
+popup_BuildingA6.innerText = 'Building A6 is Vietnam National Space Center located in front of A5 building from the north.';
 
 // Add translate switch button for building A6
 const translateBtn_BuildingA6 = document.createElement('button');
@@ -869,7 +869,7 @@ popup_BuildingA7.style.color = '#fff';
 popup_BuildingA7.style.padding = '10px';
 popup_BuildingA7.style.borderRadius = '5px';
 popup_BuildingA7.style.display = 'none';
-popup_BuildingA7.innerText = 'Welcome to Building A7!';
+popup_BuildingA7.innerText = 'Building A7 is Center of Informatics and Computing located in front of gate 18B from the north.';
 
 // Add translate switch button for building A7
 const translateBtn_BuildingA7 = document.createElement('button');
@@ -996,7 +996,7 @@ popup_BuildingA8.style.color = '#fff';
 popup_BuildingA8.style.padding = '10px';
 popup_BuildingA8.style.borderRadius = '5px';
 popup_BuildingA8.style.display = 'none';
-popup_BuildingA8.innerText = 'Welcome to Building A8!';
+popup_BuildingA8.innerText = 'Building A8 is a modern structure designed for collaborative work and its name is Institute of Geophysics.';
 
 // Add translate switch button for building A8
 const translateBtn_BuildingA8 = document.createElement('button');
@@ -1101,7 +1101,7 @@ popup_BuildingA9.style.color = '#fff';
 popup_BuildingA9.style.padding = '10px';
 popup_BuildingA9.style.borderRadius = '5px';
 popup_BuildingA9.style.display = 'none';
-popup_BuildingA9.innerText = 'Welcome to Building A9!';
+popup_BuildingA9.innerText = 'Building A9 is Institute of Energy Science and it is located behind Medic Center 1 which is on the right next to Building A8';
 
 // Add translate switch button for building A9
 const translateBtn_BuildingA9 = document.createElement('button');
@@ -1208,7 +1208,7 @@ popup_BuildingA10.style.color = '#fff';
 popup_BuildingA10.style.padding = '10px';
 popup_BuildingA10.style.borderRadius = '5px';
 popup_BuildingA10.style.display = 'none';
-popup_BuildingA10.innerText = 'Welcome to Building A10!';
+popup_BuildingA10.innerText = 'Building A10 is Institute of Biotechnology which is behind Building A2 from the north and it is on the right side of Medic Center 1.';
 
 // Add translate switch button for building A10
 const translateBtn_BuildingA10 = document.createElement('button');
@@ -1315,7 +1315,7 @@ popup_BuildingA11.style.color = '#fff';
 popup_BuildingA11.style.padding = '10px';
 popup_BuildingA11.style.borderRadius = '5px';
 popup_BuildingA11.style.display = 'none';
-popup_BuildingA11.innerText = 'Welcome to Building A11!';
+popup_BuildingA11.innerText = 'Building A11 is our academic library and Institute for Scientific Information which is located to the east of Building A10.';
 
 // Add translate switch button for building A11
 const translateBtn_BuildingA11 = document.createElement('button');
@@ -1432,7 +1432,7 @@ popup_BuildingA12.style.color = '#fff';
 popup_BuildingA12.style.padding = '10px';
 popup_BuildingA12.style.borderRadius = '5px';
 popup_BuildingA12.style.display = 'none';
-popup_BuildingA12.innerText = 'Welcome to Building A12!';
+popup_BuildingA12.innerText = 'Building A12 is Institute for Tropical Technology along with Building A13 which is located to the east of Building A11.';
 
 // Add translate switch button for building A12
 const translateBtn_BuildingA12 = document.createElement('button');
@@ -1446,7 +1446,7 @@ translateBtn_BuildingA12.style.padding = '3px 8px';
 translateBtn_BuildingA12.style.cursor = 'pointer';
 
 let isEnglish_BuildingA12 = true;
-const msgEN_BuildingA12 = 'Building A12 is Institure for Tropical Technology along with Building A13 which is located to the east of Building A11.';
+const msgEN_BuildingA12 = 'Building A12 is Institute for Tropical Technology along with Building A13 which is located to the east of Building A11.';
 const msgVN_BuildingA12 = 'Tòa nhà A12 là Viện Công nghệ Nhiệt đới cùng với Tòa nhà A13, nằm ở phía đông của Tòa nhà A11.';
 
 translateBtn_BuildingA12.onclick = function() {
@@ -1540,7 +1540,7 @@ popup_BuildingA13.style.color = '#fff';
 popup_BuildingA13.style.padding = '10px';
 popup_BuildingA13.style.borderRadius = '5px';
 popup_BuildingA13.style.display = 'none';
-popup_BuildingA13.innerText = 'Welcome to Building A13!';
+popup_BuildingA13.innerText = 'Building A13 is part of the Institute for Tropical Technology along with Building A12.';
 
 // Add translate switch button for building A13
 const translateBtn_BuildingA13 = document.createElement('button');
@@ -1650,7 +1650,7 @@ popup_BuildingA14.style.color = '#fff';
 popup_BuildingA14.style.padding = '10px';
 popup_BuildingA14.style.borderRadius = '5px';
 popup_BuildingA14.style.display = 'none';
-popup_BuildingA14.innerText = 'Welcome to Building A14!';
+popup_BuildingA14.innerText = 'Building A14 is our academic canteen which lies behind Institute for Tropical Technology(A12 & A13)';
 
 // Add translate switch button for building A14
 const translateBtn_BuildingA14 = document.createElement('button');
@@ -1760,7 +1760,7 @@ popup_Medic1.style.color = '#fff';
 popup_Medic1.style.padding = '10px';
 popup_Medic1.style.borderRadius = '5px';
 popup_Medic1.style.display = 'none';
-popup_Medic1.innerText = 'Welcome to Medic Center 1!';
+popup_Medic1.innerText = 'Medic Center 1 is our small clinic located between building A8 and A10.';
 
 // Add translate switch button for Medic Center 1
 const translateBtn_Medic1 = document.createElement('button');
@@ -1871,7 +1871,7 @@ popup_VastMedic.style.color = '#fff';
 popup_VastMedic.style.padding = '10px';
 popup_VastMedic.style.borderRadius = '5px';
 popup_VastMedic.style.display = 'none';
-popup_VastMedic.innerText = 'Welcome to Vast Medic Center!';
+popup_VastMedic.innerText = 'This building is Vast Medical Center for Vietnam Academy of Science & Technology and our university. People can access a wide range of medical services here.';
 
 // Add translate switch button for VastMedic
 const translateBtn_VastMedic = document.createElement('button');
@@ -1983,7 +1983,7 @@ popup_A18_1.style.color = '#fff';
 popup_A18_1.style.padding = '10px';
 popup_A18_1.style.borderRadius = '5px';
 popup_A18_1.style.display = 'none';
-popup_A18_1.innerText = 'Welcome to A18-1!';
+popup_A18_1.innerText = 'This building is A18-1 for Vietnam Academy of Science & Technology and our university. Also, its name is Institute of Chemistry along with Building A18-2.';
 
 // Add translate switch button for A18-1
 const translateBtn_A18_1 = document.createElement('button');
@@ -2097,7 +2097,7 @@ popup_A18_2.style.color = '#fff';
 popup_A18_2.style.padding = '10px';
 popup_A18_2.style.borderRadius = '5px';
 popup_A18_2.style.display = 'none';
-popup_A18_2.innerText = 'Welcome to Building A18-2!';
+popup_A18_2.innerText = 'This building is A18-2 of Vietnam Academy of Science & Technology and our university. Also, its name is Institute of Chemistry along with Building A18-1.';
 
 // Add translate switch button for A18-2
 const translateBtn_A18_2 = document.createElement('button');
@@ -2210,7 +2210,7 @@ popup_A20.style.color = '#fff';
 popup_A20.style.padding = '10px';
 popup_A20.style.borderRadius = '5px';
 popup_A20.style.display = 'none';
-popup_A20.innerText = 'Welcome to Building A20!';
+popup_A20.innerText = 'This building is A20 of Vietnam Academy of Science & Technology and our university. Also, its name is Vietnam National Museum of Nature which opens from Tuesday to Friday with opening hours from 8:30AM to 11:30AM and 1:30PM to 4:30PM.';
 
 // Add translate switch button for A20
 const translateBtn_A20 = document.createElement('button');
@@ -2324,7 +2324,7 @@ popup_A21.style.background = '#333';
 popup_A21.style.color = '#fff';
 popup_A21.style.padding = '10px';
 popup_A21.style.borderRadius = '5px';
-popup_A21.innerText = 'Welcome to Building A21!';
+popup_A21.innerText = 'This building is A21 of Vietnam Academy of Science & Technology and our university. Also, its name is University of Science and Technology of Hanoi(USTH) and it is also our main office building.';
 
 // Add translate switch button for A21
 const translateBtn_A21 = document.createElement('button');
@@ -2439,7 +2439,7 @@ popup_A22.style.background = '#333';
 popup_A22.style.color = '#fff';
 popup_A22.style.padding = '10px';
 popup_A22.style.borderRadius = '5px';
-popup_A22.innerText = 'Welcome to Building A22!';
+popup_A22.innerText = 'A22 is Institute of Space Technology of Vietnam Academy of Science & Technology and our university. It is also known as Space Technology Institute (STI).';
 
 // Add translate switch button for A22
 const translateBtn_A22 = document.createElement('button');
@@ -2556,7 +2556,7 @@ popup_A23.style.background = '#333';
 popup_A23.style.color = '#fff';
 popup_A23.style.padding = '10px';
 popup_A23.style.borderRadius = '5px';
-popup_A23.innerText = 'Welcome to Building A23!';
+popup_A23.innerText = 'A23 is Institute of Space Technology of Vietnam Academy of Science & Technology and our university along with building A22.';
 
 // Add translate switch button for A23
 const translateBtn_A23 = document.createElement('button');
@@ -2570,7 +2570,7 @@ translateBtn_A23.style.padding = '3px 8px';
 translateBtn_A23.style.cursor = 'pointer';
 
 let isEnglish_A23 = true;
-const msgEN_A23 = 'A23 is Institute of Space Technology of Vietnam Academy of Science & Technology and our university along with building A22';
+const msgEN_A23 = 'A23 is Institute of Space Technology of Vietnam Academy of Science & Technology and our university along with building A22.';
 const msgVN_A23 = 'A23 là Viện Công nghệ Vũ trụ của Viện Hàn lâm Khoa học và Công nghệ Việt Nam và trường đại học của chúng tôi cùng với tòa nhà A22.';
 
 translateBtn_A23.onclick = function() {
@@ -2673,7 +2673,7 @@ popup_A25.style.background = '#333';
 popup_A25.style.color = '#fff';
 popup_A25.style.padding = '10px';
 popup_A25.style.borderRadius = '5px';
-popup_A25.innerText = 'Welcome to Building A25!';
+popup_A25.innerText = 'A25 is Institute of Physics which lies inside USTH(University of Science and Technology of Hanoi) which lies on the right next to building A30.';
 
 // Add translate switch button for A25
 const translateBtn_A25 = document.createElement('button');
@@ -2791,7 +2791,7 @@ popup_A26.style.background = '#333';
 popup_A26.style.color = '#fff';
 popup_A26.style.padding = '10px';
 popup_A26.style.borderRadius = '5px';
-popup_A26.innerText = 'Welcome to Building A26!';
+popup_A26.innerText = 'A26 is Center of Applied Physics and Scientific Instruments which is a part of Institute of Physics(A25).';
 
 // Add translate switch button for A26
 const translateBtn_A26 = document.createElement('button');
@@ -2911,7 +2911,7 @@ popup_A27.style.background = '#333';
 popup_A27.style.color = '#fff';
 popup_A27.style.padding = '10px';
 popup_A27.style.borderRadius = '5px';
-popup_A27.innerText = 'Welcome to Building A27!';
+popup_A27.innerText = 'Building A27 contains two parts: Institute of Marine Geology and Geophysics with Institute of Geography.';
 
 // Add translate switch button for A27
 const translateBtn_A27 = document.createElement('button');
@@ -3042,7 +3042,7 @@ popup_A28.style.background = '#333';
 popup_A28.style.color = '#fff';
 popup_A28.style.padding = '10px';
 popup_A28.style.borderRadius = '5px';
-popup_A28.innerText = 'Welcome to Building A28!';
+popup_A28.innerText = 'Building A28 is Center for Research and Technology Transfer and also our university dormitory.';
 
 // Add translate switch button for A28
 const translateBtn_A28 = document.createElement('button');
@@ -3163,7 +3163,7 @@ popup_A30.style.background = '#333';
 popup_A30.style.color = '#fff';
 popup_A30.style.padding = '10px';
 popup_A30.style.borderRadius = '5px';
-popup_A30.innerText = 'Welcome to Building A30!';
+popup_A30.innerText = 'A30 is Institute of Environmental Technology of Hanoi University of Science and Technology.';
 
 // Add translate switch button for A30
 const translateBtn_A30 = document.createElement('button');
@@ -3294,7 +3294,7 @@ popup_1H.style.background = '#333';
 popup_1H.style.color = '#fff';
 popup_1H.style.padding = '10px';
 popup_1H.style.borderRadius = '5px';
-popup_1H.innerText = 'Welcome to Building 1H!';
+popup_1H.innerText = 'Building 1H is a part of Institute of Physics which lies behind Building 2H from the north.';
 
 // Add translate switch button for 1H
 const translateBtn_1H = document.createElement('button');
@@ -3416,7 +3416,7 @@ popup_2H.style.background = '#333';
 popup_2H.style.color = '#fff';
 popup_2H.style.padding = '10px';
 popup_2H.style.borderRadius = '5px';
-popup_2H.innerText = 'Welcome to Building 2H!';
+popup_2H.innerText = 'Building 2H is a part of Institute of Physics and it is also the center of quantum electronics.';
 
 // Add translate switch button for 2H
 const translateBtn_2H = document.createElement('button');
@@ -3539,7 +3539,7 @@ popup_2A.style.background = '#333';
 popup_2A.style.color = '#fff';
 popup_2A.style.padding = '10px';
 popup_2A.style.borderRadius = '5px';
-popup_2A.innerText = 'Welcome to Building 2A!';
+popup_2A.innerText = '2A is a building located on University of Science and Technology of Hanoi(USTH) campus for academic purposes.';
 
 // Add translate switch button for 2A
 const translateBtn_2A = document.createElement('button');
@@ -3664,7 +3664,7 @@ popup_2B.style.background = '#333';
 popup_2B.style.color = '#fff';
 popup_2B.style.padding = '10px';
 popup_2B.style.borderRadius = '5px';
-popup_2B.innerText = 'Welcome to Building 2B!';
+popup_2B.innerText = 'Building 2B is Center for High Technology Development located on University of Science and Technology of Hanoi (USTH).';
 
 // Add translate switch button for 2B
 const translateBtn_2B = document.createElement('button');
@@ -3789,7 +3789,7 @@ popup_2C.style.background = '#333';
 popup_2C.style.color = '#fff';
 popup_2C.style.padding = '10px';
 popup_2C.style.borderRadius = '5px';
-popup_2C.innerText = 'Welcome to Building 2C!';
+popup_2C.innerText = 'Building 2C is a tower located on University of Science and Technology of Hanoi(USTH) campus for academic purposes.';
 
 // Add translate switch button for 2C
 const translateBtn_2C = document.createElement('button');
@@ -3916,7 +3916,7 @@ popup_B1.style.background = '#333';
 popup_B1.style.color = '#fff';
 popup_B1.style.padding = '10px';
 popup_B1.style.borderRadius = '5px';
-popup_B1.innerText = 'Welcome to Building B1!';
+popup_B1.innerText = 'Building B1 is a tower located on University of Science and Technology of Hanoi(USTH) campus for academic purposes.';
 
 // Add translate switch button for B1
 const translateBtn_B1 = document.createElement('button');
@@ -4044,7 +4044,7 @@ popup_B2.style.background = '#333';
 popup_B2.style.color = '#fff';
 popup_B2.style.padding = '10px';
 popup_B2.style.borderRadius = '5px';
-popup_B2.innerText = 'Welcome to Building B2!';
+popup_B2.innerText = 'Building B2 is Institute of Material Sciences located on University of Science and Technology of Hanoi (USTH) campus.';
 
 // Add translate switch button for B2
 const translateBtn_B2 = document.createElement('button');
@@ -4174,7 +4174,7 @@ popup_B3.style.background = '#333';
 popup_B3.style.color = '#fff';
 popup_B3.style.padding = '10px';
 popup_B3.style.borderRadius = '5px';
-popup_B3.innerText = 'Welcome to Building B3!';
+popup_B3.innerText = 'Building B3 is a tower which lies between Institute of Material Sciences(Building B2) and Institute of Biotechnology 2(Building B4).';
 
 // Add translate switch button for B3
 const translateBtn_B3 = document.createElement('button');
@@ -4304,7 +4304,7 @@ popup_B4.style.background = '#333';
 popup_B4.style.color = '#fff';
 popup_B4.style.padding = '10px';
 popup_B4.style.borderRadius = '5px';
-popup_B4.innerText = 'Welcome to Building B4!';
+popup_B4.innerText = 'Building B4 is Institute of Biotechnology 2 located on University of Science and Technology of Hanoi (USTH) campus.';
 
 // Add translate switch button for B4
 const translateBtn_B4 = document.createElement('button');
@@ -4434,7 +4434,7 @@ popup_B5.style.background = '#333';
 popup_B5.style.color = '#fff';
 popup_B5.style.padding = '10px';
 popup_B5.style.borderRadius = '5px';
-popup_B5.innerText = 'Welcome to Building B5!';
+popup_B5.innerText = 'Building B5 is our parking lot located on University of Science and Technology of Hanoi (USTH) campus.';
 
 // Add translate switch button for B5
 const translateBtn_B5 = document.createElement('button');
@@ -4588,6 +4588,7 @@ window.addEventListener('keydown', (event) => {
             break;
     }
 });
+
 
 // Set up camera to follow car from above
 const cameraHeight = 5;
