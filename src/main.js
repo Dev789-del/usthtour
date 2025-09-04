@@ -230,7 +230,7 @@ translateBtn.style.padding = '3px 8px';
 translateBtn.style.cursor = 'pointer';
 
 let isEnglish = true;
-const msgEN = 'Welcome to Building A! This place is the closest to Gate 18C from the north.';
+const msgEN = popup_BuildingA.innerText;
 const msgVN = 'Chào mừng đến với tòa nhà A! Nơi này nằm ở gần với cổng 18C nhất từ hướng bắc đi lên.';
 
 translateBtn.onclick = function() {
@@ -309,6 +309,8 @@ window.addEventListener('click', (event) => {
 
     if (intersects.length > 0) {
         // Hide all other popups
+        popup_BuildingA1.style.display = 'none';
+        popup_BuildingA2.style.display = 'none';
         popup_BuildingA.style.left = `${event.clientX}px`;
         popup_BuildingA.style.top = `${event.clientY}px`;
         popup_BuildingA.style.display = 'block';
@@ -342,7 +344,7 @@ translateBtn_BuildingA1.style.padding = '3px 8px';
 translateBtn_BuildingA1.style.cursor = 'pointer';
 
 let isEnglish_BuildingA1 = true;
-const msgEN_BuildingA1 = 'Here is Building A1! This place is Vietnam Academy of Science and Technology which is in front of Gate 18 Hoang Quoc Viet Street.';
+const msgEN_BuildingA1 = popup_BuildingA1.innerText;
 const msgVN_BuildingA1 = 'Đây là tòa nhà A1! Nơi này là Viện Hàn lâm Khoa học và Công nghệ Việt Nam, nằm trước cổng 18 đường Hoàng Quốc Việt.';
 
 translateBtn_BuildingA1.onclick = function() {
@@ -410,6 +412,7 @@ window.addEventListener('click', (event) => {
     if (intersects.length > 0) {
         // Hide all other popups
         popup_BuildingA.style.display = 'none';
+        popup_BuildingA2.style.display = 'none';
         popup_BuildingA1.style.left = `${event.clientX}px`;
         popup_BuildingA1.style.top = `${event.clientY}px`;
         popup_BuildingA1.style.display = 'block';
@@ -442,7 +445,7 @@ translateBtn_BuildingA2.style.padding = '3px 8px';
 translateBtn_BuildingA2.style.cursor = 'pointer';
 
 let isEnglish_BuildingA2 = true;
-const msgEN_BuildingA2 = 'Welcome to Building A2! This place is in front of Building A1 and its name is Vietnam Academy of Science and Technology.';
+const msgEN_BuildingA2 = popup_BuildingA2.innerText;
 const msgVN_BuildingA2 = 'Chào mừng đến với tòa nhà A2! Nơi này nằm ở trước tòa nhà A1 và tên của nó là Viện Hàn lâm Khoa học và Công nghệ Việt Nam.';
 
 translateBtn_BuildingA2.onclick = function() {
@@ -572,7 +575,7 @@ translateBtn_BuildingA3.style.padding = '3px 8px';
 translateBtn_BuildingA3.style.cursor = 'pointer';
 
 let isEnglish_BuildingA3 = true;
-const msgEN_BuildingA3 = 'Here is Building A3! This place is Institute of Information Technology located on the left of A5 building.';
+const msgEN_BuildingA3 = popup_BuildingA3.innerText;
 const msgVN_BuildingA3 = 'Đây là tòa nhà A3! Nơi này là Viện Công nghệ Thông tin nằm ở bên trái tòa nhà A5.';
 
 translateBtn_BuildingA3.onclick = function() {
@@ -642,6 +645,7 @@ window.addEventListener('click', (event) => {
         popup_BuildingA.style.display = 'none';
         popup_BuildingA1.style.display = 'none';
         popup_BuildingA2.style.display = 'none';
+        popup_BuildingA5.style.display = 'none';
         popup_BuildingA3.style.left = `${event.clientX}px`;
         popup_BuildingA3.style.top = `${event.clientY}px`;
         popup_BuildingA3.style.display = 'block';
@@ -674,7 +678,7 @@ translateBtn_BuildingA5.style.padding = '3px 8px';
 translateBtn_BuildingA5.style.cursor = 'pointer';
 
 let isEnglish_BuildingA5 = true;
-const msgEN_BuildingA5 = 'This is Building A5! This place is Vietnam Institute of Mathematics located on the left of A7 building.';
+const msgEN_BuildingA5 = popup_BuildingA5.innerText;
 const msgVN_BuildingA5 = 'Đây là tòa nhà A5! Nơi này là Viện Toán học Việt Nam nằm ở bên trái tòa nhà A7.';
 
 translateBtn_BuildingA5.onclick = function() {
@@ -777,7 +781,7 @@ translateBtn_BuildingA6.style.padding = '3px 8px';
 translateBtn_BuildingA6.style.cursor = 'pointer';
 
 let isEnglish_BuildingA6 = true;
-const msgEN_BuildingA6 = 'Building A6 is Vietnam National Space Center located in front of A5 building from the north.';
+const msgEN_BuildingA6 = popup_BuildingA6.innerText;
 const msgVN_BuildingA6 = 'Tòa nhà A6 là Trung tâm Vũ trụ Quốc gia Việt Nam nằm ở phía trước tòa nhà A5 từ phía bắc.';
 
 translateBtn_BuildingA6.onclick = function() {
@@ -883,7 +887,7 @@ translateBtn_BuildingA7.style.padding = '3px 8px';
 translateBtn_BuildingA7.style.cursor = 'pointer';
 
 let isEnglish_BuildingA7 = true;
-const msgEN_BuildingA7 = 'Building A7 is Center of Informatics and Computing located in front of gate 18B from the north.';
+const msgEN_BuildingA7 = popup_BuildingA7.innerText;
 const msgVN_BuildingA7 = 'Tòa nhà A7 là Trung tâm Thông tin và Tính toán nằm ở phía trước cổng 18B từ phía bắc.';
 
 translateBtn_BuildingA7.onclick = function() {
@@ -1010,7 +1014,7 @@ translateBtn_BuildingA8.style.padding = '3px 8px';
 translateBtn_BuildingA8.style.cursor = 'pointer';
 
 let isEnglish_BuildingA8 = true;
-const msgEN_BuildingA8 = 'Building A8 is a modern structure designed for collaborative work and its name is Institute of Geophysics.';
+const msgEN_BuildingA8 = popup_BuildingA8.innerText;
 const msgVN_BuildingA8 = 'Tòa nhà A8 là một công trình hiện đại được thiết kế cho công việc hợp tác và tên của nó là Viện Vật Lý Địa Cầu.';
 
 translateBtn_BuildingA8.onclick = function() {
@@ -1115,7 +1119,7 @@ translateBtn_BuildingA9.style.padding = '3px 8px';
 translateBtn_BuildingA9.style.cursor = 'pointer';
 
 let isEnglish_BuildingA9 = true;
-const msgEN_BuildingA9 = 'Building A9 is Institute of Energy Science and it is located behind Medic Center 1 which is on the right next to Building A8';
+const msgEN_BuildingA9 = popup_BuildingA9.innerText;
 const msgVN_BuildingA9 = 'Tòa nhà A9 là Viện Khoa học Năng lượng và nó nằm phía sau Trung tâm Y tế 1, bên phải tòa nhà A8.';
 
 translateBtn_BuildingA9.onclick = function() {
@@ -1222,7 +1226,7 @@ translateBtn_BuildingA10.style.padding = '3px 8px';
 translateBtn_BuildingA10.style.cursor = 'pointer';
 
 let isEnglish_BuildingA10 = true;
-const msgEN_BuildingA10 = 'Building A10 is Institute of Biotechnology which is behind Building A2 from the north and it is on the right side of Medic Center 1.';
+const msgEN_BuildingA10 = popup_BuildingA10.innerText;
 const msgVN_BuildingA10 = 'Tòa nhà A10 là Viện Công nghệ Sinh học, nằm phía sau tòa nhà A2 từ phía bắc và bên phải của Trung tâm Y tế 1.';
 
 translateBtn_BuildingA10.onclick = function() {
@@ -1329,7 +1333,7 @@ translateBtn_BuildingA11.style.padding = '3px 8px';
 translateBtn_BuildingA11.style.cursor = 'pointer';
 
 let isEnglish_BuildingA11 = true;
-const msgEN_BuildingA11 = 'Building A11 is our academic library and Institute for Scientific Information which is located to the east of Building A10.';
+const msgEN_BuildingA11 = popup_BuildingA11.innerText;
 const msgVN_BuildingA11 = 'Tòa nhà A11 là thư viện học thuật và Viện Thông tin Khoa học của chúng tôi, nằm về phía đông của tòa nhà A10.';
 
 translateBtn_BuildingA11.onclick = function() {
@@ -1446,7 +1450,7 @@ translateBtn_BuildingA12.style.padding = '3px 8px';
 translateBtn_BuildingA12.style.cursor = 'pointer';
 
 let isEnglish_BuildingA12 = true;
-const msgEN_BuildingA12 = 'Building A12 is Institute for Tropical Technology along with Building A13 which is located to the east of Building A11.';
+const msgEN_BuildingA12 = popup_BuildingA12.innerText;
 const msgVN_BuildingA12 = 'Tòa nhà A12 là Viện Công nghệ Nhiệt đới cùng với Tòa nhà A13, nằm ở phía đông của Tòa nhà A11.';
 
 translateBtn_BuildingA12.onclick = function() {
@@ -1554,7 +1558,7 @@ translateBtn_BuildingA13.style.padding = '3px 8px';
 translateBtn_BuildingA13.style.cursor = 'pointer';
 
 let isEnglish_BuildingA13 = true;
-const msgEN_BuildingA13 = 'Building A13 is part of the Institute for Tropical Technology along with Building A12.';
+const msgEN_BuildingA13 = popup_BuildingA13.innerText
 const msgVN_BuildingA13 = 'Tòa nhà A13 là một phần của Viện Kỹ thuật Nhiệt đới cùng với Tòa nhà A12.';
 
 translateBtn_BuildingA13.onclick = function() {
@@ -1664,7 +1668,7 @@ translateBtn_BuildingA14.style.padding = '3px 8px';
 translateBtn_BuildingA14.style.cursor = 'pointer';
 
 let isEnglish_BuildingA14 = true;
-const msgEN_BuildingA14 = 'Building A14 is our academic canteen which lies behind Institute for Tropical Technology(A12 & A13)';
+const msgEN_BuildingA14 = popup_BuildingA14.innerText;
 const msgVN_BuildingA14 = 'Tòa nhà A14 là căng tin của viện hàn lâm chúng tôi nằm phía sau Viện Kỹ thuật Nhiệt đới (A12 & A13)';
 
 translateBtn_BuildingA14.onclick = function() {
@@ -1774,7 +1778,7 @@ translateBtn_Medic1.style.padding = '3px 8px';
 translateBtn_Medic1.style.cursor = 'pointer';
 
 let isEnglish_Medic1 = true;
-const msgEN_Medic1 = 'Medic Center 1 is our small clinic located between building A8 and A10.';
+const msgEN_Medic1 = popup_Medic1.innerText;
 const msgVN_Medic1 = 'Trung tâm Y tế 1 là phòng khám nhỏ của chúng tôi nằm giữa tòa nhà A8 và A10.';
 
 translateBtn_Medic1.onclick = function() {
@@ -1885,7 +1889,7 @@ translateBtn_VastMedic.style.padding = '3px 8px';
 translateBtn_VastMedic.style.cursor = 'pointer';
 
 let isEnglish_VastMedic = true;
-const msgEN_VastMedic = 'This building is Vast Medical Center for Vietnam Academy of Science & Technology and our university. People can access a wide range of medical services here.';
+const msgEN_VastMedic = popup_VastMedic.innerText;
 const msgVN_VastMedic = 'Tòa nhà này là Trung tâm Y tế Vast của Viện Hàn lâm Khoa học và Công nghệ Việt Nam và trường đại học của chúng tôi. Mọi người có thể tiếp cận nhiều dịch vụ y tế tại đây.';
 
 translateBtn_VastMedic.onclick = function() {
@@ -1997,7 +2001,7 @@ translateBtn_A18_1.style.padding = '3px 8px';
 translateBtn_A18_1.style.cursor = 'pointer';
 
 let isEnglish_A18_1 = true;
-const msgEN_A18_1 = 'This building is A18-1 for Vietnam Academy of Science & Technology and our university. Also, its name is Institute of Chemistry along with Building A18-2.';
+const msgEN_A18_1 = popup_A18_1.innerText;
 const msgVN_A18_1 = 'Tòa nhà này là A18-1 của Viện Hàn lâm Khoa học và Công nghệ Việt Nam và trường đại học của chúng tôi. Tên của nó cũng là Viện Hóa học cùng với Tòa nhà A18-2.';
 
 translateBtn_A18_1.onclick = function() {
@@ -2111,7 +2115,7 @@ translateBtn_A18_2.style.padding = '3px 8px';
 translateBtn_A18_2.style.cursor = 'pointer';
 
 let isEnglish_A18_2 = true;
-const msgEN_A18_2 = 'This building is A18-2 of Vietnam Academy of Science & Technology and our university. Also, its name is Institute of Chemistry along with Building A18-1.';
+const msgEN_A18_2 = popup_A18_2.innerText;
 const msgVN_A18_2 = 'Tòa nhà này là A18-2 của Viện Hàn lâm Khoa học và Công nghệ Việt Nam và trường đại học của chúng tôi. Tên của nó cũng là Viện Hóa học cùng với Tòa nhà A18-1.';
 
 translateBtn_A18_2.onclick = function() {
@@ -2224,7 +2228,7 @@ translateBtn_A20.style.padding = '3px 8px';
 translateBtn_A20.style.cursor = 'pointer';
 
 let isEnglish_A20 = true;
-const msgEN_A20 = 'This building is A20 of Vietnam Academy of Science & Technology and our university. Also, its name is Vietnam National Museum of Nature which opens from Tuesday to Friday with opening hours from 8:30AM to 11:30AM and 1:30PM to 4:30PM.';
+const msgEN_A20 = popup_A20.innerText;
 const msgVN_A20 = 'Tòa nhà này là A20 của Viện Hàn lâm Khoa học và Công nghệ Việt Nam và trường đại học của chúng tôi. Tên của tòa nhà này là Bảo tàng Thiên nhiên Việt Nam mở cửa từ thứ Ba đến thứ Sáu với giờ mở cửa từ 8:30AM đến 11:30AM trong buổi sáng và 1:30PM đến 4:30PM vào buổi chiều.';
 
 translateBtn_A20.onclick = function() {
@@ -2338,7 +2342,7 @@ translateBtn_A21.style.padding = '3px 8px';
 translateBtn_A21.style.cursor = 'pointer';
 
 let isEnglish_A21 = true;
-const msgEN_A21 = 'This building is A21 of Vietnam Academy of Science & Technology and our university. Also, its name is University of Science and Technology of Hanoi(USTH) and it is also our main office building.';
+const msgEN_A21 = popup_A21.innerText;
 const msgVN_A21 = 'Tòa nhà này là A21 của Viện Hàn lâm Khoa học và Công nghệ Việt Nam và trường đại học của chúng tôi. Tên của tòa nhà này là Trường Đại học Khoa học và Công nghệ Hà Nội (USTH) và cũng là tòa nhà văn phòng chính của chúng tôi.';
 
 translateBtn_A21.onclick = function() {
@@ -2453,7 +2457,7 @@ translateBtn_A22.style.padding = '3px 8px';
 translateBtn_A22.style.cursor = 'pointer';
 
 let isEnglish_A22 = true;
-const msgEN_A22 = 'A22 is Institute of Space Technology of Vietnam Academy of Science & Technology and our university. It is also known as Space Technology Institute (STI).';
+const msgEN_A22 = popup_A22.innerText;
 const msgVN_A22 = 'A22 là Viện Công nghệ Vũ trụ của Viện Hàn lâm Khoa học và Công nghệ Việt Nam và trường đại học của chúng tôi. Nó cũng được biết đến với tên gọi Viện Công nghệ Vũ trụ (STI).';
 
 translateBtn_A22.onclick = function() {
@@ -2570,7 +2574,7 @@ translateBtn_A23.style.padding = '3px 8px';
 translateBtn_A23.style.cursor = 'pointer';
 
 let isEnglish_A23 = true;
-const msgEN_A23 = 'A23 is Institute of Space Technology of Vietnam Academy of Science & Technology and our university along with building A22.';
+const msgEN_A23 = popup_A23.innerText;
 const msgVN_A23 = 'A23 là Viện Công nghệ Vũ trụ của Viện Hàn lâm Khoa học và Công nghệ Việt Nam và trường đại học của chúng tôi cùng với tòa nhà A22.';
 
 translateBtn_A23.onclick = function() {
@@ -2687,7 +2691,7 @@ translateBtn_A25.style.padding = '3px 8px';
 translateBtn_A25.style.cursor = 'pointer';
 
 let isEnglish_A25 = true;
-const msgEN_A25 = 'A25 is Institute of Physics which lies inside USTH(University of Science and Technology of Hanoi) which lies on the right next to building A30.';
+const msgEN_A25 = popup_A25.innerText;
 const msgVN_A25 = 'A25 là Viện Vật lý nằm trong USTH (Đại học Khoa học và Công nghệ Hà Nội) nằm bên phải tòa nhà A30.';
 
 translateBtn_A25.onclick = function() {
@@ -2805,7 +2809,7 @@ translateBtn_A26.style.padding = '3px 8px';
 translateBtn_A26.style.cursor = 'pointer';
 
 let isEnglish_A26 = true;
-const msgEN_A26 = 'A26 is Center of Applied Physics and Scientific Instruments which is a part of Institute of Physics(A25).';
+const msgEN_A26 = popup_A26.innerText;
 const msgVN_A26 = 'A26 là Trung tâm Vật lý ứng dụng và Thiết bị khoa học, là một phần của Viện Vật lý (A25).';
 
 translateBtn_A26.onclick = function() {
@@ -2925,7 +2929,7 @@ translateBtn_A27.style.padding = '3px 8px';
 translateBtn_A27.style.cursor = 'pointer';
 
 let isEnglish_A27 = true;
-const msgEN_A27 = 'Building A27 contains two parts: Institute of Marine Geology and Geophysics with Institute of Geography.';
+const msgEN_A27 = popup_A27.innerText;
 const msgVN_A27 = 'Tòa nhà A27 có hai phần: Viện Địa chất và Địa vật lý Biển với Viện Địa lý.';
 
 translateBtn_A27.onclick = function() {
@@ -3056,7 +3060,7 @@ translateBtn_A28.style.padding = '3px 8px';
 translateBtn_A28.style.cursor = 'pointer';
 
 let isEnglish_A28 = true;
-const msgEN_A28 = 'Building A28 is Center for Research and Technology Transfer and also our university dormitory.';
+const msgEN_A28 = popup_A28.innerText;
 const msgVN_A28 = 'Tòa nhà A28 là Trung tâm Nghiên cứu và Chuyển giao Công nghệ và cũng là ký túc xá của trường chúng tôi.';
 
 translateBtn_A28.onclick = function() {
@@ -3177,7 +3181,7 @@ translateBtn_A30.style.padding = '3px 8px';
 translateBtn_A30.style.cursor = 'pointer';
 
 let isEnglish_A30 = true;
-const msgEN_A30 = 'A30 is Institute of Environmental Technology of Hanoi University of Science and Technology.';
+const msgEN_A30 = popup_A30.innerText;
 const msgVN_A30 = 'A30 là Viện Công nghệ Môi trường của Trường Đại học Khoa học và Công nghệ Hà Nội.';
 
 translateBtn_A30.onclick = function() {
@@ -3308,7 +3312,7 @@ translateBtn_1H.style.padding = '3px 8px';
 translateBtn_1H.style.cursor = 'pointer';
 
 let isEnglish_1H = true;
-const msgEN_1H = 'Building 1H is a part of Institute of Physics which lies behind Building 2H from the north.';
+const msgEN_1H = popup_1H.innerText;
 const msgVN_1H = 'Tòa nhà 1H là một phần của Viện Vật lý nằm sau tòa nhà 2H từ phía bắc.';
 
 translateBtn_1H.onclick = function() {
@@ -3430,7 +3434,7 @@ translateBtn_2H.style.padding = '3px 8px';
 translateBtn_2H.style.cursor = 'pointer';
 
 let isEnglish_2H = true;
-const msgEN_2H = 'Building 2H is a part of Institute of Physics and it is also the center of quantum electronics.';
+const msgEN_2H = popup_2H.innerText;
 const msgVN_2H = 'Tòa nhà 2H là một phần của Viện Vật lý và nó cũng là trung tâm điện tử lượng tử.';
 
 translateBtn_2H.onclick = function() {
@@ -3553,7 +3557,7 @@ translateBtn_2A.style.padding = '3px 8px';
 translateBtn_2A.style.cursor = 'pointer';
 
 let isEnglish_2A = true;
-const msgEN_2A = '2A is a building located on University of Science and Technology of Hanoi(USTH) campus for academic purposes.';
+const msgEN_2A = popup_2A.innerText;
 const msgVN_2A = '2A là một tòa nhà nằm trong khuôn viên Đại học Khoa học và Công nghệ Hà Nội (USTH) phục vụ cho mục đích học thuật.';
 
 translateBtn_2A.onclick = function() {
@@ -3678,7 +3682,7 @@ translateBtn_2B.style.padding = '3px 8px';
 translateBtn_2B.style.cursor = 'pointer';
 
 let isEnglish_2B = true;
-const msgEN_2B = 'Building 2B is Center for High Technology Development located on University of Science and Technology of Hanoi (USTH).';
+const msgEN_2B = popup_2B.innerText;
 const msgVN_2B = '2B là Trung Tâm Phát Triển Công Nghệ Cao nằm trong Đại học Khoa học và Công nghệ Hà Nội (USTH).';
 
 translateBtn_2B.onclick = function() {
@@ -3803,7 +3807,7 @@ translateBtn_2C.style.padding = '3px 8px';
 translateBtn_2C.style.cursor = 'pointer';
 
 let isEnglish_2C = true;
-const msgEN_2C = 'Building 2C is a tower located on University of Science and Technology of Hanoi(USTH) campus for academic purposes.';
+const msgEN_2C = popup_2C.innerText;
 const msgVN_2C = '2C là một tòa nhà nằm trong khuôn viên Đại học Khoa học và Công nghệ Hà Nội (USTH) phục vụ cho mục đích học thuật.';
 
 translateBtn_2C.onclick = function() {
@@ -3930,7 +3934,7 @@ translateBtn_B1.style.padding = '3px 8px';
 translateBtn_B1.style.cursor = 'pointer';
 
 let isEnglish_B1 = true;
-const msgEN_B1 = 'Building B1 is a tower located on University of Science and Technology of Hanoi(USTH) campus for academic purposes.';
+const msgEN_B1 = popup_B1.innerText;
 const msgVN_B1 = 'B1 là một tòa nhà nằm trong khuôn viên Đại học Khoa học và Công nghệ Hà Nội (USTH) phục vụ cho mục đích học thuật.';
 
 translateBtn_B1.onclick = function() {
@@ -4058,7 +4062,7 @@ translateBtn_B2.style.padding = '3px 8px';
 translateBtn_B2.style.cursor = 'pointer';
 
 let isEnglish_B2 = true;
-const msgEN_B2 = 'Building B2 is Institute of Material Sciences located on University of Science and Technology of Hanoi (USTH) campus.';
+const msgEN_B2 = popup_B2.innerText
 const msgVN_B2 = 'Tòa nhà B2 là Viện Khoa học Vật liệu nằm trong khuôn viên Đại học Khoa học và Công nghệ Hà Nội (USTH).';
 
 translateBtn_B2.onclick = function() {
@@ -4188,7 +4192,7 @@ translateBtn_B3.style.padding = '3px 8px';
 translateBtn_B3.style.cursor = 'pointer';
 
 let isEnglish_B3 = true;
-const msgEN_B3 = 'Building B3 is a tower which lies between Institute of Material Sciences(Building B2) and Institute of Biotechnology 2(Building B4).';
+const msgEN_B3 = popup_B3.innerText;
 const msgVN_B3 = 'Tòa nhà B3 là một tòa tháp nằm giữa Viện Khoa học Vật liệu (Tòa nhà B2) và Viện Công nghệ Sinh học 2 (Tòa nhà B4).';
 
 translateBtn_B3.onclick = function() {
@@ -4318,7 +4322,7 @@ translateBtn_B4.style.padding = '3px 8px';
 translateBtn_B4.style.cursor = 'pointer';
 
 let isEnglish_B4 = true;
-const msgEN_B4 = 'Building B4 is Institute of Biotechnology 2 located on University of Science and Technology of Hanoi (USTH) campus.';
+const msgEN_B4 = popup_B4.innerText;
 const msgVN_B4 = 'Tòa nhà B4 là Viện Công nghệ Sinh học 2 thuộc trường Đại học Khoa học và Công nghệ Hà Nội (USTH).';
 
 translateBtn_B4.onclick = function() {
@@ -4448,7 +4452,7 @@ translateBtn_B5.style.padding = '3px 8px';
 translateBtn_B5.style.cursor = 'pointer';
 
 let isEnglish_B5 = true;
-const msgEN_B5 = 'Building B5 is our parking lot located on University of Science and Technology of Hanoi (USTH) campus.';
+const msgEN_B5 = popup_B5.innerText;
 const msgVN_B5 = 'Tòa nhà B5 là bãi đậu xe của chúng tôi nằm trong khuôn viên Trường Đại học Khoa học và Công nghệ Hà Nội (USTH).';
 
 translateBtn_B5.onclick = function() {
@@ -4604,36 +4608,36 @@ controls.target.copy(car.position); // Update controls target to follow the car
 scene.add(car);
 
 // Handle window resize with mouse wheel zoom
-window.addEventListener('resize', () => {
-    camera.aspect = window.innerWidth / window.innerHeight;
-    camera.updateProjectionMatrix();
-    renderer.setSize(window.innerWidth, window.innerHeight);
-}); 
+// window.addEventListener('resize', () => {
+//     camera.aspect = window.innerWidth / window.innerHeight;
+//     camera.updateProjectionMatrix();
+//     renderer.setSize(window.innerWidth, window.innerHeight);
+// }); 
 
-// Add click event listener to place an image at the clicked position
-window.addEventListener('click', function(event) {
-        // Get the click position and resize the image
-        var x = event.clientX;
-        var y = event.clientY;
+// // Add click event listener to place an image at the clicked position
+// window.addEventListener('click', function(event) {
+//         // Get the click position and resize the image
+//         var x = event.clientX;
+//         var y = event.clientY;
         
-        // Create the image element
-        var img = document.createElement('img');
-        img.src = './model/image/location.png'; // Path to your image
-        img.style.position = 'absolute'; // Position it absolutely
-        img.style.left = (x - 10) + 'px'; // Center the image on the click
-        img.style.top = (y - 10) + 'px'; // Center the image on the click
-        img.style.width = '20px'; 
-        img.style.height = '20px'; 
-        img.style.zIndex = '1000'; // Ensure it's on top
+//         // Create the image element
+//         var img = document.createElement('img');
+//         img.src = './model/image/location.png'; // Path to your image
+//         img.style.position = 'absolute'; // Position it absolutely
+//         img.style.left = (x - 10) + 'px'; // Center the image on the click
+//         img.style.top = (y - 10) + 'px'; // Center the image on the click
+//         img.style.width = '20px'; 
+//         img.style.height = '20px'; 
+//         img.style.zIndex = '1000'; // Ensure it's on top
 
-        // Append the image to the body
-        document.body.appendChild(img);
+//         // Append the image to the body
+//         document.body.appendChild(img);
 
-        // Remove location image after 3 seconds
-        setTimeout(() => {
-            img.remove();
-        }, 2000);
-    });
+//         // Remove location image after 3 seconds
+//         setTimeout(() => {
+//             img.remove();
+//         }, 2000);
+//     });
 
 
 // Add a function to move camera pov with keys with west, north, east, south direction
