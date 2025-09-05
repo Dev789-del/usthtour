@@ -5221,6 +5221,132 @@ window.addEventListener('click', (event) => {
     }
 });
 
+// Load Tree.obj
+objLoader.load('./model/image/Tree.obj', (object) => {
+    // Make texture adjustments for Tree
+    object.traverse((child) => {
+        if (child.isMesh && child.name && child.name.includes('Cylinder.011')) {
+            child.material = new THREE.MeshStandardMaterial({
+                map: new THREE.TextureLoader().load('./model/image/green_color_texture.png'),
+                side: THREE.DoubleSide
+            });
+        }
+    });
+    object.traverse((child) => {
+        if (child.isMesh && child.name && child.name.includes('Cylinder.102')) {
+            child.material = new THREE.MeshStandardMaterial({
+                map: new THREE.TextureLoader().load('./model/image/green_color_texture.png'),
+                side: THREE.DoubleSide
+            });
+        }
+    });
+    object.traverse((child) => {
+        if (child.isMesh && child.name && child.name.includes('Cylinder.128')) {
+            child.material = new THREE.MeshStandardMaterial({
+                map: new THREE.TextureLoader().load('./model/image/green_color_texture.png'),
+                side: THREE.DoubleSide
+            });
+        }
+    });
+    object.traverse((child) => {
+        if (child.isMesh && child.name && child.name.includes('Cylinder.139')) {
+            child.material = new THREE.MeshStandardMaterial({
+                map: new THREE.TextureLoader().load('./model/image/green_color_texture.png'),
+                side: THREE.DoubleSide
+            });
+        }
+    });
+    object.traverse((child) => {
+        if (child.isMesh && child.name && child.name.includes('Cylinder.179')) {
+            child.material = new THREE.MeshStandardMaterial({
+                map: new THREE.TextureLoader().load('./model/image/green_color_texture.png'),
+                side: THREE.DoubleSide
+            });
+        }
+    });
+    object.traverse((child) => {
+        if (child.isMesh && child.name && child.name.includes('Cylinder.182')) {
+            child.material = new THREE.MeshStandardMaterial({
+                map: new THREE.TextureLoader().load('./model/image/green_color_texture.png'),
+                side: THREE.DoubleSide
+            });
+        }
+    });
+    object.traverse((child) => {
+        if (child.isMesh && child.name && child.name.includes('Cylinder.183')) {
+            child.material = new THREE.MeshStandardMaterial({
+                map: new THREE.TextureLoader().load('./model/image/green_color_texture.png'),
+                side: THREE.DoubleSide
+            });
+        }
+    });
+    object.traverse((child) => {
+        if (child.isMesh && child.name && child.name.includes('Cylinder.012')) {
+            child.material = new THREE.MeshStandardMaterial({
+                map: new THREE.TextureLoader().load('./model/image/tree_body_texture.png'),
+                side: THREE.DoubleSide
+            });
+        }
+    });
+    object.traverse((child) => {
+        if (child.isMesh && child.name && child.name.includes('Cylinder.101')) {
+            child.material = new THREE.MeshStandardMaterial({
+                map: new THREE.TextureLoader().load('./model/image/tree_body_texture.png'),
+                side: THREE.DoubleSide
+            });
+        }
+    });
+    object.traverse((child) => {
+        if (child.isMesh && child.name && child.name.includes('Cylinder.127')) {
+            child.material = new THREE.MeshStandardMaterial({
+                map: new THREE.TextureLoader().load('./model/image/tree_body_texture.png'),
+                side: THREE.DoubleSide
+            });
+        }
+    });
+    object.traverse((child) => {
+        if (child.isMesh && child.name && child.name.includes('Cylinder.140')) {
+            child.material = new THREE.MeshStandardMaterial({
+                map: new THREE.TextureLoader().load('./model/image/tree_body_texture.png'),
+                side: THREE.DoubleSide
+            });
+        }
+    });
+    object.traverse((child) => {
+        if (child.isMesh && child.name && child.name.includes('Cylinder.180')) {
+            child.material = new THREE.MeshStandardMaterial({
+                map: new THREE.TextureLoader().load('./model/image/tree_body_texture.png'),
+                side: THREE.DoubleSide
+            });
+        }
+    });
+    object.traverse((child) => {
+        if (child.isMesh && child.name && child.name.includes('Cylinder.181')) {
+            child.material = new THREE.MeshStandardMaterial({
+                map: new THREE.TextureLoader().load('./model/image/tree_body_texture.png'),
+                side: THREE.DoubleSide
+            });
+        }
+    });
+    object.traverse((child) => {
+        if (child.isMesh && child.name && child.name.includes('Cylinder.184')) {
+            child.material = new THREE.MeshStandardMaterial({
+                map: new THREE.TextureLoader().load('./model/image/tree_body_texture.png'),
+                side: THREE.DoubleSide
+            });
+        }
+    });
+    object.position.set(0, 0, 0);
+    object.scale.set(0.026, 0.026, 0.026); // Scale down the mesh
+    scene.add(object);
+    const box = new THREE.Box3().setFromObject(object);
+    const center = box.getCenter(new THREE.Vector3());
+    controls.target.copy(center);
+}, undefined, (error) => {
+    console.error('An error happened while loading the OBJ:', error);
+});
+
+
 // Create and add a car to the scene
 const car = createCar();
 car.position.set(0.1, 0, 2);
@@ -5252,25 +5378,14 @@ window.addEventListener('keydown', (event) => {
     }
 });
 
-
-// Set up camera to follow car from above
-const cameraHeight = 5;
-const cameraOffset = new THREE.Vector2(0, 0, cameraHeight);
-
-// Initialize camera position above the car
-camera.position.copy(car.position).add(cameraOffset);
-camera.lookAt(car.position);
-
-controls.target.copy(car.position); // Update controls target to follow the car
-
 // Add the car to the scene
 scene.add(car);
 
 // Add a function to move the camera pov along the car
 function updateCameraFollow() {
     // Camera follows from behind and above the car
-    const behindDistance = 1;
-    const height = 1;
+    const behindDistance = 1.5;
+    const height = 1.5;
     
     // Calculate camera position behind the car based on its direction
     const cameraPosition = new THREE.Vector3();
@@ -5287,7 +5402,13 @@ function updateCameraFollow() {
     lookAtPosition.add(car.userData.direction.clone().multiplyScalar(3));
     
     camera.lookAt(lookAtPosition);
-    
+
+    // When car idle, set camera so that we can move it with mouse
+    if (car.userData.direction.length() === 0) {
+        controls.enabled = true; // Enable orbit controls when car is idle
+    } else {
+        controls.enabled = false; // Disable orbit controls when car is moving
+    }
     // Update controls target
     controls.target.copy(lookAtPosition);
     controls.update();
@@ -5376,8 +5497,6 @@ greeting.addEventListener('click', function(event) {
         popup_greeting.style.display = 'none';
     }, 2000);
 });
-
-
 
 // Animation loop
 function animate() {
