@@ -29,14 +29,25 @@ export function createCar() {
   const wheelGeometry = new THREE.CylinderGeometry(wheelRadius, wheelRadius, 12, 32);
   const wheelMaterial = new THREE.MeshPhongMaterial({ color: 0x212121 });
 
-  const wheel1 = new THREE.Mesh(wheelGeometry, wheelMaterial);
-  wheel1.rotation.z = Math.PI / 2;
-  wheel1.position.set(-carWidth / 2 + 25, wheelRadius, 18);
+  // Front left wheel
+  const wheelFL = new THREE.Mesh(wheelGeometry, wheelMaterial);
+  wheelFL.rotation.z = Math.PI / 2;
+  wheelFL.position.set(-carWidth / 2 + 25, wheelRadius, 18);
 
-  const wheel2 = wheel1.clone();
-  wheel2.position.set(carWidth / 2 - 25, wheelRadius, 18);
+  // Front right wheel
+  const wheelFR = wheelFL.clone();
+  wheelFR.position.set(carWidth / 2 - 25, wheelRadius, 18);
 
-  car.add(wheel1, wheel2);
+  // Rear left wheel
+  const wheelRL = wheelFL.clone();
+  wheelRL.position.set(-carWidth / 2 + 25, wheelRadius, -18);
+
+  // Rear right wheel
+  const wheelRR = wheelFL.clone();
+  wheelRR.position.set(carWidth / 2 - 25, wheelRadius, -18);
+
+  // Add all 4 wheels to the car
+  car.add(wheelFL, wheelFR, wheelRL, wheelRR);
 
   return car;
 }

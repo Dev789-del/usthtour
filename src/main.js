@@ -5266,58 +5266,34 @@ controls.target.copy(car.position); // Update controls target to follow the car
 // Add the car to the scene
 scene.add(car);
 
-// Handle window resize with mouse wheel zoom
-// window.addEventListener('resize', () => {
-//     camera.aspect = window.innerWidth / window.innerHeight;
-//     camera.updateProjectionMatrix();
-//     renderer.setSize(window.innerWidth, window.innerHeight);
-// }); 
-
-// // Add click event listener to place an image at the clicked position
-// window.addEventListener('click', function(event) {
-//         // Get the click position and resize the image
-//         var x = event.clientX;
-//         var y = event.clientY;
-        
-//         // Create the image element
-//         var img = document.createElement('img');
-//         img.src = './model/image/location.png'; // Path to your image
-//         img.style.position = 'absolute'; // Position it absolutely
-//         img.style.left = (x - 10) + 'px'; // Center the image on the click
-//         img.style.top = (y - 10) + 'px'; // Center the image on the click
-//         img.style.width = '20px'; 
-//         img.style.height = '20px'; 
-//         img.style.zIndex = '1000'; // Ensure it's on top
-
-//         // Append the image to the body
-//         document.body.appendChild(img);
-
-//         // Remove location image after 3 seconds
-//         setTimeout(() => {
-//             img.remove();
-//         }, 2000);
-//     });
-
-
-// Add a function to move camera pov with keys with west, north, east, south direction
-function moveCamera(event) {
-    switch (event.key) {
-        case 'w':
-            camera.position.z -= 0.1;
-            break;
-        case 's':
-            camera.position.z += 0.1;
-            break;
-        case 'a':
-            camera.position.x -= 0.1;
-            break;
-        case 'd':
-            camera.position.x += 0.1;
-            break;
-    }
+// Add a function to move the camera pov along the car
+function updateCameraFollow() {
+    // Camera follows from behind and above the car
+    const behindDistance = 1;
+    const height = 1;
+    
+    // Calculate camera position behind the car based on its direction
+    const cameraPosition = new THREE.Vector3();
+    cameraPosition.copy(car.position);
+    cameraPosition.sub(car.userData.direction.clone().multiplyScalar(behindDistance));
+    cameraPosition.y += height;
+    
+    // Smoothly interpolate camera position for smoother following
+    camera.position.lerp(cameraPosition, 0.1);
+    
+    // Make camera look slightly ahead of the car
+    const lookAtPosition = new THREE.Vector3();
+    lookAtPosition.copy(car.position);
+    lookAtPosition.add(car.userData.direction.clone().multiplyScalar(3));
+    
+    camera.lookAt(lookAtPosition);
+    
+    // Update controls target
+    controls.target.copy(lookAtPosition);
+    controls.update();
 }
 
-window.addEventListener('keydown', moveCamera);
+
 // Upload greeting.gif 
 const greeting = new Image();
 greeting.src = './world/greeting.gif';
@@ -5406,7 +5382,7 @@ greeting.addEventListener('click', function(event) {
 // Animation loop
 function animate() {
     requestAnimationFrame(animate);
-    controls.update(); 
+    updateCameraFollow(); // Update camera to follow the car 
     renderer.render(scene, camera);
 }
 
