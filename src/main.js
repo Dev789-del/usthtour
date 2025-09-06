@@ -22,6 +22,7 @@ const controls = new OrbitControls(camera, renderer.domElement);
 controls.enableDamping = true;
 controls.dampingFactor = 0.1;
 controls.enableZoom = true;
+controls.rotateSpeed = 0.5;
 
 // Lighting
 const ambientLight = new THREE.AmbientLight(0xffffff, 0.8);
@@ -5346,10 +5347,581 @@ objLoader.load('./model/image/Tree.obj', (object) => {
     console.error('An error happened while loading the OBJ:', error);
 });
 
+// Load TreeP1.obj
+objLoader.load('./model/image/TreeP1.obj', (object) => {
+    // Make texture adjustments for Tree
+    object.traverse((child) => {
+        if (child.isMesh && child.name && child.name.includes('Cylinder.085')) {
+            child.material = new THREE.MeshStandardMaterial({
+                map: new THREE.TextureLoader().load('./model/image/green_color_texture.png'),
+                side: THREE.DoubleSide
+            });
+        }
+    });
+    object.traverse((child) => {
+        if (child.isMesh && child.name && child.name.includes('Cylinder.136')) {
+            child.material = new THREE.MeshStandardMaterial({
+                map: new THREE.TextureLoader().load('./model/image/green_color_texture.png'),
+                side: THREE.DoubleSide
+            });
+        }
+    });
+    object.traverse((child) => {
+        if (child.isMesh && child.name && child.name.includes('Cylinder.201')) {
+            child.material = new THREE.MeshStandardMaterial({
+                map: new THREE.TextureLoader().load('./model/image/green_color_texture.png'),
+                side: THREE.DoubleSide
+            });
+        }
+    });
+    object.traverse((child) => {
+        if (child.isMesh && child.name && child.name.includes('Cylinder.205')) {
+            child.material = new THREE.MeshStandardMaterial({
+                map: new THREE.TextureLoader().load('./model/image/green_color_texture.png'),
+                side: THREE.DoubleSide
+            });
+        }
+    });
+    object.traverse((child) => {
+        if (child.isMesh && child.name && child.name.includes('Cylinder.218')) {
+            child.material = new THREE.MeshStandardMaterial({
+                map: new THREE.TextureLoader().load('./model/image/green_color_texture.png'),
+                side: THREE.DoubleSide
+            });
+        }
+    });
+    object.traverse((child) => {
+        if (child.isMesh && child.name && child.name.includes('Cylinder.220')) {
+            child.material = new THREE.MeshStandardMaterial({
+                map: new THREE.TextureLoader().load('./model/image/green_color_texture.png'),
+                side: THREE.DoubleSide
+            });
+        }
+    });
+    object.traverse((child) => {
+        if (child.isMesh && child.name && child.name.includes('Cylinder.224')) {
+            child.material = new THREE.MeshStandardMaterial({
+                map: new THREE.TextureLoader().load('./model/image/green_color_texture.png'),
+                side: THREE.DoubleSide
+            });
+        }
+    });
+    object.traverse((child) => {
+        if (child.isMesh && child.name && child.name.includes('Cylinder.226')) {
+            child.material = new THREE.MeshStandardMaterial({
+                map: new THREE.TextureLoader().load('./model/image/green_color_texture.png'),
+                side: THREE.DoubleSide
+            });
+        }
+    });
+    object.traverse((child) => {
+        if (child.isMesh && child.name && child.name.includes('Cylinder.228')) {
+            child.material = new THREE.MeshStandardMaterial({
+                map: new THREE.TextureLoader().load('./model/image/green_color_texture.png'),
+                side: THREE.DoubleSide
+            });
+        }
+    });
+    object.traverse((child) => {
+        if (child.isMesh && child.name && child.name.includes('Cylinder.086')) {
+            child.material = new THREE.MeshStandardMaterial({
+                map: new THREE.TextureLoader().load('./model/image/tree_body_texture.png'),
+                side: THREE.DoubleSide
+            });
+        }
+    });
+    object.traverse((child) => {
+        if (child.isMesh && child.name && child.name.includes('Cylinder.135')) {
+            child.material = new THREE.MeshStandardMaterial({
+                map: new THREE.TextureLoader().load('./model/image/tree_body_texture.png'),
+                side: THREE.DoubleSide
+            });
+        }
+    });
+    object.traverse((child) => {
+        if (child.isMesh && child.name && child.name.includes('Cylinder.202')) {
+            child.material = new THREE.MeshStandardMaterial({
+                map: new THREE.TextureLoader().load('./model/image/tree_body_texture.png'),
+                side: THREE.DoubleSide
+            });
+        }
+    });
+    object.traverse((child) => {
+        if (child.isMesh && child.name && child.name.includes('Cylinder.206')) {
+            child.material = new THREE.MeshStandardMaterial({
+                map: new THREE.TextureLoader().load('./model/image/tree_body_texture.png'),
+                side: THREE.DoubleSide
+            });
+        }
+    });
+    object.traverse((child) => {
+        if (child.isMesh && child.name && child.name.includes('Cylinder.217')) {
+            child.material = new THREE.MeshStandardMaterial({
+                map: new THREE.TextureLoader().load('./model/image/tree_body_texture.png'),
+                side: THREE.DoubleSide
+            });
+        }
+    });
+    object.traverse((child) => {
+        if (child.isMesh && child.name && child.name.includes('Cylinder.219')) {
+            child.material = new THREE.MeshStandardMaterial({
+                map: new THREE.TextureLoader().load('./model/image/tree_body_texture.png'),
+                side: THREE.DoubleSide
+            });
+        }
+    });
+    object.traverse((child) => {
+        if (child.isMesh && child.name && child.name.includes('Cylinder.221')) {
+            child.material = new THREE.MeshStandardMaterial({
+                map: new THREE.TextureLoader().load('./model/image/tree_body_texture.png'),
+                side: THREE.DoubleSide
+            });
+        }
+    });
+    object.traverse((child) => {
+        if (child.isMesh && child.name && child.name.includes('Cylinder.223')) {
+            child.material = new THREE.MeshStandardMaterial({
+                map: new THREE.TextureLoader().load('./model/image/tree_body_texture.png'),
+                side: THREE.DoubleSide
+            });
+        }
+    });
+    object.traverse((child) => {
+        if (child.isMesh && child.name && child.name.includes('Cylinder.225')) {
+            child.material = new THREE.MeshStandardMaterial({
+                map: new THREE.TextureLoader().load('./model/image/tree_body_texture.png'),
+                side: THREE.DoubleSide
+            });
+        }
+    });
+    object.traverse((child) => {
+        if (child.isMesh && child.name && child.name.includes('Cylinder.227')) {
+            child.material = new THREE.MeshStandardMaterial({
+                map: new THREE.TextureLoader().load('./model/image/tree_body_texture.png'),
+                side: THREE.DoubleSide
+            });
+        }
+    });
+    object.position.set(0, 0, 0);
+    object.scale.set(0.026, 0.026, 0.026); // Scale down the mesh
+    scene.add(object);
+    const box = new THREE.Box3().setFromObject(object);
+    const center = box.getCenter(new THREE.Vector3());
+    controls.target.copy(center);
+}, undefined, (error) => {
+    console.error('An error happened while loading the OBJ:', error);
+});
+
+// Load TreeP2.obj
+objLoader.load('./model/image/TreeP2.obj', (object) => {
+    // Make texture adjustments for Tree
+    object.traverse((child) => {
+        if (child.isMesh && child.name && child.name.includes('Cylinder.019')) {
+            child.material = new THREE.MeshStandardMaterial({
+                map: new THREE.TextureLoader().load('./model/image/green_color_texture.png'),
+                side: THREE.DoubleSide
+            });
+        }
+    });
+    object.traverse((child) => {
+        if (child.isMesh && child.name && child.name.includes('Cylinder.045')) {
+            child.material = new THREE.MeshStandardMaterial({
+                map: new THREE.TextureLoader().load('./model/image/green_color_texture.png'),
+                side: THREE.DoubleSide
+            });
+        }
+    });
+    object.traverse((child) => {
+        if (child.isMesh && child.name && child.name.includes('Cylinder.068')) {
+            child.material = new THREE.MeshStandardMaterial({
+                map: new THREE.TextureLoader().load('./model/image/green_color_texture.png'),
+                side: THREE.DoubleSide
+            });
+        }
+    });
+    object.traverse((child) => {
+        if (child.isMesh && child.name && child.name.includes('Cylinder.103')) {
+            child.material = new THREE.MeshStandardMaterial({
+                map: new THREE.TextureLoader().load('./model/image/green_color_texture.png'),
+                side: THREE.DoubleSide
+            });
+        }
+    });
+    object.traverse((child) => {
+        if (child.isMesh && child.name && child.name.includes('Cylinder.107')) {
+            child.material = new THREE.MeshStandardMaterial({
+                map: new THREE.TextureLoader().load('./model/image/green_color_texture.png'),
+                side: THREE.DoubleSide
+            });
+        }
+    });
+    object.traverse((child) => {
+        if (child.isMesh && child.name && child.name.includes('Cylinder.120')) {
+            child.material = new THREE.MeshStandardMaterial({
+                map: new THREE.TextureLoader().load('./model/image/green_color_texture.png'),
+                side: THREE.DoubleSide
+            });
+        }
+    });
+    object.traverse((child) => {
+        if (child.isMesh && child.name && child.name.includes('Cylinder.154')) {
+            child.material = new THREE.MeshStandardMaterial({
+                map: new THREE.TextureLoader().load('./model/image/green_color_texture.png'),
+                side: THREE.DoubleSide
+            });
+        }
+    });
+    object.traverse((child) => {
+        if (child.isMesh && child.name && child.name.includes('Cylinder.167')) {
+            child.material = new THREE.MeshStandardMaterial({
+                map: new THREE.TextureLoader().load('./model/image/green_color_texture.png'),
+                side: THREE.DoubleSide
+            });
+        }
+    });
+    object.traverse((child) => {
+        if (child.isMesh && child.name && child.name.includes('Cylinder.175')) {
+            child.material = new THREE.MeshStandardMaterial({
+                map: new THREE.TextureLoader().load('./model/image/green_color_texture.png'),
+                side: THREE.DoubleSide
+            });
+        }
+    });
+    object.traverse((child) => {
+        if (child.isMesh && child.name && child.name.includes('Cylinder.020')) {
+            child.material = new THREE.MeshStandardMaterial({
+                map: new THREE.TextureLoader().load('./model/image/tree_body_texture.png'),
+                side: THREE.DoubleSide
+            });
+        }
+    });
+    object.traverse((child) => {
+        if (child.isMesh && child.name && child.name.includes('Cylinder.046')) {
+            child.material = new THREE.MeshStandardMaterial({
+                map: new THREE.TextureLoader().load('./model/image/tree_body_texture.png'),
+                side: THREE.DoubleSide
+            });
+        }
+    });
+    object.traverse((child) => {
+        if (child.isMesh && child.name && child.name.includes('Cylinder.067')) {
+            child.material = new THREE.MeshStandardMaterial({
+                map: new THREE.TextureLoader().load('./model/image/tree_body_texture.png'),
+                side: THREE.DoubleSide
+            });
+        }
+    });
+    object.traverse((child) => {
+        if (child.isMesh && child.name && child.name.includes('Cylinder.104')) {
+            child.material = new THREE.MeshStandardMaterial({
+                map: new THREE.TextureLoader().load('./model/image/tree_body_texture.png'),
+                side: THREE.DoubleSide
+            });
+        }
+    });
+    object.traverse((child) => {
+        if (child.isMesh && child.name && child.name.includes('Cylinder.108')) {
+            child.material = new THREE.MeshStandardMaterial({
+                map: new THREE.TextureLoader().load('./model/image/tree_body_texture.png'),
+                side: THREE.DoubleSide
+            });
+        }
+    });
+    object.traverse((child) => {
+        if (child.isMesh && child.name && child.name.includes('Cylinder.119')) {
+            child.material = new THREE.MeshStandardMaterial({
+                map: new THREE.TextureLoader().load('./model/image/tree_body_texture.png'),
+                side: THREE.DoubleSide
+            });
+        }
+    });
+    object.traverse((child) => {
+        if (child.isMesh && child.name && child.name.includes('Cylinder.153')) {
+            child.material = new THREE.MeshStandardMaterial({
+                map: new THREE.TextureLoader().load('./model/image/tree_body_texture.png'),
+                side: THREE.DoubleSide
+            });
+        }
+    });
+    object.traverse((child) => {
+        if (child.isMesh && child.name && child.name.includes('Cylinder.168')) {
+            child.material = new THREE.MeshStandardMaterial({
+                map: new THREE.TextureLoader().load('./model/image/tree_body_texture.png'),
+                side: THREE.DoubleSide
+            });
+        }
+    });
+    object.traverse((child) => {
+        if (child.isMesh && child.name && child.name.includes('Cylinder.176')) {
+            child.material = new THREE.MeshStandardMaterial({
+                map: new THREE.TextureLoader().load('./model/image/tree_body_texture.png'),
+                side: THREE.DoubleSide
+            });
+        }
+    });
+    object.position.set(0, 0, 0);
+    object.scale.set(0.026, 0.026, 0.026); // Scale down the mesh
+    scene.add(object);
+    const box = new THREE.Box3().setFromObject(object);
+    const center = box.getCenter(new THREE.Vector3());
+    controls.target.copy(center);
+}, undefined, (error) => {
+    console.error('An error happened while loading the OBJ:', error);
+});
+
+// Load TreeP3.obj
+objLoader.load('./model/image/TreeP3.obj', (object) => {
+    // Make texture adjustments for Tree
+    object.traverse((child) => {
+        if (child.isMesh && child.name && child.name.includes('Cylinder.017')) {
+            child.material = new THREE.MeshStandardMaterial({
+                map: new THREE.TextureLoader().load('./model/image/green_color_texture.png'),
+                side: THREE.DoubleSide
+            });
+        }
+    });
+    object.traverse((child) => {
+        if (child.isMesh && child.name && child.name.includes('Cylinder.023')) {
+            child.material = new THREE.MeshStandardMaterial({
+                map: new THREE.TextureLoader().load('./model/image/green_color_texture.png'),
+                side: THREE.DoubleSide
+            });
+        }
+    });
+    object.traverse((child) => {
+        if (child.isMesh && child.name && child.name.includes('Cylinder.047')) {
+            child.material = new THREE.MeshStandardMaterial({
+                map: new THREE.TextureLoader().load('./model/image/green_color_texture.png'),
+                side: THREE.DoubleSide
+            });
+        }
+    });
+    object.traverse((child) => {
+        if (child.isMesh && child.name && child.name.includes('Cylinder.049')) {
+            child.material = new THREE.MeshStandardMaterial({
+                map: new THREE.TextureLoader().load('./model/image/green_color_texture.png'),
+                side: THREE.DoubleSide
+            });
+        }
+    });
+    object.traverse((child) => {
+        if (child.isMesh && child.name && child.name.includes('Cylinder.051')) {
+            child.material = new THREE.MeshStandardMaterial({
+                map: new THREE.TextureLoader().load('./model/image/green_color_texture.png'),
+                side: THREE.DoubleSide
+            });
+        }
+    });
+    object.traverse((child) => {
+        if (child.isMesh && child.name && child.name.includes('Cylinder.053')) {
+            child.material = new THREE.MeshStandardMaterial({
+                map: new THREE.TextureLoader().load('./model/image/green_color_texture.png'),
+                side: THREE.DoubleSide
+            });
+        }
+    });
+    object.traverse((child) => {
+        if (child.isMesh && child.name && child.name.includes('Cylinder.144')) {
+            child.material = new THREE.MeshStandardMaterial({
+                map: new THREE.TextureLoader().load('./model/image/green_color_texture.png'),
+                side: THREE.DoubleSide
+            });
+        }
+    });
+    object.traverse((child) => {
+        if (child.isMesh && child.name && child.name.includes('Cylinder.018')) {
+            child.material = new THREE.MeshStandardMaterial({
+                map: new THREE.TextureLoader().load('./model/image/tree_body_texture.png'),
+                side: THREE.DoubleSide
+            });
+        }
+    });
+    object.traverse((child) => {
+        if (child.isMesh && child.name && child.name.includes('Cylinder.024')) {
+            child.material = new THREE.MeshStandardMaterial({
+                map: new THREE.TextureLoader().load('./model/image/tree_body_texture.png'),
+                side: THREE.DoubleSide
+            });
+        }
+    });
+    object.traverse((child) => {
+        if (child.isMesh && child.name && child.name.includes('Cylinder.048')) {
+            child.material = new THREE.MeshStandardMaterial({
+                map: new THREE.TextureLoader().load('./model/image/tree_body_texture.png'),
+                side: THREE.DoubleSide
+            });
+        }
+    });
+    object.traverse((child) => {
+        if (child.isMesh && child.name && child.name.includes('Cylinder.050')) {
+            child.material = new THREE.MeshStandardMaterial({
+                map: new THREE.TextureLoader().load('./model/image/tree_body_texture.png'),
+                side: THREE.DoubleSide
+            });
+        }
+    });
+    object.traverse((child) => {
+        if (child.isMesh && child.name && child.name.includes('Cylinder.052')) {
+            child.material = new THREE.MeshStandardMaterial({
+                map: new THREE.TextureLoader().load('./model/image/tree_body_texture.png'),
+                side: THREE.DoubleSide
+            });
+        }
+    });
+    object.traverse((child) => {
+        if (child.isMesh && child.name && child.name.includes('Cylinder.054')) {
+            child.material = new THREE.MeshStandardMaterial({
+                map: new THREE.TextureLoader().load('./model/image/tree_body_texture.png'),
+                side: THREE.DoubleSide
+            });
+        }
+    });
+    object.traverse((child) => {
+        if (child.isMesh && child.name && child.name.includes('Cylinder.143')) {
+            child.material = new THREE.MeshStandardMaterial({
+                map: new THREE.TextureLoader().load('./model/image/tree_body_texture.png'),
+                side: THREE.DoubleSide
+            });
+        }
+    });
+    object.position.set(0, 0, 0);
+    object.scale.set(0.026, 0.026, 0.026); // Scale down the mesh
+    scene.add(object);
+    const box = new THREE.Box3().setFromObject(object);
+    const center = box.getCenter(new THREE.Vector3());
+    controls.target.copy(center);
+}, undefined, (error) => {
+    console.error('An error happened while loading the OBJ:', error);
+});
+
+// Load TreeP2.obj
+objLoader.load('./model/image/TreeP4.obj', (object) => {
+    // Make texture adjustments for Tree
+    object.traverse((child) => {
+        if (child.isMesh && child.name && child.name.includes('Cylinder.083')) {
+            child.material = new THREE.MeshStandardMaterial({
+                map: new THREE.TextureLoader().load('./model/image/green_color_texture.png'),
+                side: THREE.DoubleSide
+            });
+        }
+    });
+    object.traverse((child) => {
+        if (child.isMesh && child.name && child.name.includes('Cylinder.094')) {
+            child.material = new THREE.MeshStandardMaterial({
+                map: new THREE.TextureLoader().load('./model/image/green_color_texture.png'),
+                side: THREE.DoubleSide
+            });
+        }
+    });
+    object.traverse((child) => {
+        if (child.isMesh && child.name && child.name.includes('Cylinder.125')) {
+            child.material = new THREE.MeshStandardMaterial({
+                map: new THREE.TextureLoader().load('./model/image/green_color_texture.png'),
+                side: THREE.DoubleSide
+            });
+        }
+    });
+    object.traverse((child) => {
+        if (child.isMesh && child.name && child.name.includes('Cylinder.132')) {
+            child.material = new THREE.MeshStandardMaterial({
+                map: new THREE.TextureLoader().load('./model/image/green_color_texture.png'),
+                side: THREE.DoubleSide
+            });
+        }
+    });
+    object.traverse((child) => {
+        if (child.isMesh && child.name && child.name.includes('Cylinder.133')) {
+            child.material = new THREE.MeshStandardMaterial({
+                map: new THREE.TextureLoader().load('./model/image/green_color_texture.png'),
+                side: THREE.DoubleSide
+            });
+        }
+    });
+    object.traverse((child) => {
+        if (child.isMesh && child.name && child.name.includes('Cylinder.190')) {
+            child.material = new THREE.MeshStandardMaterial({
+                map: new THREE.TextureLoader().load('./model/image/green_color_texture.png'),
+                side: THREE.DoubleSide
+            });
+        }
+    });
+    object.traverse((child) => {
+        if (child.isMesh && child.name && child.name.includes('Cylinder.196')) {
+            child.material = new THREE.MeshStandardMaterial({
+                map: new THREE.TextureLoader().load('./model/image/green_color_texture.png'),
+                side: THREE.DoubleSide
+            });
+        }
+    });
+    object.traverse((child) => {
+        if (child.isMesh && child.name && child.name.includes('Cylinder.084')) {
+            child.material = new THREE.MeshStandardMaterial({
+                map: new THREE.TextureLoader().load('./model/image/tree_body_texture.png'),
+                side: THREE.DoubleSide
+            });
+        }
+    });
+    object.traverse((child) => {
+        if (child.isMesh && child.name && child.name.includes('Cylinder.093')) {
+            child.material = new THREE.MeshStandardMaterial({
+                map: new THREE.TextureLoader().load('./model/image/tree_body_texture.png'),
+                side: THREE.DoubleSide
+            });
+        }
+    });
+    object.traverse((child) => {
+        if (child.isMesh && child.name && child.name.includes('Cylinder.126')) {
+            child.material = new THREE.MeshStandardMaterial({
+                map: new THREE.TextureLoader().load('./model/image/tree_body_texture.png'),
+                side: THREE.DoubleSide
+            });
+        }
+    });
+    object.traverse((child) => {
+        if (child.isMesh && child.name && child.name.includes('Cylinder.131')) {
+            child.material = new THREE.MeshStandardMaterial({
+                map: new THREE.TextureLoader().load('./model/image/tree_body_texture.png'),
+                side: THREE.DoubleSide
+            });
+        }
+    });
+    object.traverse((child) => {
+        if (child.isMesh && child.name && child.name.includes('Cylinder.134')) {
+            child.material = new THREE.MeshStandardMaterial({
+                map: new THREE.TextureLoader().load('./model/image/tree_body_texture.png'),
+                side: THREE.DoubleSide
+            });
+        }
+    });
+    object.traverse((child) => {
+        if (child.isMesh && child.name && child.name.includes('Cylinder.189')) {
+            child.material = new THREE.MeshStandardMaterial({
+                map: new THREE.TextureLoader().load('./model/image/tree_body_texture.png'),
+                side: THREE.DoubleSide
+            });
+        }
+    });
+    object.traverse((child) => {
+        if (child.isMesh && child.name && child.name.includes('Cylinder.195')) {
+            child.material = new THREE.MeshStandardMaterial({
+                map: new THREE.TextureLoader().load('./model/image/tree_body_texture.png'),
+                side: THREE.DoubleSide
+            });
+        }
+    });
+    object.position.set(0, 0, 0);
+    object.scale.set(0.026, 0.026, 0.026); // Scale down the mesh
+    scene.add(object);
+    const box = new THREE.Box3().setFromObject(object);
+    const center = box.getCenter(new THREE.Vector3());
+    controls.target.copy(center);
+}, undefined, (error) => {
+    console.error('An error happened while loading the OBJ:', error);
+});
 
 // Create and add a car to the scene
 const car = createCar();
-car.position.set(0.1, 0, 2);
+car.position.set(-2, 0, 2);
 // Scale the car down to fit the scene
 car.scale.set(0.001, 0.001, 0.001);
 // Set car movement speed and keyboard controls left right up down arrow keys
@@ -5381,41 +5953,46 @@ window.addEventListener('keydown', (event) => {
 // Add the car to the scene
 scene.add(car);
 
-// Add a function to move the camera pov along the car
-function updateCameraFollow() {
-    // Camera follows from behind and above the car
-    const behindDistance = 1.5;
-    const height = 1.5;
-    
-    // Calculate camera position behind the car based on its direction
-    const cameraPosition = new THREE.Vector3();
-    cameraPosition.copy(car.position);
-    cameraPosition.sub(car.userData.direction.clone().multiplyScalar(behindDistance));
-    cameraPosition.y += height;
-    
-    // Smoothly interpolate camera position for smoother following
-    camera.position.lerp(cameraPosition, 0.1);
-    
-    // Make camera look slightly ahead of the car
-    const lookAtPosition = new THREE.Vector3();
-    lookAtPosition.copy(car.position);
-    lookAtPosition.add(car.userData.direction.clone().multiplyScalar(3));
-    
-    camera.lookAt(lookAtPosition);
+let wasMoving = false; // Track previous movement state
 
-    // When car idle, set camera so that we can move it with mouse
-    if (car.userData.direction.length() === 0) {
-        controls.enabled = true; // Enable orbit controls when car is idle
+function updateCameraFollow() {
+    const isMoving = car.userData.direction.length() > 0;
+
+    if (isMoving) {
+        const behindDistance = 1.8;
+        const height = 1.8;
+
+        const cameraPosition = new THREE.Vector3();
+        cameraPosition.copy(car.position);
+        cameraPosition.sub(car.userData.direction.clone().multiplyScalar(behindDistance));
+        cameraPosition.y += height;
+
+        camera.position.lerp(cameraPosition, 0.1);
+
+        const lookAtPosition = new THREE.Vector3();
+        lookAtPosition.copy(car.position);
+        lookAtPosition.add(car.userData.direction.clone().multiplyScalar(3));
+        camera.lookAt(lookAtPosition);
+
+        controls.target.copy(lookAtPosition);
+        controls.enableRotate = false;
+        wasMoving = true;
     } else {
-        controls.enabled = false; // Disable orbit controls when car is moving
+        // Car is stationary — allow rotation
+        controls.enableRotate = true;
+        controls.enableZoom = true;
+        wasMoving = false;
     }
-    // Update controls target
-    controls.target.copy(lookAtPosition);
+
+    // Always allow zoom
+    controls.enableZoom = true;
     controls.update();
 }
 
 
-// Upload greeting.gif 
+
+
+// Upload greeting.gif
 const greeting = new Image();
 greeting.src = './world/greeting.gif';
 greeting.style.position = 'absolute';
