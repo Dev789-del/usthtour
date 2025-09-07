@@ -5932,18 +5932,24 @@ car.userData.direction = new THREE.Vector3(0, 0, -1); // Initial direction facin
 window.addEventListener('keydown', (event) => {
     switch (event.key) {
         case 'w': // Move forward
+            // Car rotate to North direction
+            car.rotation.y = -Math.PI / 2;
             car.userData.direction.set(0, 0, -1);
             car.position.addScaledVector(car.userData.direction, car.userData.speed);
             break;
         case 's': // Move backward
+            // Car rotate to South direction
+            car.rotation.y = Math.PI / 2;
             car.userData.direction.set(0, 0, 1);
             car.position.addScaledVector(car.userData.direction, car.userData.speed);
             break;
         case 'a': // Move to West direction
+            car.rotation.y = 0;
             car.userData.direction.set(-1, 0, 0);
             car.position.addScaledVector(car.userData.direction, car.userData.speed);
             break;
         case 'd': // Move to East direction
+            car.rotation.y = Math.PI;
             car.userData.direction.set(1, 0, 0);
             car.position.addScaledVector(car.userData.direction, car.userData.speed);
             break;
