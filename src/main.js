@@ -5965,8 +5965,8 @@ function updateCameraFollow() {
     const isMoving = car.userData.direction.length() > 0;
 
     if (isMoving) {
-        const behindDistance = 1.8;
-        const height = 1.8;
+        let behindDistance = 2; // Distance behind the car
+        let height = 2; // Height above the car
 
         const cameraPosition = new THREE.Vector3();
         cameraPosition.copy(car.position);
@@ -6000,7 +6000,7 @@ function updateCameraFollow() {
 
 // Upload greeting.gif
 const greeting = new Image();
-greeting.src = './world/greeting.gif';
+greeting.src = './world/greeting1.gif';
 greeting.style.position = 'absolute';
 greeting.style.bottom = '10px';
 greeting.style.left = '10px';
@@ -6080,6 +6080,52 @@ greeting.addEventListener('click', function(event) {
         popup_greeting.style.display = 'none';
     }, 2000);
 });
+
+// Make a feature allow user to upload obj model by right click mouse using objLoader
+window.addEventListener('contextmenu', function(event) {
+    event.preventDefault();
+    const fileInput = document.createElement('input');
+    fileInput.type = 'file';
+    fileInput.accept = '.obj';
+    fileInput.style.display = 'none';
+    document.body.appendChild(fileInput);
+    fileInput.click();
+    fileInput.addEventListener('change', function(event) {
+        const file = event.target.files[0];
+        if (file) {
+            const reader = new FileReader();
+            reader.onload = function(event) {
+                const contents = event.target.result;
+                // Parse OBJ from string using OBJLoader
+                const loader = new OBJLoader();
+                const object = loader.parse(contents);
+                object.traverse((child) => {
+                    if (child.isMesh && child.name && child.name.includes('Text')) {
+                        child.material = new THREE.MeshStandardMaterial({
+                            map: new THREE.TextureLoader().load('./model/image/dark_blue_texture.png'),
+                            side: THREE.DoubleSide
+                        });
+                    }
+                });
+                object.traverse((child) => {
+                    if (child.isMesh && child.name && child.name.includes('Plane')) {
+                        child.material = new THREE.MeshStandardMaterial({
+                            map: new THREE.TextureLoader().load('./model/image/glass_building_texture.jpg'),
+                            side: THREE.DoubleSide
+                        });
+                    }
+                });
+                
+                object.position.set(0, 0, 0);
+                object.scale.set(0.026, 0.026, 0.026);
+                scene.add(object);
+            };
+            reader.readAsText(file);
+        }
+        document.body.removeChild(fileInput);
+    });
+});
+
 
 // Animation loop
 function animate() {
