@@ -5449,7 +5449,7 @@ objLoader.load('./model/image/TreeP1.obj', (object) => {
         }
     });
     object.traverse((child) => {
-        if (child.isMesh && child.name && child.name.includes('Cylinder.205')) {
+        if (child.isMesh && child.name && child.name.includes('Cylinder.206')) {
             child.material = new THREE.MeshStandardMaterial({
                 map: new THREE.TextureLoader().load('./model/image/green_color_texture.png'),
                 side: THREE.DoubleSide
@@ -5466,6 +5466,14 @@ objLoader.load('./model/image/TreeP1.obj', (object) => {
     });
     object.traverse((child) => {
         if (child.isMesh && child.name && child.name.includes('Cylinder.220')) {
+            child.material = new THREE.MeshStandardMaterial({
+                map: new THREE.TextureLoader().load('./model/image/green_color_texture.png'),
+                side: THREE.DoubleSide
+            });
+        }
+    });
+    object.traverse((child) => {
+        if (child.isMesh && child.name && child.name.includes('Cylinder.222')) {
             child.material = new THREE.MeshStandardMaterial({
                 map: new THREE.TextureLoader().load('./model/image/green_color_texture.png'),
                 side: THREE.DoubleSide
@@ -5521,7 +5529,7 @@ objLoader.load('./model/image/TreeP1.obj', (object) => {
         }
     });
     object.traverse((child) => {
-        if (child.isMesh && child.name && child.name.includes('Cylinder.206')) {
+        if (child.isMesh && child.name && child.name.includes('Cylinder.205')) {
             child.material = new THREE.MeshStandardMaterial({
                 map: new THREE.TextureLoader().load('./model/image/tree_body_texture.png'),
                 side: THREE.DoubleSide
@@ -6074,7 +6082,7 @@ function updateCameraFollow() {
 
 // Upload greeting.gif
 const greeting = new Image();
-greeting.src = './world/greeting1.gif';
+greeting.src = './world/blobvibing.gif';
 greeting.style.position = 'absolute';
 greeting.style.bottom = '10px';
 greeting.style.left = '10px';
@@ -6096,7 +6104,7 @@ popup_greeting.style.color = '#fff';
 popup_greeting.style.padding = '10px';
 popup_greeting.style.borderRadius = '5px';
 popup_greeting.style.display = 'none';
-popup_greeting.innerText = 'Welcome to USTH Tour! Click on buildings to learn more about them. Use W,A,S,D keys to move the car and arrow keys to move the camera. Click anywhere to place a marker.';
+popup_greeting.innerText = 'Welcome to USTH Tour! Click on buildings to learn more about them. Use W,A,S,D keys to move the car.';
 
 // Add translate switch button for greeting popup
 const translateBtn_greeting = document.createElement('button');
@@ -6111,7 +6119,7 @@ translateBtn_greeting.style.cursor = 'pointer';
 
 let isEnglish_greeting = true;
 const msgEN_greeting = popup_greeting.innerText;
-const msgVN_greeting = 'Chào mừng bạn đến với Tour USTH! Nhấp vào các tòa nhà để tìm hiểu thêm về chúng. Sử dụng các phím W, A, S, D để di chuyển xe và các phím mũi tên để di chuyển camera. Nhấp vào bất kỳ đâu để đặt một dấu hiệu.';
+const msgVN_greeting = 'Chào mừng bạn đến với Tour USTH! Nhấp vào các tòa nhà để tìm hiểu thêm về chúng. Sử dụng các phím W, A, S, D để di chuyển xe.';
 
 translateBtn_greeting.onclick = function() {
     isEnglish_greeting = !isEnglish_greeting;
@@ -6226,15 +6234,56 @@ window.addEventListener('contextmenu', function(event) {
     });
 });
 
+// Create the clock container
+const hanoiClock = document.createElement('div');
+hanoiClock.id = 'hanoi-clock';
+hanoiClock.textContent = 'Hanoi Time: --';
+
+// Style it to appear at the top center
+Object.assign(hanoiClock.style, {
+  position: 'absolute',
+  top: '25px',
+  left: '50%',
+  transform: 'translateX(-50%)',
+  background: 'rgba(0, 0, 0, 0.7)',
+  color: 'white',
+  padding: '10px 18px',
+  fontFamily: 'Arial, sans-serif',
+  fontSize: '18px',
+  borderRadius: '6px',
+  zIndex: '9999',
+  boxShadow: '0 0 8px rgba(0,0,0,0.4)'
+});
+
+// Add to the DOM
+document.body.appendChild(hanoiClock);
+
+// Clock logic
+function updateHanoiClock() {
+  const now = new Date();
+  const utc = now.getTime() + now.getTimezoneOffset() * 60000;
+  const hanoiTime = new Date(utc + 7 * 3600000); // UTC+7
+
+  const hours = hanoiTime.getHours().toString().padStart(2, '0');
+  const minutes = hanoiTime.getMinutes().toString().padStart(2, '0');
+  const seconds = hanoiTime.getSeconds().toString().padStart(2, '0');
+
+  hanoiClock.textContent = `Hanoi Time: ${hours}:${minutes}:${seconds}`;
+}
+
+// Start the clock
+setInterval(updateHanoiClock, 1000);
+updateHanoiClock(); // Initial render
+
 // Add compass.jpg to the top right corner of the screen
 const compass = new Image();
-compass.src = './model/building/compass.png';
+compass.src = './world/compass.png';
 compass.style.position = 'absolute';
-compass.style.top = '20px';
+compass.style.top = '32px';
 compass.style.left = '10px';
 // Resize compass
-compass.style.width = '100px';
-compass.style.height = '100px';
+compass.style.width = '120px';
+compass.style.height = '120px';
 compass.style.zIndex = '9999'; // Ensure it's always on top
 document.body.appendChild(compass);
 
@@ -6250,6 +6299,7 @@ popup_compass.style.display = 'none';
 popup_compass.innerText = 'The initial direction from the gate through the campus is North side.';
 
 document.body.appendChild(popup_compass);
+
 // Add translate switch button for compass popup
 const translateBtn_compass = document.createElement('button');
 translateBtn_compass.innerText = 'VN';
@@ -6285,7 +6335,7 @@ compass.addEventListener('click', function(event) {
     popup_compass.style.display = 'block';
     popup_compass.style.visibility = 'hidden';
     // Calculate position to the left of compass, vertically centered
-    const left = rect.left - popup_compass.offsetWidth - 10;
+    const left = rect.left + popup_compass.offsetWidth - 390;
     const top = rect.top + rect.height / 2 - popup_compass.offsetHeight / 2;
     popup_BuildingA.style.display = 'none';
     popup_BuildingA1.style.display = 'none';
@@ -6334,7 +6384,7 @@ compass.addEventListener('click', function(event) {
 });
 
 const sunny = new Image();
-sunny.src = './model/image/sunny.gif';
+sunny.src = './world/sunny.gif';
 sunny.style.position = 'absolute';
 sunny.style.top = '20px';      // Position from the top
 sunny.style.right = '10px';    // Position from the right
