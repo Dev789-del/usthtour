@@ -346,6 +346,8 @@ window.addEventListener('click', (event) => {
         popup_B3.style.display = 'none';
         popup_B4.style.display = 'none';
         popup_B5.style.display = 'none';
+        popup_greeting.style.display = 'none';
+        popup_compass.style.display = 'none';
         popup_BuildingA.style.left = `${event.clientX}px`;
         popup_BuildingA.style.top = `${event.clientY}px`;
         popup_BuildingA.style.display = 'block';
@@ -482,6 +484,8 @@ window.addEventListener('click', (event) => {
         popup_B3.style.display = 'none';
         popup_B4.style.display = 'none';
         popup_B5.style.display = 'none';
+        popup_greeting.style.display = 'none';
+        popup_compass.style.display = 'none';
         popup_BuildingA1.style.left = `${event.clientX}px`;
         popup_BuildingA1.style.top = `${event.clientY}px`;
         popup_BuildingA1.style.display = 'block';
@@ -622,6 +626,8 @@ window.addEventListener('click', (event) => {
         popup_B3.style.display = 'none';
         popup_B4.style.display = 'none';
         popup_B5.style.display = 'none';
+        popup_greeting.style.display = 'none';
+        popup_compass.style.display = 'none';
         popup_BuildingA2.style.left = `${event.clientX}px`;
         popup_BuildingA2.style.top = `${event.clientY}px`;
         popup_BuildingA2.style.display = 'block';
@@ -781,6 +787,8 @@ window.addEventListener('click', (event) => {
         popup_B3.style.display = 'none';
         popup_B4.style.display = 'none';
         popup_B5.style.display = 'none';
+        popup_greeting.style.display = 'none';
+        popup_compass.style.display = 'none';
         popup_BuildingA3.style.left = `${event.clientX}px`;
         popup_BuildingA3.style.top = `${event.clientY}px`;
         popup_BuildingA3.style.display = 'block';
@@ -916,6 +924,8 @@ window.addEventListener('click', (event) => {
         popup_B3.style.display = 'none';
         popup_B4.style.display = 'none';
         popup_B5.style.display = 'none';
+        popup_greeting.style.display = 'none';
+        popup_compass.style.display = 'none';
         popup_BuildingA5.style.left = `${event.clientX}px`;
         popup_BuildingA5.style.top = `${event.clientY}px`;
         popup_BuildingA5.style.display = 'block';
@@ -1053,6 +1063,8 @@ window.addEventListener('click', (event) => {
         popup_B3.style.display = 'none';
         popup_B4.style.display = 'none';
         popup_B5.style.display = 'none';  
+        popup_greeting.style.display = 'none';
+        popup_compass.style.display = 'none';
         popup_BuildingA6.style.left = `${event.clientX}px`;
         popup_BuildingA6.style.top = `${event.clientY}px`;
         popup_BuildingA6.style.display = 'block';
@@ -1186,6 +1198,8 @@ window.addEventListener('click', (event) => {
         popup_B3.style.display = 'none';
         popup_B4.style.display = 'none';
         popup_B5.style.display = 'none';
+        popup_greeting.style.display = 'none';
+        popup_compass.style.display = 'none';
         popup_BuildingA7.style.left = `${event.clientX}px`;
         popup_BuildingA7.style.top = `${event.clientY}px`;
         popup_BuildingA7.style.display = 'block';
@@ -1344,6 +1358,8 @@ window.addEventListener('click', (event) => {
         popup_B3.style.display = 'none';
         popup_B4.style.display = 'none';
         popup_B5.style.display = 'none';
+        popup_greeting.style.display = 'none';
+        popup_compass.style.display = 'none';
         popup_BuildingA8.style.left = `${event.clientX}px`;
         popup_BuildingA8.style.top = `${event.clientY}px`;
         popup_BuildingA8.style.display = 'block';
@@ -1479,6 +1495,8 @@ window.addEventListener('click', (event) => {
         popup_B3.style.display = 'none';
         popup_B4.style.display = 'none';
         popup_B5.style.display = 'none';
+        popup_greeting.style.display = 'none';
+        popup_compass.style.display = 'none';
         popup_BuildingA9.style.left = `${event.clientX}px`;
         popup_BuildingA9.style.top = `${event.clientY}px`;
         popup_BuildingA9.style.display = 'block';
@@ -1613,6 +1631,8 @@ window.addEventListener('click', (event) => {
         popup_B3.style.display = 'none';
         popup_B4.style.display = 'none';
         popup_B5.style.display = 'none';
+        popup_greeting.style.display = 'none';
+        popup_compass.style.display = 'none';
         popup_BuildingA10.style.left = `${event.clientX}px`;
         popup_BuildingA10.style.top = `${event.clientY}px`;
         popup_BuildingA10.style.display = 'block';
@@ -1755,7 +1775,9 @@ window.addEventListener('click', (event) => {
         popup_B2.style.display = 'none';
         popup_B3.style.display = 'none';
         popup_B4.style.display = 'none';
-        popup_B5.style.display = 'none'; 
+        popup_B5.style.display = 'none';
+        popup_greeting.style.display = 'none';
+        popup_compass.style.display = 'none'; 
         popup_BuildingA11.style.left = `${event.clientX}px`;
         popup_BuildingA11.style.top = `${event.clientY}px`;
         popup_BuildingA11.style.display = 'block';
@@ -1889,6 +1911,8 @@ window.addEventListener('click', (event) => {
         popup_B3.style.display = 'none';
         popup_B4.style.display = 'none';
         popup_B5.style.display = 'none';
+        popup_greeting.style.display = 'none';
+        popup_compass.style.display = 'none';
         popup_BuildingA12.style.left = `${event.clientX}px`;
         popup_BuildingA12.style.top = `${event.clientY}px`;
         popup_BuildingA12.style.display = 'block';
@@ -2023,6 +2047,8 @@ window.addEventListener('click', (event) => {
         popup_B3.style.display = 'none';
         popup_B4.style.display = 'none';
         popup_B5.style.display = 'none';
+        popup_greeting.style.display = 'none';
+        popup_compass.style.display = 'none';
         popup_BuildingA13.style.left = `${event.clientX}px`;
         popup_BuildingA13.style.top = `${event.clientY}px`;
         popup_BuildingA13.style.display = 'block';
@@ -2156,6 +2182,8 @@ window.addEventListener('click', (event) => {
         popup_B3.style.display = 'none';
         popup_B4.style.display = 'none';
         popup_B5.style.display = 'none';
+        popup_greeting.style.display = 'none';
+        popup_compass.style.display = 'none';
         popup_BuildingA14.style.left = `${event.clientX}px`;
         popup_BuildingA14.style.top = `${event.clientY}px`;
         popup_BuildingA14.style.display = 'block';
@@ -2289,6 +2317,8 @@ window.addEventListener('click', (event) => {
         popup_B3.style.display = 'none';
         popup_B4.style.display = 'none';
         popup_B5.style.display = 'none';
+        popup_greeting.style.display = 'none';
+        popup_compass.style.display = 'none';
         popup_Medic1.style.left = `${event.clientX}px`;
         popup_Medic1.style.top = `${event.clientY}px`;
         popup_Medic1.style.display = 'block';
@@ -2422,6 +2452,8 @@ window.addEventListener('click', (event) => {
         popup_B3.style.display = 'none';
         popup_B4.style.display = 'none';
         popup_B5.style.display = 'none';
+        popup_greeting.style.display = 'none';
+        popup_compass.style.display = 'none';
         popup_VastMedic.style.left = `${event.clientX}px`;
         popup_VastMedic.style.top = `${event.clientY}px`;
         popup_VastMedic.style.display = 'block';
@@ -2556,6 +2588,8 @@ window.addEventListener('click', (event) => {
         popup_B3.style.display = 'none';
         popup_B4.style.display = 'none';
         popup_B5.style.display = 'none';
+        popup_greeting.style.display = 'none';
+        popup_compass.style.display = 'none';
         popup_A18_1.style.left = `${event.clientX}px`;
         popup_A18_1.style.top = `${event.clientY}px`;
         popup_A18_1.style.display = 'block';
@@ -2688,6 +2722,8 @@ window.addEventListener('click', (event) => {
         popup_B3.style.display = 'none';
         popup_B4.style.display = 'none';
         popup_B5.style.display = 'none';
+        popup_greeting.style.display = 'none';
+        popup_compass.style.display = 'none';
         popup_A18_2.style.left = `${event.clientX}px`;
         popup_A18_2.style.top = `${event.clientY}px`;
         popup_A18_2.style.display = 'block';
@@ -2820,6 +2856,8 @@ window.addEventListener('click', (event) => {
         popup_B3.style.display = 'none';
         popup_B4.style.display = 'none';
         popup_B5.style.display = 'none';
+        popup_greeting.style.display = 'none';
+        popup_compass.style.display = 'none';
         popup_A20.style.left = `${event.clientX}px`;
         popup_A20.style.top = `${event.clientY}px`;
         popup_A20.style.display = 'block';
@@ -2952,6 +2990,8 @@ window.addEventListener('click', (event) => {
         popup_B3.style.display = 'none';
         popup_B4.style.display = 'none';
         popup_B5.style.display = 'none';
+        popup_greeting.style.display = 'none';
+        popup_compass.style.display = 'none';
         popup_A21.style.left = `${event.clientX}px`;
         popup_A21.style.top = `${event.clientY}px`;
         popup_A21.style.display = 'block';
@@ -3085,6 +3125,8 @@ window.addEventListener('click', (event) => {
         popup_B3.style.display = 'none';
         popup_B4.style.display = 'none';
         popup_B5.style.display = 'none';
+        popup_greeting.style.display = 'none';
+        popup_compass.style.display = 'none';
         popup_A22.style.left = `${event.clientX}px`;
         popup_A22.style.top = `${event.clientY}px`;
         popup_A22.style.display = 'block';
@@ -3217,6 +3259,8 @@ window.addEventListener('click', (event) => {
         popup_B3.style.display = 'none';
         popup_B4.style.display = 'none';
         popup_B5.style.display = 'none';
+        popup_greeting.style.display = 'none';
+        popup_compass.style.display = 'none';
         popup_A23.style.left = `${event.clientX}px`;
         popup_A23.style.top = `${event.clientY}px`;
         popup_A23.style.display = 'block';
@@ -3349,6 +3393,8 @@ window.addEventListener('click', (event) => {
         popup_B3.style.display = 'none';
         popup_B4.style.display = 'none';
         popup_B5.style.display = 'none';
+        popup_greeting.style.display = 'none';
+        popup_compass.style.display = 'none';
         popup_A25.style.left = `${event.clientX}px`;
         popup_A25.style.top = `${event.clientY}px`;
         popup_A25.style.display = 'block';
@@ -3482,6 +3528,8 @@ window.addEventListener('click', (event) => {
         popup_B3.style.display = 'none';
         popup_B4.style.display = 'none';
         popup_B5.style.display = 'none';
+        popup_greeting.style.display = 'none';
+        popup_compass.style.display = 'none';
         popup_A26.style.left = `${event.clientX}px`;
         popup_A26.style.top = `${event.clientY}px`;
         popup_A26.style.display = 'block';
@@ -3625,6 +3673,8 @@ window.addEventListener('click', (event) => {
         popup_B3.style.display = 'none';
         popup_B4.style.display = 'none';
         popup_B5.style.display = 'none';
+        popup_greeting.style.display = 'none';
+        popup_compass.style.display = 'none';
         popup_A27.style.left = `${event.clientX}px`;
         popup_A27.style.top = `${event.clientY}px`;
         popup_A27.style.display = 'block';
@@ -3757,6 +3807,8 @@ window.addEventListener('click', (event) => {
         popup_B3.style.display = 'none';
         popup_B4.style.display = 'none';
         popup_B5.style.display = 'none';
+        popup_greeting.style.display = 'none';
+        popup_compass.style.display = 'none';
         popup_A28.style.left = `${event.clientX}px`;
         popup_A28.style.top = `${event.clientY}px`;
         popup_A28.style.display = 'block';
@@ -3898,6 +3950,8 @@ window.addEventListener('click', (event) => {
         popup_B3.style.display = 'none';
         popup_B4.style.display = 'none';
         popup_B5.style.display = 'none';
+        popup_greeting.style.display = 'none';
+        popup_compass.style.display = 'none';
         popup_A30.style.left = `${event.clientX}px`;
         popup_A30.style.top = `${event.clientY}px`;
         popup_A30.style.display = 'block';
@@ -4029,6 +4083,8 @@ window.addEventListener('click', (event) => {
         popup_B3.style.display = 'none';
         popup_B4.style.display = 'none';
         popup_B5.style.display = 'none';
+        popup_greeting.style.display = 'none';
+        popup_compass.style.display = 'none';
         popup_1H.style.left = `${event.clientX}px`;
         popup_1H.style.top = `${event.clientY}px`;
         popup_1H.style.display = 'block';
@@ -4160,6 +4216,8 @@ window.addEventListener('click', (event) => {
         popup_B3.style.display = 'none';
         popup_B4.style.display = 'none';
         popup_B5.style.display = 'none';
+        popup_greeting.style.display = 'none';
+        popup_compass.style.display = 'none';
         popup_2H.style.left = `${event.clientX}px`;
         popup_2H.style.top = `${event.clientY}px`;
         popup_2H.style.display = 'block';
@@ -4292,6 +4350,8 @@ window.addEventListener('click', (event) => {
         popup_B3.style.display = 'none';
         popup_B4.style.display = 'none';
         popup_B5.style.display = 'none';
+        popup_greeting.style.display = 'none';
+        popup_compass.style.display = 'none';
         popup_2A.style.left = `${event.clientX}px`;
         popup_2A.style.top = `${event.clientY}px`;
         popup_2A.style.display = 'block';
@@ -4423,6 +4483,8 @@ window.addEventListener('click', (event) => {
         popup_B3.style.display = 'none';
         popup_B4.style.display = 'none';
         popup_B5.style.display = 'none';
+        popup_greeting.style.display = 'none';
+        popup_compass.style.display = 'none';
         popup_2B.style.left = `${event.clientX}px`;
         popup_2B.style.top = `${event.clientY}px`;
         popup_2B.style.display = 'block';
@@ -4554,6 +4616,8 @@ window.addEventListener('click', (event) => {
         popup_B3.style.display = 'none';
         popup_B4.style.display = 'none';
         popup_B5.style.display = 'none';
+        popup_greeting.style.display = 'none';
+        popup_compass.style.display = 'none';
         popup_2C.style.left = `${event.clientX}px`;
         popup_2C.style.top = `${event.clientY}px`;
         popup_2C.style.display = 'block';
@@ -4686,6 +4750,8 @@ window.addEventListener('click', (event) => {
         popup_B3.style.display = 'none';
         popup_B4.style.display = 'none';
         popup_B5.style.display = 'none';
+        popup_greeting.style.display = 'none';
+        popup_compass.style.display = 'none';
         popup_B1.style.left = `${event.clientX}px`;
         popup_B1.style.top = `${event.clientY}px`;
         popup_B1.style.display = 'block';
@@ -4819,6 +4885,8 @@ window.addEventListener('click', (event) => {
         popup_B3.style.display = 'none';
         popup_B4.style.display = 'none';
         popup_B5.style.display = 'none';
+        popup_greeting.style.display = 'none';
+        popup_compass.style.display = 'none';
         popup_B2.style.left = `${event.clientX}px`;
         popup_B2.style.top = `${event.clientY}px`;
         popup_B2.style.display = 'block';
@@ -4951,6 +5019,8 @@ window.addEventListener('click', (event) => {
         popup_B2.style.display = 'none';
         popup_B4.style.display = 'none';
         popup_B5.style.display = 'none';
+        popup_greeting.style.display = 'none';
+        popup_compass.style.display = 'none';
         popup_B3.style.left = `${event.clientX}px`;
         popup_B3.style.top = `${event.clientY}px`;
         popup_B3.style.display = 'block';
@@ -5082,6 +5152,8 @@ window.addEventListener('click', (event) => {
         popup_B2.style.display = 'none';
         popup_B3.style.display = 'none';
         popup_B5.style.display = 'none';
+        popup_greeting.style.display = 'none';
+        popup_compass.style.display = 'none';
         popup_B4.style.left = `${event.clientX}px`;
         popup_B4.style.top = `${event.clientY}px`;
         popup_B4.style.display = 'block';
@@ -5212,11 +5284,13 @@ window.addEventListener('click', (event) => {
         popup_B2.style.display = 'none';
         popup_B3.style.display = 'none';
         popup_B4.style.display = 'none';
+        popup_greeting.style.display = 'none';
+        popup_compass.style.display = 'none';
         popup_B5.style.left = `${event.clientX}px`;
         popup_B5.style.top = `${event.clientY}px`;
         popup_B5.style.display = 'block';
 
-        setTimeout(() => {w
+        setTimeout(() => {
             popup_B5.style.display = 'none';
         }, 5000);
     }
@@ -5965,8 +6039,8 @@ function updateCameraFollow() {
     const isMoving = car.userData.direction.length() > 0;
 
     if (isMoving) {
-        let behindDistance = 2; // Distance behind the car
-        let height = 2; // Height above the car
+        let behindDistance = 1.8; // Distance behind the car
+        let height = 1.8; // Height above the car
 
         const cameraPosition = new THREE.Vector3();
         cameraPosition.copy(car.position);
@@ -6024,6 +6098,31 @@ popup_greeting.style.borderRadius = '5px';
 popup_greeting.style.display = 'none';
 popup_greeting.innerText = 'Welcome to USTH Tour! Click on buildings to learn more about them. Use W,A,S,D keys to move the car and arrow keys to move the camera. Click anywhere to place a marker.';
 
+// Add translate switch button for greeting popup
+const translateBtn_greeting = document.createElement('button');
+translateBtn_greeting.innerText = 'VN';
+translateBtn_greeting.style.marginLeft = '10px';
+translateBtn_greeting.style.background = '#555';
+translateBtn_greeting.style.color = '#fff';
+translateBtn_greeting.style.border = 'none';
+translateBtn_greeting.style.borderRadius = '3px';
+translateBtn_greeting.style.padding = '3px 8px';
+translateBtn_greeting.style.cursor = 'pointer';
+
+let isEnglish_greeting = true;
+const msgEN_greeting = popup_greeting.innerText;
+const msgVN_greeting = 'Chào mừng bạn đến với Tour USTH! Nhấp vào các tòa nhà để tìm hiểu thêm về chúng. Sử dụng các phím W, A, S, D để di chuyển xe và các phím mũi tên để di chuyển camera. Nhấp vào bất kỳ đâu để đặt một dấu hiệu.';
+
+translateBtn_greeting.onclick = function() {
+    isEnglish_greeting = !isEnglish_greeting;
+    popup_greeting.innerText = isEnglish_greeting ? msgEN_greeting : msgVN_greeting;
+    translateBtn_greeting.innerText = isEnglish_greeting ? 'VN' : 'EN';
+    popup_greeting.appendChild(translateBtn_greeting);
+};
+
+// Append button to popup
+popup_greeting.appendChild(translateBtn_greeting);
+
 document.body.appendChild(popup_greeting);
 
 // Show popup above greeting.gif when it is clicked
@@ -6073,6 +6172,7 @@ greeting.addEventListener('click', function(event) {
     popup_B3.style.display = 'none';
     popup_B4.style.display = 'none';
     popup_B5.style.display = 'none';
+    popup_compass.style.display = 'none';
     popup_greeting.style.left = `${Math.max(left, 10)}px`;
     popup_greeting.style.top = `${Math.max(top, 10)}px`;
     popup_greeting.style.visibility = 'visible';
@@ -6126,6 +6226,112 @@ window.addEventListener('contextmenu', function(event) {
     });
 });
 
+// Add compass.jpg to the top right corner of the screen
+const compass = new Image();
+compass.src = './model/building/compass.png';
+compass.style.position = 'absolute';
+compass.style.top = '10px';
+compass.style.right = '10px';
+// Resize compass
+compass.style.width = '100px';
+compass.style.height = '100px';
+compass.style.zIndex = '9999'; // Ensure it's always on top
+document.body.appendChild(compass);
+
+
+/* Create popup element for the case we click compass.png */
+const popup_compass = document.createElement('div');
+popup_compass.style.position = 'absolute';
+popup_compass.style.background = '#333';
+popup_compass.style.color = '#fff';
+popup_compass.style.padding = '10px';
+popup_compass.style.borderRadius = '5px';
+popup_compass.style.display = 'none';
+popup_compass.innerText = 'The initial direction from the gate through the campus is North side.';
+
+document.body.appendChild(popup_compass);
+// Add translate switch button for compass popup
+const translateBtn_compass = document.createElement('button');
+translateBtn_compass.innerText = 'VN';
+translateBtn_compass.style.marginLeft = '10px';
+translateBtn_compass.style.background = '#555';
+translateBtn_compass.style.color = '#fff';
+translateBtn_compass.style.border = 'none';
+translateBtn_compass.style.borderRadius = '3px';
+translateBtn_compass.style.padding = '3px 8px';
+translateBtn_compass.style.cursor = 'pointer';
+
+let isEnglish_compass = true;
+const msgEN_compass = popup_compass.innerText;
+const msgVN_compass = 'Hướng ban đầu từ cổng vào khuôn viên là phía Bắc.';
+
+translateBtn_compass.onclick = function() {
+    isEnglish_compass = !isEnglish_compass;
+    popup_compass.innerText = isEnglish_compass ? msgEN_compass : msgVN_compass;
+    translateBtn_compass.innerText = isEnglish_compass ? 'VN' : 'EN';
+    popup_compass.appendChild(translateBtn_compass);
+};
+
+// Append button to popup
+popup_compass.appendChild(translateBtn_compass);
+
+document.body.appendChild(popup_compass);
+
+// Show popup to the left of compass.png when it is clicked
+compass.addEventListener('click', function(event) {
+    // Get compass position and size
+    const rect = compass.getBoundingClientRect();
+    // Temporarily show popup to get its size
+    popup_compass.style.display = 'block';
+    popup_compass.style.visibility = 'hidden';
+    // Calculate position to the left of compass, vertically centered
+    const left = rect.left - popup_compass.offsetWidth - 10;
+    const top = rect.top + rect.height / 2 - popup_compass.offsetHeight / 2;
+    popup_BuildingA.style.display = 'none';
+    popup_BuildingA1.style.display = 'none';
+    popup_BuildingA2.style.display = 'none';
+    popup_BuildingA3.style.display = 'none';
+    popup_BuildingA5.style.display = 'none';
+    popup_BuildingA6.style.display = 'none';
+    popup_BuildingA7.style.display = 'none';
+    popup_BuildingA8.style.display = 'none';
+    popup_BuildingA9.style.display = 'none';
+    popup_BuildingA10.style.display = 'none';
+    popup_BuildingA11.style.display = 'none';
+    popup_BuildingA12.style.display = 'none';
+    popup_BuildingA13.style.display = 'none';
+    popup_BuildingA14.style.display = 'none';
+    popup_Medic1.style.display = 'none';
+    popup_VastMedic.style.display = 'none';
+    popup_A18_1.style.display = 'none';
+    popup_A18_2.style.display = 'none';
+    popup_A20.style.display = 'none';
+    popup_A21.style.display = 'none';
+    popup_A22.style.display = 'none';
+    popup_A23.style.display = 'none';
+    popup_A25.style.display = 'none';
+    popup_A26.style.display = 'none';
+    popup_A27.style.display = 'none';
+    popup_A28.style.display = 'none';
+    popup_A30.style.display = 'none';
+    popup_1H.style.display = 'none';
+    popup_2H.style.display = 'none';
+    popup_2A.style.display = 'none';
+    popup_2B.style.display = 'none';
+    popup_2C.style.display = 'none';
+    popup_B1.style.display = 'none';
+    popup_B2.style.display = 'none';
+    popup_B3.style.display = 'none';
+    popup_B4.style.display = 'none';
+    popup_B5.style.display = 'none';
+    popup_greeting.style.display = 'none';
+    popup_compass.style.left = `${Math.max(left, 15)}px`;
+    popup_compass.style.top = `${Math.max(top, 10)}px`;
+    popup_compass.style.visibility = 'visible';
+    setTimeout(() => {
+        popup_compass.style.display = 'none';
+    }, 2000);
+});
 
 // Animation loop
 function animate() {
