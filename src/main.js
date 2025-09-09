@@ -6230,8 +6230,8 @@ window.addEventListener('contextmenu', function(event) {
 const compass = new Image();
 compass.src = './model/building/compass.png';
 compass.style.position = 'absolute';
-compass.style.top = '10px';
-compass.style.right = '10px';
+compass.style.top = '20px';
+compass.style.left = '10px';
 // Resize compass
 compass.style.width = '100px';
 compass.style.height = '100px';
@@ -6332,6 +6332,16 @@ compass.addEventListener('click', function(event) {
         popup_compass.style.display = 'none';
     }, 2000);
 });
+
+const sunny = new Image();
+sunny.src = './model/image/sunny.gif';
+sunny.style.position = 'absolute';
+sunny.style.top = '20px';      // Position from the top
+sunny.style.right = '10px';    // Position from the right
+sunny.style.width = '150px';
+sunny.style.height = '150px';
+sunny.style.zIndex = '9999';   // Ensure it's always on top
+document.body.appendChild(sunny);
 
 // Animation loop
 function animate() {
