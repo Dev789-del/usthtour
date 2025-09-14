@@ -6235,12 +6235,12 @@ window.addEventListener('contextmenu', function(event) {
 });
 
 // Create the clock container
-const hanoiClock = document.createElement('div');
-hanoiClock.id = 'hanoi-clock';
-hanoiClock.textContent = 'Hanoi Time: --';
+const VietnamClock = document.createElement('div');
+VietnamClock.id = 'vietnam-clock';
+VietnamClock.textContent = 'Vietnam Time: --';
 
 // Style it to appear at the top center
-Object.assign(hanoiClock.style, {
+Object.assign(VietnamClock.style, {
   position: 'absolute',
   top: '25px',
   left: '50%',
@@ -6256,24 +6256,24 @@ Object.assign(hanoiClock.style, {
 });
 
 // Add to the DOM
-document.body.appendChild(hanoiClock);
+document.body.appendChild(VietnamClock);
 
 // Clock logic
-function updateHanoiClock() {
+function updateVietnamClock() {
   const now = new Date();
   const utc = now.getTime() + now.getTimezoneOffset() * 60000;
-  const hanoiTime = new Date(utc + 7 * 3600000); // UTC+7
+  const VietnamTime = new Date(utc + 7 * 3600000); // UTC+7
 
-  const hours = hanoiTime.getHours().toString().padStart(2, '0');
-  const minutes = hanoiTime.getMinutes().toString().padStart(2, '0');
-  const seconds = hanoiTime.getSeconds().toString().padStart(2, '0');
+  const hours = VietnamTime.getHours().toString().padStart(2, '0');
+  const minutes = VietnamTime.getMinutes().toString().padStart(2, '0');
+  const seconds = VietnamTime.getSeconds().toString().padStart(2, '0');
 
-  hanoiClock.textContent = `Hanoi Time: ${hours}:${minutes}:${seconds}`;
+  VietnamClock.textContent = `Vietnam Time: ${hours}:${minutes}:${seconds}`;
 }
 
 // Start the clock
-setInterval(updateHanoiClock, 1000);
-updateHanoiClock(); // Initial render
+setInterval(updateVietnamClock, 1000);
+updateVietnamClock(); // Initial render
 
 // Add compass.jpg to the top right corner of the screen
 const compass = new Image();
