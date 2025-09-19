@@ -6003,11 +6003,11 @@ objLoader.load('./model/image/TreeP4.obj', (object) => {
 
 // Create and add a car to the scene
 const car = createCar();
-car.position.set(-2, 0, 2);
+car.position.set(0.085, 0, 2.25);
 // Scale the car down to fit the scene
 car.scale.set(0.001, 0.001, 0.001);
 // Set car movement speed and keyboard controls left right up down arrow keys
-car.userData = { speed: 0.1 }; // Add speed property to car for movement
+car.userData = { speed: 0.05 }; // Add speed property to car for movement
 car.userData.direction = new THREE.Vector3(0, 0, -1); // Initial direction facing towards the building
 
 // Add keyboard controls for car movement A, D, W, S keys
@@ -6047,8 +6047,8 @@ function updateCameraFollow() {
     const isMoving = car.userData.direction.length() > 0;
 
     if (isMoving) {
-        let behindDistance = 1.8; // Distance behind the car
-        let height = 1.8; // Height above the car
+        let behindDistance = 0.41; // Distance behind the car
+        let height = 0.3; // Height above the car
 
         const cameraPosition = new THREE.Vector3();
         cameraPosition.copy(car.position);
@@ -6080,7 +6080,7 @@ function updateCameraFollow() {
 
 
 
-// Upload greeting.gif
+// Upload greeting gif 
 const greeting = new Image();
 greeting.src = './world/blobvibing.gif';
 greeting.style.position = 'absolute';
