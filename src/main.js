@@ -6080,6 +6080,7 @@ function updateCameraFollow() {
 
 
 
+
 // Upload greeting gif 
 const greeting = new Image();
 greeting.src = './world/blobvibing.gif';
@@ -6189,6 +6190,7 @@ greeting.addEventListener('click', function(event) {
     }, 2000);
 });
 
+const historyStack = [];
 // Make a feature allow user to upload obj model by right click mouse using objLoader
 window.addEventListener('contextmenu', function(event) {
     event.preventDefault();
@@ -6227,12 +6229,57 @@ window.addEventListener('contextmenu', function(event) {
                 object.position.set(0, 0, 0);
                 object.scale.set(0.026, 0.026, 0.026);
                 scene.add(object);
+                historyStack.push({
+                    type: 'add',
+                    object: object
+                });
             };
             reader.readAsText(file);
         }
         document.body.removeChild(fileInput);
     });
 });
+
+window.addEventListener('dblclick', function(event) {
+    const mouse = new THREE.Vector2();
+    mouse.x = (event.clientX / window.innerWidth) * 2 - 1;
+    mouse.y = -(event.clientY / window.innerHeight) * 2 + 1;
+
+    const raycaster = new THREE.Raycaster();
+    raycaster.setFromCamera(mouse, camera);
+
+    const intersects = raycaster.intersectObjects(scene.children, true);
+    if (intersects.length > 0) {
+        const selected = intersects[0].object;
+        scene.remove(selected.parent); // Remove the whole OBJ group
+        historyStack.push({
+            type: 'remove',
+            object: selected.parent
+        });
+    }
+});
+
+function undoLastAction() {
+    if (historyStack.length === 0) return;
+
+    const lastAction = historyStack.pop();
+
+    switch (lastAction.type) {
+        case 'add':
+            scene.remove(lastAction.object);
+            break;
+        case 'remove':
+            scene.add(lastAction.object);
+            break;
+    }
+}
+
+window.addEventListener('keydown', function(event) {
+    if (event.ctrlKey && event.key === 'z') {
+        undoLastAction();
+    }
+});
+
 
 // Create the clock container
 const VietnamClock = document.createElement('div');
@@ -6258,18 +6305,21 @@ Object.assign(VietnamClock.style, {
 // Add to the DOM
 document.body.appendChild(VietnamClock);
 
-// Clock logic
 function updateVietnamClock() {
   const now = new Date();
   const utc = now.getTime() + now.getTimezoneOffset() * 60000;
   const VietnamTime = new Date(utc + 7 * 3600000); // UTC+7
 
+  const year = VietnamTime.getFullYear();
+  const month = (VietnamTime.getMonth() + 1).toString().padStart(2, '0');
+  const day = VietnamTime.getDate().toString().padStart(2, '0');
   const hours = VietnamTime.getHours().toString().padStart(2, '0');
   const minutes = VietnamTime.getMinutes().toString().padStart(2, '0');
   const seconds = VietnamTime.getSeconds().toString().padStart(2, '0');
 
-  VietnamClock.textContent = `Vietnam Time: ${hours}:${minutes}:${seconds}`;
+  VietnamClock.textContent = `Vietnam Time: ${day}/${month}/${year} ${hours}:${minutes}:${seconds}`;
 }
+
 
 // Start the clock
 setInterval(updateVietnamClock, 1000);
